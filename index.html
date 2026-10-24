@@ -1,0 +1,1068 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>رواق الجمعيات</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;600;700&family=Amiri:wght@400;700&display=swap">
+<style>
+/* Layout: a platform shell (sticky bar + views) that hosts each association's subsite inside a browser-like frame; builder = form beside live preview. */
+:root{
+  --bg:#F2F5F3; --surface:#FFFFFF; --soft:#E6EEEA; --ink:#14231F; --muted:#56675F; --line:#D5DFDA;
+  --accent:#0E5A4E; --accent-ink:#FFFFFF; --gold:#A87A22; --danger:#A33A2C; --ok:#2F7A4D;
+  --display:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1513; --surface:#13201C; --soft:#1A2A25; --ink:#E4EDE9; --muted:#93A69E; --line:#26372F;
+  --accent:#43A890; --accent-ink:#04110D; --gold:#D6A647; --danger:#E07563; --ok:#5FBE85; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1513; --surface:#13201C; --soft:#1A2A25; --ink:#E4EDE9; --muted:#93A69E; --line:#26372F;
+  --accent:#43A890; --accent-ink:#04110D; --gold:#D6A647; --danger:#E07563; --ok:#5FBE85; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.7;direction:rtl}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.3;margin:0;text-wrap:balance;font-weight:600}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:22px;font-weight:700;color:var(--accent);text-decoration:none}
+.brand small{font-family:var(--body);font-size:12px;color:var(--muted);font-weight:500}
+.nav{display:flex;gap:4px;margin-inline-start:auto;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.ghost[aria-current="true"]{background:var(--soft);color:var(--accent)}
+.btn.danger{color:var(--danger)}
+.btn.sm{padding:4px 10px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+main{padding-block:28px 60px}
+.eyebrow{font-size:12px;letter-spacing:.04em;color:var(--gold);font-weight:600}
+.lead{color:var(--muted);max-width:62ch}
+.head-row{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.notice{background:var(--soft);border-radius:var(--r);padding:10px 14px;font-size:13.5px;color:var(--muted)}
+.notice b{color:var(--ink)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.input,select.input,textarea.input{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 11px}
+textarea.input{min-height:84px;resize:vertical}
+.filters .input{width:auto;min-width:0;flex:1 1 200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.card .band{height:6px;background:var(--site,var(--accent))}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:19px}
+.domain{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;color:var(--muted);direction:ltr;text-align:right}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:12px;padding:2px 9px;border-radius:99px;background:var(--soft);color:var(--muted)}
+.chip.ex{background:transparent;border:1px dashed var(--gold);color:var(--gold)}
+.card .foot{display:flex;gap:6px;padding:12px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.meta{display:flex;gap:14px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.meta b{color:var(--ink);font-variant-numeric:tabular-nums}
+.empty{border:1px dashed var(--line);border-radius:var(--r);padding:40px 20px;text-align:center;color:var(--muted);display:grid;gap:10px;justify-items:center}
+.empty h3{color:var(--ink)}
+/* editor */
+.builder{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:980px){.builder{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.steps{display:flex;gap:2px;padding:6px;border-bottom:1px solid var(--line);overflow-x:auto}
+.steps button{border:0;background:transparent;padding:6px 10px;border-radius:7px;cursor:pointer;white-space:nowrap;font-size:13.5px;color:var(--muted)}
+.steps button[aria-current="true"]{background:var(--soft);color:var(--accent);font-weight:600}
+.form{padding:16px;display:grid;gap:14px}
+.field{display:grid;gap:4px}
+.field label{font-size:13px;font-weight:600}
+.field .hint{font-size:12px;color:var(--muted)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
+.slug{display:flex;direction:ltr;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.slug input{border:0;flex:1;min-width:0;padding:8px 10px;background:transparent;font-family:ui-monospace,Menlo,monospace}
+.slug span{padding:8px 10px;background:var(--soft);color:var(--muted);font-family:ui-monospace,Menlo,monospace;font-size:13px}
+.rep{border:1px solid var(--line);border-radius:8px;padding:10px;display:grid;gap:8px;background:var(--bg)}
+.rep-head{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.sec-title{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.sec-title h4{font-family:var(--body);font-size:14px}
+.swatches{display:flex;gap:8px;flex-wrap:wrap}
+.swatch{width:34px;height:34px;border-radius:50%;border:3px solid var(--surface);outline:1px solid var(--line);cursor:pointer}
+.swatch[aria-pressed="true"]{outline:2px solid var(--ink)}
+.err{color:var(--danger);font-size:13px}
+.savebar{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line);flex-wrap:wrap;align-items:center}
+.preview-wrap{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px)}
+@media (max-width:980px){.preview-wrap{position:static}}
+/* subsite frame */
+.frame{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.chrome{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--soft);border-bottom:1px solid var(--line)}
+.dots{display:flex;gap:5px;direction:ltr}.dots i{width:9px;height:9px;border-radius:50%;background:var(--line);display:block}
+.addr{flex:1;min-width:0;background:var(--surface);border-radius:6px;padding:3px 10px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;direction:ltr;text-align:left;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.s-head{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{width:44px;height:44px;border-radius:12px;background:var(--site);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:22px;flex:none}
+.s-name{font-family:var(--display);font-size:18px;font-weight:600;line-height:1.3}
+.s-name small{display:block;font-family:var(--body);font-size:12px;color:var(--muted);font-weight:400}
+.s-nav{display:flex;gap:2px;margin-inline-start:auto;flex-wrap:wrap}
+.s-nav button{border:0;background:transparent;padding:6px 10px;border-radius:7px;cursor:pointer;font-size:13.5px;color:var(--muted)}
+.s-nav button[aria-current="true"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--site)}
+.s-hero{background:var(--site);color:#fff;padding:40px 24px;display:grid;gap:14px;position:relative;overflow:hidden}
+.s-hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.06) 0 2px,transparent 2px 22px);pointer-events:none}
+.s-hero > *{position:relative;z-index:1}
+.s-hero h1{font-size:clamp(24px,4vw,36px);max-width:22ch}
+.s-hero p{max-width:60ch;opacity:.92}
+.s-hero .acts{display:flex;gap:8px;flex-wrap:wrap}
+.s-hero .btn{background:#fff;color:#14231F;border-color:#fff}
+.s-hero .btn.alt{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.s-sec{padding:28px 24px;display:grid;gap:16px;border-bottom:1px solid var(--line)}
+.s-sec:last-child{border-bottom:0}
+.s-sec h2{font-size:22px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.stat{background:var(--surface);padding:18px 24px}
+.stat b{display:block;font-family:var(--display);font-size:28px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.stat span{font-size:13px;color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.pcard{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:6px;align-content:start;border-top:3px solid var(--site)}
+.pcard h3{font-size:16px;font-family:var(--body);font-weight:600}
+.pcard p{font-size:14px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;font-size:14px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:500;min-width:0;overflow-wrap:anywhere}
+.license{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.license .seal{width:40px;height:40px;border-radius:50%;border:2px solid var(--site);display:grid;place-items:center;flex:none;color:var(--site)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--soft)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+.doclist{display:grid;gap:8px}
+.doc{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.doc .ico{width:34px;height:40px;border-radius:4px;background:var(--soft);display:grid;place-items:center;font-size:10px;color:var(--muted);font-weight:700;flex:none}
+.doc .t{flex:1;min-width:0}
+.doc .t small{display:block;color:var(--muted);font-size:12.5px}
+.vals{display:flex;gap:8px;flex-wrap:wrap}.vals span{border:1px solid var(--line);border-radius:99px;padding:3px 12px;font-size:13.5px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.role{border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:4px}
+.role .h{display:flex;justify-content:space-between;gap:8px;font-weight:600}
+.role .h small{font-weight:400;color:var(--muted);white-space:nowrap}
+.role p{font-size:13.5px;color:var(--muted)}
+.jform{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:10px;background:var(--bg)}
+.ok-msg{color:var(--ok);font-weight:600}
+.s-foot{padding:16px 24px;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--soft)}
+.toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:8px;font-size:14px;z-index:20}
+.muted{color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--site,var(--accent))}}
+/* ---- additions: registration, identity, templates, news, donations, dashboard ---- */
+.badge{display:inline-block;background:var(--danger);color:#fff;border-radius:99px;font-size:11px;padding:0 6px;min-width:18px;text-align:center;line-height:18px;font-weight:600}
+.cta-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.phases{display:flex;gap:4px;padding:10px 10px 4px;margin:0;list-style:none;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.phases li{display:flex;align-items:center;gap:6px;padding:2px 8px 2px 4px}
+.phases li b{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--soft);font-size:11px;font-variant-numeric:tabular-nums}
+.phases li.on{color:var(--accent);font-weight:600}.phases li.on b{background:var(--accent);color:var(--accent-ink)}
+.phases li.done{color:var(--ink)}.phases li.done b{color:var(--accent)}
+.check{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;cursor:pointer}
+.check input{margin-top:6px;accent-color:var(--accent)}
+.upl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.upl-thumb{width:52px;height:52px;object-fit:contain;border:1px solid var(--line);border-radius:8px;background:#fff}
+.tpls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tpl{border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--surface);cursor:pointer;display:grid;gap:4px;text-align:right;align-content:start}
+.tpl[aria-pressed="true"]{outline:2px solid var(--accent);border-color:var(--accent)}
+.tpl b{font-size:13.5px}.tpl small{font-size:11.5px;color:var(--muted);line-height:1.4}
+.mini{height:58px;border-radius:6px;border:1px solid var(--line);display:grid;gap:3px;padding:5px;background:var(--bg);overflow:hidden}
+.mini i{display:block;border-radius:3px;background:var(--line)}
+.mini.classic{grid-template-rows:6px 1fr 8px}.mini.classic i:nth-child(2){background:var(--site)}
+.mini.modern{grid-template-rows:6px 1fr 8px}.mini.modern i:nth-child(1){width:60%;margin-inline-start:auto;border-radius:99px}.mini.modern i:nth-child(2){background:color-mix(in srgb,var(--site) 22%,var(--surface));border-radius:8px;margin-inline:4px}
+.mini.formal{grid-template-rows:4px 8px 1fr;border-top:4px solid var(--site)}.mini.formal i:nth-child(1){width:30%;margin-inline:auto}.mini.formal i:nth-child(3){background:transparent;border:1px solid var(--site)}
+.swatch.custom{position:relative;display:inline-block;overflow:hidden}
+.swatch.custom input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;border:0;padding:0}
+.devices{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap}
+.device-mobile{max-width:390px;margin-inline:auto}
+.clist{display:grid;gap:6px;list-style:none;padding:0;margin:0}
+.clist li{display:flex;gap:8px;font-size:14px;align-items:center}
+.clist li.ok::before{content:"✓";color:var(--ok);font-weight:700;width:14px}.clist li.no::before{content:"○";color:var(--muted);width:14px}
+.dns{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px}.dns td,.dns th{direction:ltr;text-align:left}
+.logo{overflow:hidden}.logo img{width:100%;height:100%;object-fit:contain;display:block;background:#fff}
+.logo.has-img{background:#fff;border:1px solid var(--line)}.logo.has-img span{display:none}
+.vbadge{display:inline-block;font-size:12px;padding:1px 9px;border-radius:99px;background:var(--soft);color:var(--muted);margin-top:4px}
+.vbadge.ok,.chip.ok{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok)}
+.chip.warn{background:color-mix(in srgb,var(--gold) 14%,transparent);color:var(--gold)}
+.chip.bad{background:color-mix(in srgb,var(--danger) 12%,transparent);color:var(--danger)}
+a.chip{text-decoration:none}
+.ncard{border:1px solid var(--line);border-radius:10px;overflow:hidden;display:grid;align-content:start;background:var(--surface)}
+.ncard img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--soft)}
+.ncard .in{padding:12px 14px;display:grid;gap:4px}
+.ncard time{font-size:12px;color:var(--muted)}
+.ncard h3{font-size:16px;font-family:var(--body);font-weight:600}
+.ncard p{font-size:14px;color:var(--muted)}
+.newslist{display:grid;gap:14px}
+.ncard.wide .article p{color:var(--ink)}
+.article{display:grid;gap:10px;max-width:72ch}.article h3{font-size:18px;margin-top:6px}
+.groups{display:flex;gap:10px;flex-wrap:wrap}
+.groups span{border:1px solid var(--line);border-top:3px solid var(--site);border-radius:10px;padding:10px 14px;font-size:13.5px;color:var(--muted);min-width:120px}
+.groups b{display:block;font-family:var(--display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.camp{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:8px;align-content:start}
+.bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden}.bar i{display:block;height:100%;background:var(--site)}
+.camp .nums{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;flex-wrap:wrap}
+.bank{border:1px dashed var(--site);border-radius:10px;padding:14px;display:grid;gap:10px}
+.iban{font-family:ui-monospace,Menlo,Consolas,monospace;direction:ltr;text-align:right;font-size:15px;letter-spacing:.03em;overflow-wrap:anywhere}
+.btn.give{background:var(--site);border-color:var(--site);color:#fff}
+.donate-cta{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid var(--line);border-inline-start:4px solid var(--site);border-radius:10px;padding:14px 16px}
+.stcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px}
+.stc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:6px;align-content:start;justify-items:start}
+.stc .k{font-size:12.5px;color:var(--muted)}.stc .v{font-weight:600}
+tr.new td{background:color-mix(in srgb,var(--gold) 9%,transparent)}
+td.msg{max-width:36ch;white-space:pre-wrap;font-size:13.5px}
+/* template: modern */
+.t-modern .s-head{border-bottom:0;padding:18px 24px}
+.t-modern .logo{border-radius:50%}
+.t-modern .s-nav{background:var(--soft);border-radius:99px;padding:3px}
+.t-modern .s-nav button{border-radius:99px}
+.t-modern .s-nav button[aria-current="true"]{background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.t-modern .s-hero{background:linear-gradient(135deg,color-mix(in srgb,var(--site) 16%,var(--surface)),var(--surface));color:var(--ink);margin:0 16px;border-radius:18px;padding:48px 28px;border:1px solid var(--line)}
+.t-modern .s-hero::after{background:radial-gradient(circle at 12% 30%,color-mix(in srgb,var(--site) 22%,transparent) 0 90px,transparent 91px)}
+.t-modern .s-hero .eyebrow{color:var(--site)!important;opacity:1!important}
+.t-modern .s-hero .btn{background:var(--site);color:#fff;border-color:var(--site);border-radius:99px}
+.t-modern .s-hero .btn.alt{background:transparent;color:var(--site);border-color:var(--site)}
+.t-modern .stats{background:transparent;gap:12px;padding:16px;border-bottom:0}
+.t-modern .stat{border:1px solid var(--line);border-radius:14px}
+.t-modern .stat b{color:var(--site)}
+.t-modern .pcard,.t-modern .ncard,.t-modern .camp,.t-modern .role{border-radius:16px;border-top-width:1px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.t-modern .s-sec{border-bottom:0}
+.t-modern .btn{border-radius:99px}
+/* template: formal */
+.t-formal .s-head{flex-direction:column;text-align:center;border-top:6px solid var(--site);gap:6px;padding-bottom:0}
+.t-formal .s-name,.t-formal h1,.t-formal h2{font-family:"Amiri",serif}
+.t-formal .s-name{font-size:22px}
+.t-formal .s-nav{margin-inline-start:0;justify-content:center;border-top:1px solid var(--line);padding:4px 0;width:100%}
+.t-formal .s-nav button[aria-current="true"]{box-shadow:none;background:var(--site);color:#fff;border-radius:2px}
+.t-formal .logo{border-radius:4px;width:56px;height:56px}
+.t-formal .s-hero{background:var(--surface);color:var(--ink);text-align:center;justify-items:center;border-bottom:1px solid var(--line);padding:48px 32px}
+.t-formal .s-hero::after{background:none;inset:12px;border:1px solid color-mix(in srgb,var(--site) 45%,transparent);outline:1px solid color-mix(in srgb,var(--site) 20%,transparent);outline-offset:4px}
+.t-formal .s-hero .eyebrow{color:var(--site)!important;opacity:1!important}
+.t-formal .s-hero .acts{justify-content:center}
+.t-formal .s-hero .btn{background:var(--site);color:#fff;border-color:var(--site);border-radius:2px}
+.t-formal .s-hero .btn.alt{background:transparent;color:var(--site)}
+.t-formal .s-sec h2{border-bottom:2px solid var(--site);padding-bottom:6px;justify-self:start}
+.t-formal .pcard{border-radius:2px;border-top-width:1px;border-inline-start:3px solid var(--site)}
+.t-formal .stat b{font-family:"Amiri",serif}
+
+/* ---- landing & plans ---- */
+.btn.lg{padding:10px 20px;font-size:16px}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}
+.linkbtn{border:0;background:none;padding:0;color:var(--accent);text-decoration:underline;cursor:pointer;font:inherit}
+.lp-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:center;padding-block:18px 36px}
+@media (max-width:900px){.lp-hero{grid-template-columns:minmax(0,1fr)}}
+.lp-copy{display:grid;gap:14px;align-content:center}
+.lp-copy h1{font-size:clamp(30px,4.6vw,48px);line-height:1.2}
+.lp-mock{height:380px;overflow:hidden;border-radius:14px;pointer-events:none;user-select:none;box-shadow:0 18px 40px -18px rgba(0,0,0,.35);-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}
+.lp-mock-in{width:142.86%;transform:scale(.7);transform-origin:top right}
+.lp-sec{padding-block:34px;border-top:1px solid var(--line);display:grid;gap:14px}
+.lp-sec h2{font-size:clamp(22px,3vw,30px)}
+.lp-why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.lp-why div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:4px}
+.lp-why p,.lp-feat p,.lp-steps p{color:var(--muted);font-size:14px}
+.lp-feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.lp-feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:6px;align-content:start}
+.lp-feat svg{color:var(--accent)}
+.lp-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;counter-reset:s}
+.lp-steps li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:4px;align-content:start}
+.lp-steps .n{width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;align-items:stretch}
+.plan{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px 20px 20px;display:grid;gap:12px;grid-template-rows:auto auto 1fr auto;text-align:center}
+.plan.popular{border:2px solid var(--gold)}
+.plan .tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:12px;font-weight:600;padding:2px 12px;border-radius:99px;white-space:nowrap}
+.plan h3{font-size:20px}
+.plan .price{font-family:var(--display);font-size:32px;font-weight:700;font-variant-numeric:tabular-nums}
+.plan .price small{font-family:var(--body);font-size:14px;color:var(--muted);font-weight:500}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;text-align:right;align-content:start}
+.plan li::before{content:"✓";color:var(--ok);font-weight:700;margin-inline-end:8px}
+.lp-form{max-width:720px}
+.lp-foot{border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.pplans{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.pplan{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface);cursor:pointer;display:grid;gap:2px;text-align:right}
+.pplan[aria-pressed="true"]{outline:2px solid var(--accent);border-color:var(--accent)}
+.pplan .pp{font-family:var(--display);font-size:18px}.pplan .pp small,.pplan > small{font-family:var(--body);font-size:11.5px;color:var(--muted);line-height:1.4}
+.tpl:disabled{opacity:.55;cursor:not-allowed}
+.steps .badge{margin-inline-start:4px}
+</style>
+
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="#welcome" data-go="welcome">
+    <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8" fill="var(--accent)"/><path d="M8 22V12l7-5 7 5v10" fill="none" stroke="var(--accent-ink)" stroke-width="2.2"/><path d="M12.5 22v-5.5h5V22" fill="none" stroke="var(--accent-ink)" stroke-width="2.2"/></svg>
+    رواق <small>منصة مواقع الجمعيات الأهلية</small>
+  </a>
+  <nav class="nav" aria-label="أقسام المنصة">
+    <button class="btn ghost" data-go="welcome" id="nav-welcome">الرئيسية</button>
+    <button class="btn ghost" data-go="home" id="nav-home">المواقع</button>
+    <button class="btn ghost" data-go="dash" id="nav-dash" hidden>لوحة جمعيتي <span class="badge" id="dash-badge" hidden></span></button>
+    <button class="btn ghost" data-go="verify" id="nav-verify" hidden>الاشتراكات والتحقق <span class="badge" id="verify-badge" hidden></span></button>
+    <button class="btn ghost" data-go="apps" id="nav-apps">الطلبات الواردة</button>
+    <button class="btn primary" data-go="new" id="nav-new">+ إنشاء موقع جمعية</button>
+  </nav>
+</div></div>
+<main class="wrap" id="app"></main>
+<div class="toast" id="toast" hidden></div>
+<script>
+(function(){
+"use strict";
+const DOMAIN = "rawaq.sa";
+const CATEGORIES = ["اجتماعية","صحية","تعليمية","بيئية","ثقافية","تنموية","إسكان","دعوية","مهنية","رعاية الأيتام","ذوي الإعاقة"];
+const REGIONS = ["الرياض","مكة المكرمة","المدينة المنورة","القصيم","المنطقة الشرقية","عسير","تبوك","حائل","الحدود الشمالية","جازان","نجران","الباحة","الجوف"];
+const DOC_KINDS = ["التقرير السنوي","القوائم المالية المدققة","اللائحة الأساسية","السياسات والإجراءات","محاضر الجمعية العمومية","الخطة الاستراتيجية"];
+const COLORS = ["#0E5A4E","#1F4E8C","#6E3863","#8A5A12","#2E6A3A","#9B3A2E","#3E4A5C"];
+const SITE_TABS = [["home","الرئيسية"],["about","عن الجمعية"],["programs","البرامج"],["news","الأخبار"],["join","التطوع والعضوية"],["gov","الحوكمة والشفافية"],["donate","تبرّع"],["contact","تواصل معنا"]];
+const TEMPLATES = [["classic","كلاسيكي","واجهة بلون الهوية ونقش زخرفي"],["modern","عصري","واجهة فاتحة وبطاقات مستديرة"],["formal","رسمي","ترويسة مركزية وخط نسخي"]];
+const SUBJECTS = ["استفسار عام","طلب شراكة","طلب مساعدة لمستفيد","اقتراح أو ملاحظة"];
+const KIND_LABEL = {volunteer:"تطوع",member:"عضوية",contact:"تواصل"};
+const ALL_TPL = ["classic","modern","formal"];
+const PLANS = {
+  free:{name:"الخطة التجريبية",price:"مجاناً",unit:"",feats:["نطاق فرعي (Subdomain)","قالب أساسي واحد","حتى 3 برامج وصفحة إضافية واحدة","شعار المنصة في التذييل"],templates:["classic"],domain:false,brand:true,maxPrograms:3,maxPages:1,cta:"ابدأ الآن"},
+  basic:{name:"الخطة الأساسية",price:"250",unit:"ريال / شهر",feats:["نطاق خاص للجمعية","كافة القوالب الاحترافية","صفحات ومشاريع غير محدودة","إزالة شعار المنصة","دعم فني مباشر"],templates:ALL_TPL,domain:true,brand:false,maxPrograms:Infinity,maxPages:Infinity,popular:true,cta:"اختر الخطة"},
+  ent:{name:"خطة المؤسسات",price:"اتصل بنا",unit:"",feats:["إدارة فروع متعددة","تكاملات مخصصة (API)","اتفاقية مستوى خدمة (SLA)","مدير حساب مخصص","تدريب ميداني للفريق"],templates:ALL_TPL,domain:true,brand:false,maxPrograms:Infinity,maxPages:Infinity,contactOnly:true,cta:"تواصل معنا"}};
+const LIMIT_OF = {programs:"maxPrograms",pages:"maxPages"};
+const planKey = s => PLANS[s&&s.plan] ? s.plan : "free";
+const state = { mode:"loading", sites:[], inbox:[], reviews:{}, mail:[], view:"home", slug:null, siteTab:"home", previewTab:"home",
+  draft:null, editingSlug:null, editingId:null, step:0, canEdit:true, canWrite:true, uid:null, q:"", cat:"", appSite:"", appKind:"", dashKind:"",
+  errors:{}, confirmDel:null, sent:{}, device:"desktop", lastSeen:"", dashSeen:"", uploading:{}, rejectFor:null, leads:[], leadSent:false, pickPlan:"free", vtab:"subs" };
+let db=null, user=null, assets=null, privKey=null, ownerStarted=false;
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num = n => (Number(n)||0).toLocaleString("en-US");
+const app = $("#app");
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.hidden=false; clearTimeout(toast._t); toast._t=setTimeout(()=>t.hidden=true,2600); }
+const today = () => new Date().toISOString().slice(0,10);
+const safeUrl = u => { const v=String(u||"").trim(); return /^https?:\/\/[^\s"'<>]+$/i.test(v) ? v : ""; };
+const assetUrl = v => !v ? "" : /^data:(image\/(png|jpeg|webp|gif|svg\+xml)|application\/pdf);base64,/.test(v) ? v : (/^[0-9a-f]{32}$/.test(v) ? "/_blob/"+v : "");
+function fmtDate(d){ if(!d) return ""; const x=new Date(String(d).slice(0,10)+"T12:00:00"); if(isNaN(x)) return esc(d);
+  try{ return x.toLocaleDateString("ar-SA-u-nu-latn-ca-gregory",{year:"numeric",month:"long",day:"numeric"}); }catch(_){ return String(d).slice(0,10); } }
+const trunc = (t,n) => { t=String(t||""); return t.length>n ? t.slice(0,n).trim()+"…" : t; };
+function paras(t){ return String(t||"").split(/\n+/).map(l=>l.trim()).filter(Boolean).map(l=> l.startsWith("## ") ? `<h3>${esc(l.slice(3))}</h3>` : `<p>${esc(l)}</p>`).join(""); }
+/* ---------- sample data for offline preview ---------- */
+const SAMPLES = [
+ {slug:"birr-madinah",example:true,name:"جمعية البر الخيرية بالمدينة",category:"اجتماعية",license:"1093",region:"المدينة المنورة",city:"المدينة المنورة",founded:"1415",supervisor:"وزارة الموارد البشرية والتنمية الاجتماعية",
+  tagline:"نمدّ الأسر المحتاجة بما يحفظ كرامتها ويبني استقلالها",about:"جمعية أهلية تعمل على رعاية الأسر الأشد حاجة في المدينة المنورة عبر برامج الإعانة والتمكين الاقتصادي والإسكان.",
+  vision:"مجتمع متكافل لا تبقى فيه أسرة دون سند.",mission:"تقديم خدمات رعاية وتمكين نوعية للأسر المستفيدة بشراكات فاعلة وكوادر مؤهلة.",values:["الشفافية","الكرامة","الإتقان","الشراكة"],
+  stats:{beneficiaries:"8400",volunteers:"320"},
+  programs:[{title:"سلة الخير الشهرية",desc:"سلال غذائية شهرية للأسر المسجلة وفق دراسة حالة.",beneficiaries:"2100"},{title:"تمكين",desc:"تدريب وتوظيف أرباب الأسر وتمويل المشاريع المنزلية الصغيرة.",beneficiaries:"340"},{title:"ترميم المساكن",desc:"إصلاح وتأهيل منازل الأسر المتعففة.",beneficiaries:"95"}],
+  volunteerRoles:[{title:"توزيع السلال الغذائية",hours:"4 ساعات أسبوعياً",desc:"المشاركة في فرز السلال وإيصالها للأسر."},{title:"باحث اجتماعي متطوع",hours:"6 ساعات أسبوعياً",desc:"زيارات ميدانية ودراسة حالات الأسر."}],
+  membership:[{type:"عضو عامل",fee:"300",desc:"حق التصويت والترشح لمجلس الإدارة بعد مضي سنة."},{type:"عضو منتسب",fee:"100",desc:"حضور الجمعية العمومية دون حق التصويت."}],
+  board:[{name:"أ. عبدالرحمن السلمي",role:"رئيس مجلس الإدارة"},{name:"د. خالد الحربي",role:"نائب الرئيس"},{name:"أ. فهد الجهني",role:"أمين الصندوق"},{name:"أ. سارة العوفي",role:"عضو"}],
+  docs:[{title:"التقرير السنوي 2025",kind:"التقرير السنوي",year:"2025",url:""},{title:"القوائم المالية المدققة 2025",kind:"القوائم المالية المدققة",year:"2025",url:""},{title:"اللائحة الأساسية",kind:"اللائحة الأساسية",year:"2023",url:""}],
+  contact:{phone:"0148000000",email:"info@example.org",address:"المدينة المنورة، حي قباء"},color:"#0E5A4E",createdAt:"2026-09-02"},
+ {slug:"ruwaa-health",example:true,name:"جمعية رُواء الصحية",category:"صحية",license:"4417",region:"الرياض",city:"الرياض",founded:"1440",supervisor:"وزارة الصحة",
+  tagline:"رعاية صحية وقائية تصل إلى من يحتاجها",about:"تعمل الجمعية على التوعية الصحية ودعم مرضى الأمراض المزمنة غير القادرين على تحمل تكاليف العلاج.",
+  vision:"صحة أفضل لكل أسرة.",mission:"برامج وقائية وعلاجية مستدامة بالشراكة مع القطاع الصحي.",values:["الرحمة","الجودة","المسؤولية"],
+  stats:{beneficiaries:"5200",volunteers:"140"},
+  programs:[{title:"عيادة الأمل المتنقلة",desc:"فحوص دورية مجانية في الأحياء الطرفية.",beneficiaries:"3100"},{title:"دعم مرضى السكري",desc:"أجهزة قياس ومستلزمات وتثقيف غذائي.",beneficiaries:"760"}],
+  volunteerRoles:[{title:"مثقف صحي",hours:"مرنة",desc:"للممارسين الصحيين المرخصين."}],
+  membership:[{type:"عضو عامل",fee:"200",desc:"حق التصويت في الجمعية العمومية."}],
+  board:[{name:"د. نورة القحطاني",role:"رئيسة مجلس الإدارة"},{name:"د. ماجد العتيبي",role:"نائب الرئيس"}],
+  docs:[{title:"التقرير السنوي 2025",kind:"التقرير السنوي",year:"2025",url:""}],
+  contact:{phone:"0112000000",email:"contact@example.org",address:"الرياض، حي النسيم"},color:"#1F4E8C",createdAt:"2026-10-11"}
+];
+Object.assign(SAMPLES[0], {_id:"demo-owner", ownerId:"demo-owner", agree:true, plan:"basic", template:"classic",
+  rep:{name:"أ. فهد الجهني",role:"المدير التنفيذي",phone:"0550000000",email:"ed@example.org"},
+  beneficiaryGroups:[{label:"أسر محتاجة",count:"2100"},{label:"أيتام",count:"640"},{label:"كبار السن",count:"310"}],
+  news:[{title:"انطلاق حملة سلة الخير لموسم الشتاء",date:"2026-10-15",body:"أطلقت الجمعية حملتها السنوية لتوفير السلال الغذائية والملابس الشتوية للأسر المسجلة.\nتستمر الحملة حتى نهاية ديسمبر، ويمكن المساهمة عبر صفحة التبرع.",imageId:""},
+        {title:"توقيع اتفاقية شراكة لتأهيل 40 مسكناً",date:"2026-09-20",body:"وقّعت الجمعية اتفاقية مع شريك من القطاع الخاص لترميم 40 مسكناً لأسر مستفيدة خلال العام القادم.",imageId:""}],
+  pages:[{title:"شركاؤنا",body:"## شركاء النجاح\nنعتز بشراكاتنا مع الجهات الحكومية والقطاع الخاص والجمعيات الشقيقة.\n## كن شريكاً\nللشراكات والرعايات تواصل معنا عبر نموذج التواصل واختر «طلب شراكة»."}],
+  donate:{intro:"تبرعك يصل إلى الأسر المستحقة وفق دراسة حالة معتمدة، وتُنشر أوجه الصرف في التقارير المالية السنوية.",link:"https://example.org/donate",bank:"مصرف الراجحي",holder:"جمعية البر الخيرية بالمدينة",iban:"SA4420000001234567891234"},
+  campaigns:[{title:"سلة الخير الشتوية",desc:"سلال غذائية وملابس شتوية لـ 1,200 أسرة.",goal:"300000",raised:"184500"},{title:"ترميم المساكن",desc:"تأهيل 40 مسكناً لأسر مستفيدة.",goal:"800000",raised:"215000"}],
+  customDomain:"birr-madinah.org.sa", notify:{email:"ed@example.org",volunteer:true,member:true,contact:true}});
+Object.assign(SAMPLES[1], {_id:"p-ruwaa-health", template:"modern", plan:"free",
+  news:[{title:"قافلة الفحص المجاني تزور حي النسيم",date:"2026-10-05",body:"استقبلت العيادة المتنقلة أكثر من 300 مراجع خلال ثلاثة أيام.",imageId:""}]});
+function blank(){ return {slug:"",name:"",category:"اجتماعية",license:"",region:"المدينة المنورة",city:"",founded:"",supervisor:"وزارة الموارد البشرية والتنمية الاجتماعية",
+  tagline:"",about:"",vision:"",mission:"",values:[],stats:{beneficiaries:"",volunteers:""},
+  programs:[{title:"",desc:"",beneficiaries:""}],volunteerRoles:[{title:"",hours:"",desc:""}],membership:[{type:"عضو عامل",fee:"",desc:""}],
+  board:[{name:"",role:"رئيس مجلس الإدارة"}],docs:[{title:"",kind:"التقرير السنوي",year:"2025",url:"",fileId:""}],
+  contact:{phone:"",email:"",address:""},color:COLORS[0],createdAt:today(),
+  plan:"free",template:"classic",logoId:"",rep:{name:"",role:"",phone:"",email:""},licenseFileId:"",agree:false,mine:false,
+  beneficiaryGroups:[{label:"",count:""}],news:[{title:"",date:today(),body:"",imageId:""}],pages:[],
+  donate:{intro:"",link:"",bank:"",holder:"",iban:""},campaigns:[{title:"",desc:"",goal:"",raised:""}],
+  customDomain:"",notify:{email:"",volunteer:true,member:true,contact:true}}; }
+const clone = o => JSON.parse(JSON.stringify(o));
+/* ---------- ownership helpers ---------- */
+const isMine = s => !!(s && state.uid && s._id===state.uid);
+const mySite = () => state.sites.find(isMine);
+const canEditSite = s => state.canEdit || isMine(s);
+const reviewOf = s => (s && state.reviews[s._id]) || {};
+const planActive = s => planKey(s)==="free" || !!reviewOf(s).planActive;
+const effPlan = s => PLANS[planActive(s) ? planKey(s) : "free"];
+const isNew = s => !reviewOf(s).verified && !reviewOf(s).rejected;
+const hasDonate = s => !!(s.donate && (s.donate.intro || safeUrl(s.donate.link) || s.donate.iban)) || (s.campaigns||[]).some(c=>c.title);
+const addrOf = s => (s.customDomain && reviewOf(s).domainStatus==="connected" && effPlan(s).domain) ? s.customDomain : `${s.slug||"اسم-النطاق"}.${DOMAIN}`;
+const unread = () => state.mail.filter(m=>(m.at||"")>state.lastSeen).length;
+/* ---------- encryption: requests are readable only by the association that owns the site ---------- */
+const b64 = buf => { const a=new Uint8Array(buf); let s=""; for(let i=0;i<a.length;i+=0x8000) s+=String.fromCharCode.apply(null,a.subarray(i,i+0x8000)); return btoa(s); };
+const unb64 = s => Uint8Array.from(atob(s), c=>c.charCodeAt(0));
+const RSA = {name:"RSA-OAEP",hash:"SHA-256"};
+async function encryptFor(pubJwk,obj){
+  const pub=await crypto.subtle.importKey("jwk",pubJwk,RSA,false,["encrypt"]);
+  const aes=await crypto.subtle.generateKey({name:"AES-GCM",length:256},true,["encrypt"]);
+  const iv=crypto.getRandomValues(new Uint8Array(12));
+  const c=await crypto.subtle.encrypt({name:"AES-GCM",iv},aes,new TextEncoder().encode(JSON.stringify(obj)));
+  const k=await crypto.subtle.encrypt({name:"RSA-OAEP"},pub,await crypto.subtle.exportKey("raw",aes));
+  return {k:b64(k),iv:b64(iv),c:b64(c)};
+}
+async function decryptWith(priv,enc){
+  const raw=await crypto.subtle.decrypt({name:"RSA-OAEP"},priv,unb64(enc.k));
+  const aes=await crypto.subtle.importKey("raw",raw,{name:"AES-GCM"},false,["decrypt"]);
+  const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:unb64(enc.iv)},aes,unb64(enc.c));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+async function loadPriv(){
+  if(privKey||state.mode!=="db"||!state.uid||!window.crypto?.subtle) return privKey;
+  try{ const snap=await db.doc(`data/users/${state.uid}/keys`).get();
+    if(snap.exists && snap.data().priv) privKey=await crypto.subtle.importKey("jwk",clone(snap.data().priv),RSA,false,["decrypt"]); }catch(_){}
+  return privKey;
+}
+async function ensureKeys(){
+  if(state.mode!=="db"||!state.uid||!window.crypto?.subtle) return null;
+  const ref=db.doc(`data/users/${state.uid}/keys`); const snap=await ref.get();
+  if(snap.exists && snap.data().pub && snap.data().priv){ await loadPriv(); return clone(snap.data().pub); }
+  const kp=await crypto.subtle.generateKey({name:"RSA-OAEP",modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:"SHA-256"},true,["encrypt","decrypt"]);
+  const pub=await crypto.subtle.exportKey("jwk",kp.publicKey), priv=await crypto.subtle.exportKey("jwk",kp.privateKey);
+  await ref.set({pub,priv,createdAt:new Date().toISOString()});
+  privKey=kp.privateKey; return pub;
+}
+/* ---------- routing ---------- */
+function go(view, slug){
+  if(view==="new" && !state.canEdit){ const m=mySite(); if(m) return startEdit(m); }
+  state.view=view; state.slug=slug||null; state.errors={}; state.confirmDel=null; state.rejectFor=null;
+  if(view==="new"){ state.draft=blank(); state.draft.plan=state.pickPlan||"free"; state.draft.mine=!state.canEdit; state.editingSlug=null; state.editingId=null; state.step=0; state.previewTab="home"; }
+  if(view==="site"){ state.siteTab="home"; }
+  if(view==="dash"){ state.dashSeen=state.lastSeen; markSeen(); }
+  try{ const h = view==="site" ? "s-"+slug : view; if(location.hash.slice(1)!==h) history.replaceState(null,"","#"+h); }catch(e){}
+  render(); window.scrollTo(0,0);
+}
+function startEdit(s){
+  state.view="new"; state.draft=Object.assign(blank(),clone(s)); state.draft.mine=isMine(s);
+  state.editingSlug=s.slug; state.editingId=s._id; state.step=0; state.errors={}; state.previewTab="home";
+  try{history.replaceState(null,"","#new")}catch(_){}
+  render(); window.scrollTo(0,0);
+}
+function fromHash(){
+  const h=(location.hash||"").slice(1);
+  if(h.startsWith("s-")) return go("site",h.slice(2));
+  if(h==="apps") return go("apps");
+  if(h==="dash") return go("dash");
+  if(h==="verify") return go("verify");
+  if(h==="welcome"||!h) return go("welcome");
+  if(h==="new") return go("new");
+  go("home");
+}
+async function markSeen(){
+  const latest=state.mail.reduce((m,x)=>(x.at||"")>m?x.at:m,"");
+  if(!latest||latest<=state.lastSeen) return;
+  state.lastSeen=latest; updateNav();
+  if(state.mode==="db"&&state.uid){ try{ await db.doc(`data/users/${state.uid}/prefs`).set({lastSeen:latest}); }catch(_){} }
+}
+/* ---------- subsite renderer ---------- */
+function siteTabs(s, preview){
+  const t=SITE_TABS.filter(([k])=> k==="news" ? (preview || (s.news||[]).some(n=>n.title)) : k==="donate" ? (preview || hasDonate(s)) : true);
+  (s.pages||[]).forEach((p,i)=>{ if(p.title) t.push(["pg"+i,p.title]); });
+  return t;
+}
+function nImg(n){ const u=assetUrl(n.imageId); return u?`<img src="${esc(u)}" alt="" data-hide>`:""; }
+function nCard(n){ return `<article class="ncard">${nImg(n)}<div class="in"><time>${fmtDate(n.date)}</time><h3>${esc(n.title)}</h3><p>${esc(trunc(n.body,140))}</p></div></article>`; }
+function renderSite(s, tab, opts={}){
+  const progs=(s.programs||[]).filter(p=>p.title);
+  const roles=(s.volunteerRoles||[]).filter(r=>r.title);
+  const mem=(s.membership||[]).filter(m=>m.type);
+  const board=(s.board||[]).filter(b=>b.name);
+  const docs=(s.docs||[]).filter(d=>d.title);
+  const news=(s.news||[]).filter(n=>n.title).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  const groups=(s.beneficiaryGroups||[]).filter(g=>g.label);
+  const camps=(s.campaigns||[]).filter(c=>c.title);
+  const name=s.name||"اسم الجمعية";
+  const first=(name.replace(/^جمعية\s*/,"").trim()[0])||"ج";
+  const tlist=siteTabs(s,opts.preview);
+  if(!tlist.some(([k])=>k===tab)) tab="home";
+  const tabs=tlist.map(([k,l])=>`<button data-stab="${k}" aria-current="${k===tab}">${esc(l)}</button>`).join("");
+  const rv=reviewOf(s);
+  const vb = rv.verified ? `<span class="vbadge ok">✓ موثّقة من منصة رواق${rv.at?" بتاريخ "+esc(String(rv.at).slice(0,10)):""}</span>` : `<span class="vbadge">بانتظار تحقق المنصة من الترخيص</span>`;
+  const licenseBox = `<div class="license"><div class="seal"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></div>
+    <div>مسجّلة لدى المركز الوطني لتنمية القطاع غير الربحي برقم <b class="num">${esc(s.license||"—")}</b><br><span class="muted">الجهة المشرفة فنياً: ${esc(s.supervisor||"—")}</span><br>${vb}</div></div>`;
+  const logoSrc=assetUrl(s.logoId);
+  const logo=`<div class="logo${logoSrc?" has-img":""}">${logoSrc?`<img src="${esc(logoSrc)}" alt="شعار ${esc(name)}" data-fb>`:""}<span>${esc(first)}</span></div>`;
+  const give=hasDonate(s);
+  let body="";
+  if(tab==="home"){
+    body=`<section class="s-hero"><span class="eyebrow" style="color:#fff;opacity:.85">جمعية ${esc(s.category)} · ${esc(s.city||s.region)}</span>
+      <h1>${esc(s.tagline||name)}</h1>${s.about?`<p>${esc(s.about)}</p>`:""}
+      <div class="acts"><button class="btn" data-stab="join">تطوّع معنا</button><button class="btn alt" data-stab="join">انضم عضواً</button>${give?`<button class="btn alt" data-stab="donate">تبرّع</button>`:""}</div></section>
+      <div class="stats"><div class="stat"><b>${num(s.stats?.beneficiaries)}</b><span>مستفيد</span></div><div class="stat"><b>${num(s.stats?.volunteers)}</b><span>متطوع</span></div>
+      <div class="stat"><b>${progs.length}</b><span>برنامج قائم</span></div><div class="stat"><b>${esc(s.founded||"—")}</b><span>سنة التأسيس (هـ)</span></div></div>
+      ${progs.length?`<section class="s-sec"><h2>أبرز البرامج</h2><div class="pgrid">${progs.slice(0,3).map(pCard).join("")}</div></section>`:""}
+      ${news.length?`<section class="s-sec"><div class="sec-title"><h2>آخر الأخبار</h2><button class="btn sm" data-stab="news">كل الأخبار</button></div><div class="pgrid">${news.slice(0,3).map(nCard).join("")}</div></section>`:""}
+      ${give?`<section class="s-sec"><div class="donate-cta"><div><b>ساهم في أثر الجمعية</b><p class="muted" style="font-size:14px">${esc(camps[0]?camps[0].title+": "+camps[0].desc:"تبرعك يصل عبر قنوات الجمعية الرسمية")}</p></div><button class="btn give" data-stab="donate">تبرّع الآن</button></div></section>`:""}
+      <section class="s-sec">${licenseBox}</section>`;
+  } else if(tab==="about"){
+    body=`<section class="s-sec"><h2>عن الجمعية</h2><p>${esc(s.about||"لم يُضف نبذة بعد.")}</p>
+      <div class="two"><div class="pcard"><h3>الرؤية</h3><p>${esc(s.vision||"—")}</p></div><div class="pcard"><h3>الرسالة</h3><p>${esc(s.mission||"—")}</p></div></div>
+      ${(s.values||[]).length?`<div><h3 style="font-size:16px;margin-bottom:8px">قيمنا</h3><div class="vals">${s.values.map(v=>`<span>${esc(v)}</span>`).join("")}</div></div>`:""}</section>
+      <section class="s-sec"><h2>بيانات الجمعية</h2><dl class="kv"><dt>المجال</dt><dd>${esc(s.category)}</dd><dt>المنطقة</dt><dd>${esc(s.region)}${s.city?" — "+esc(s.city):""}</dd>
+      <dt>سنة التأسيس</dt><dd>${esc(s.founded||"—")} هـ</dd><dt>رقم الترخيص</dt><dd>${esc(s.license||"—")}</dd><dt>الجهة المشرفة</dt><dd>${esc(s.supervisor||"—")}</dd></dl></section>`;
+  } else if(tab==="programs"){
+    body=`<section class="s-sec"><h2>البرامج والمشاريع</h2>${progs.length?`<div class="pgrid">${progs.map(pCard).join("")}</div>`:`<p class="muted">لا توجد برامج منشورة بعد.</p>`}</section>
+      ${groups.length?`<section class="s-sec"><h2>فئات المستفيدين</h2><div class="groups">${groups.map(g=>`<span><b>${num(g.count)}</b>${esc(g.label)}</span>`).join("")}</div></section>`:""}`;
+  } else if(tab==="news"){
+    body=`<section class="s-sec"><h2>الأخبار</h2>${news.length?`<div class="newslist">${news.map(n=>`<article class="ncard wide">${nImg(n)}<div class="in"><time>${fmtDate(n.date)}</time><h3>${esc(n.title)}</h3><div class="article">${paras(n.body)}</div></div></article>`).join("")}</div>`:`<p class="muted">لا توجد أخبار منشورة بعد.</p>`}</section>`;
+  } else if(tab==="join"){
+    const sent=state.sent[s.slug];
+    const form=(kind,options)=> opts.preview ? `<p class="muted" style="font-size:13px">نموذج التسجيل يعمل في الموقع المنشور.</p>` :
+      (sent===kind ? `<p class="ok-msg">وصل طلبك، وسيتواصل معك فريق الجمعية.</p>` :
+      `<form class="jform" data-join="${kind}"><div class="row2"><div class="field"><label for="j-${kind}-n">الاسم الكامل</label><input class="input" id="j-${kind}-n" name="n" required></div>
+       <div class="field"><label for="j-${kind}-p">رقم الجوال</label><input class="input" id="j-${kind}-p" name="p" inputmode="tel" pattern="05[0-9]{8}" placeholder="05xxxxxxxx" required></div></div>
+       <div class="row2"><div class="field"><label for="j-${kind}-e">البريد الإلكتروني</label><input class="input" id="j-${kind}-e" name="e" type="email"></div>
+       <div class="field"><label for="j-${kind}-r">${kind==="volunteer"?"الفرصة":"نوع العضوية"}</label><select class="input" id="j-${kind}-r" name="r">${options.map(o=>`<option>${esc(o)}</option>`).join("")}</select></div></div>
+       <button class="btn primary" type="submit" style="background:var(--site);border-color:var(--site);color:#fff;justify-self:start">${kind==="volunteer"?"أرسل طلب التطوع":"أرسل طلب العضوية"}</button>
+       ${state.mode==="offline"?`<p class="muted" style="font-size:12.5px">وضع المعاينة: لن يُحفظ الطلب.</p>`:""}</form>`);
+    body=`<section class="s-sec"><h2>فرص التطوع</h2>${roles.length?`<div class="pgrid">${roles.map(r=>`<div class="role"><div class="h">${esc(r.title)}<small>${esc(r.hours)}</small></div><p>${esc(r.desc)}</p></div>`).join("")}</div>${form("volunteer",roles.map(r=>r.title))}`:`<p class="muted">لا توجد فرص تطوع متاحة حالياً.</p>`}</section>
+      <section class="s-sec"><h2>العضوية</h2>${mem.length?`<div class="tbl-wrap"><table><thead><tr><th>نوع العضوية</th><th>الاشتراك السنوي</th><th>المزايا</th></tr></thead><tbody>${mem.map(m=>`<tr><td>${esc(m.type)}</td><td class="num">${m.fee?num(m.fee)+" ر.س":"مجاناً"}</td><td>${esc(m.desc)}</td></tr>`).join("")}</tbody></table></div>${form("member",mem.map(m=>m.type))}`:`<p class="muted">باب العضوية غير مفتوح حالياً.</p>`}</section>`;
+  } else if(tab==="gov"){
+    const byKind={}; docs.forEach(d=>(byKind[d.kind]=byKind[d.kind]||[]).push(d));
+    body=`<section class="s-sec"><h2>مجلس الإدارة</h2>${board.length?`<div class="tbl-wrap"><table><thead><tr><th>الاسم</th><th>المنصب</th></tr></thead><tbody>${board.map(b=>`<tr><td>${esc(b.name)}</td><td>${esc(b.role)}</td></tr>`).join("")}</tbody></table></div>`:`<p class="muted">لم تُنشر بيانات المجلس بعد.</p>`}</section>
+      <section class="s-sec"><h2>التقارير والإفصاحات</h2>${docs.length?`<div class="doclist">${docs.sort((a,b)=>(b.year||"").localeCompare(a.year||"")).map(d=>{ const href=assetUrl(d.fileId)||safeUrl(d.url);
+        return `<div class="doc"><div class="ico">PDF</div><div class="t">${esc(d.title)}<small>${esc(d.kind)} · ${esc(d.year)}</small></div>${href?`<a class="btn sm" href="${esc(href)}" target="_blank" rel="noopener">عرض</a>`:`<span class="chip">يُتاح عند الطلب</span>`}</div>`; }).join("")}</div>`:`<p class="muted">لم تُنشر تقارير بعد.</p>`}</section>
+      <section class="s-sec"><h2>بيانات الإفصاح</h2>${licenseBox}</section>`;
+  } else if(tab==="donate"){
+    const dn=s.donate||{}, link=safeUrl(dn.link), iban=String(dn.iban||"").replace(/\s+/g,"").toUpperCase();
+    body=`<section class="s-sec"><h2>تبرّع للجمعية</h2>${dn.intro?`<p>${esc(dn.intro)}</p>`:""}
+      ${link?`<div><a class="btn give" href="${esc(link)}" target="_blank" rel="noopener">تبرّع الآن عبر بوابة الدفع</a><p class="muted" style="font-size:12.5px;margin-top:6px">تنتقل إلى صفحة الدفع الرسمية المرخصة للجمعية.</p></div>`:""}
+      ${!dn.intro&&!link&&!iban&&!camps.length?`<p class="muted">لم تُضف طرق التبرع بعد.</p>`:""}</section>
+      ${camps.length?`<section class="s-sec"><h2>الحملات القائمة</h2><div class="pgrid">${camps.map(c=>{ const g=Number(c.goal)||0, r=Number(c.raised)||0, p=g?Math.min(100,Math.round(r/g*100)):0;
+        return `<div class="camp"><h3 style="font-size:16px;font-family:var(--body);font-weight:600">${esc(c.title)}</h3>${c.desc?`<p class="muted" style="font-size:14px">${esc(c.desc)}</p>`:""}
+        ${g?`<div class="bar" role="progressbar" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div><div class="nums"><span>${num(r)} ر.س</span><span>${p}% من ${num(g)} ر.س</span></div>`:""}</div>`; }).join("")}</div></section>`:""}
+      ${iban?`<section class="s-sec"><h2>التحويل البنكي</h2><div class="bank"><dl class="kv"><dt>البنك</dt><dd>${esc(dn.bank||"—")}</dd><dt>اسم الحساب</dt><dd>${esc(dn.holder||name)}</dd></dl>
+        <div class="iban">${esc(iban.replace(/(.{4})/g,"$1 ").trim())}</div><button class="btn sm" data-copy="${esc(iban)}" style="justify-self:start">نسخ رقم الآيبان</button></div></section>`:""}`;
+  } else if(tab==="contact"){
+    const sent=state.sent[s.slug];
+    const cform = opts.preview ? `<p class="muted" style="font-size:13px">نموذج التواصل يعمل في الموقع المنشور.</p>` :
+      (sent==="contact" ? `<p class="ok-msg">وصلت رسالتك، وسيرد عليك فريق الجمعية.</p>` :
+      `<form class="jform" data-join="contact"><div class="row2"><div class="field"><label for="c-n">الاسم الكامل</label><input class="input" id="c-n" name="n" required></div>
+       <div class="field"><label for="c-p">رقم الجوال</label><input class="input" id="c-p" name="p" inputmode="tel" pattern="05[0-9]{8}" placeholder="05xxxxxxxx" required></div></div>
+       <div class="row2"><div class="field"><label for="c-e">البريد الإلكتروني</label><input class="input" id="c-e" name="e" type="email"></div>
+       <div class="field"><label for="c-r">الموضوع</label><select class="input" id="c-r" name="r">${SUBJECTS.map(o=>`<option>${esc(o)}</option>`).join("")}</select></div></div>
+       <div class="field"><label for="c-m">الرسالة</label><textarea class="input" id="c-m" name="m" maxlength="800" required></textarea></div>
+       <button class="btn primary" type="submit" style="background:var(--site);border-color:var(--site);color:#fff;justify-self:start">أرسل الرسالة</button>
+       ${state.mode==="offline"?`<p class="muted" style="font-size:12.5px">وضع المعاينة: لن تُحفظ الرسالة.</p>`:""}</form>`);
+    body=`<section class="s-sec"><h2>تواصل معنا</h2><dl class="kv"><dt>الهاتف</dt><dd class="num" style="text-align:right">${esc(s.contact?.phone||"—")}</dd><dt>البريد</dt><dd style="direction:ltr;text-align:right">${esc(s.contact?.email||"—")}</dd><dt>العنوان</dt><dd>${esc(s.contact?.address||"—")}</dd></dl></section>
+      <section class="s-sec"><h2>راسلنا</h2>${cform}</section>`;
+  } else if(tab.startsWith("pg")){
+    const p=(s.pages||[])[+tab.slice(2)]||{};
+    body=`<section class="s-sec"><h2>${esc(p.title)}</h2><div class="article">${paras(p.body)||`<p class="muted">لا يوجد محتوى بعد.</p>`}</div></section>`;
+  }
+  const pl = opts.preview ? PLANS[planKey(s)] : effPlan(s);
+  const tpl = pl.templates.includes(s.template) ? s.template : "classic";
+  return `<div class="frame t-${esc(tpl)}" style="--site:${esc(s.color||COLORS[0])}">
+    <div class="chrome"><div class="dots"><i></i><i></i><i></i></div><div class="addr">https://${esc(addrOf(s))}</div></div>
+    <header class="s-head">${logo}<div class="s-name">${esc(name)}<small>ترخيص رقم ${esc(s.license||"—")}</small></div><nav class="s-nav" data-scope="${opts.preview?"preview":"site"}">${tabs}</nav></header>
+    <div data-scope="${opts.preview?"preview":"site"}">${body}</div>
+    <footer class="s-foot"><span>© 2026 ${esc(name)}</span><span>مسجلة برقم ${esc(s.license||"—")}${pl.brand?" · صُمّم عبر رواق":""}</span></footer></div>`;
+}
+function pCard(p){ return `<div class="pcard"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>${p.beneficiaries?`<span class="chip" style="justify-self:start">${num(p.beneficiaries)} مستفيد</span>`:""}</div>`; }
+/* ---------- views ---------- */
+function vChip(s){ const rv=reviewOf(s); return rv.verified?`<span class="chip ok">✓ موثّقة</span>`:rv.rejected?`<span class="chip bad">تحتاج استكمال</span>`:`<span class="chip warn">قيد التحقق</span>`; }
+function viewHome(){
+  const list=state.sites.filter(s=>(!state.cat||s.category===state.cat)&&(!state.q||(s.name+s.slug+s.city).includes(state.q)));
+  const loading=state.mode==="loading";
+  const verified=state.sites.filter(s=>reviewOf(s).verified).length;
+  const invite = !state.canEdit && state.canWrite && state.uid && !mySite() && !loading;
+  return `<div class="head-row"><div><span class="eyebrow">لوحة المنصة</span><h1 style="font-size:30px">مواقع الجمعيات</h1>
+    <p class="lead">كل جمعية تحصل على موقع فرعي بنطاق خاص يعرض تعريفها وبرامجها، ويستقبل طلبات التطوع والعضوية، وينشر تقارير الحوكمة والإفصاح.</p></div>
+    <div class="meta"><span><b>${state.sites.length}</b> موقع</span><span><b>${verified}</b> موثّقة</span>${state.canEdit?`<span><b>${state.inbox.length}</b> طلب وارد</span>`:""}</div></div>
+    ${state.mode==="offline"?`<p class="notice" style="margin-bottom:16px"><b>وضع المعاينة:</b> البيانات أمثلة ولا تُحفظ. افتح الصفحة من رابطها المنشور لتُحفظ المواقع والطلبات.</p>`:""}
+    ${invite?`<div class="notice cta-row" style="margin-bottom:16px"><span><b>تدير جمعية أهلية؟</b> سجّلها وأنشئ موقعها خلال دقائق، ثم تتحقق المنصة من ترخيصها.</span><button class="btn primary sm" data-go="new">سجّل جمعيتك</button></div>`:""}
+    <div class="filters"><input class="input" id="f-q" placeholder="ابحث باسم الجمعية أو النطاق أو المدينة" value="${esc(state.q)}">
+      <select class="input" id="f-cat" style="flex:0 1 180px"><option value="">كل المجالات</option>${CATEGORIES.map(c=>`<option ${c===state.cat?"selected":""}>${c}</option>`).join("")}</select></div>
+    ${loading?`<div class="empty"><h3>جارٍ تحميل المواقع…</h3></div>`:
+     list.length?`<div class="grid">${list.map(siteCard).join("")}</div>`:
+     `<div class="empty"><h3>${state.sites.length?"لا توجد نتائج مطابقة":"لا توجد مواقع بعد"}</h3><p>${state.sites.length?"غيّر كلمة البحث أو المجال.":"أنشئ أول موقع جمعية: املأ بياناتها وشاهد الموقع يتشكل أمامك."}</p>${(state.canEdit||invite)&&!state.sites.length?`<button class="btn primary" data-go="new">${state.canEdit?"+ إنشاء موقع جمعية":"+ سجّل جمعيتك"}</button>`:""}</div>`}`;
+}
+function siteCard(s){
+  const apps=state.inbox.filter(a=>a.siteId===s.slug).length;
+  const del=state.confirmDel===s.slug;
+  const canDel=state.canEdit||isMine(s);
+  return `<article class="card" style="--site:${esc(s.color)}"><div class="band"></div><div class="body">
+    <div class="domain">${esc(addrOf(s))}</div><h3>${esc(s.name)}</h3>
+    <div class="chips"><span class="chip">${esc(s.category)}</span><span class="chip">${esc(s.city||s.region)}</span>${vChip(s)}${state.canEdit?`<span class="chip">${PLANS[planKey(s)].name.replace("الخطة ","").replace("خطة ","")}</span>`:""}${isMine(s)?`<span class="chip ok">جمعيتي</span>`:""}${s.example?`<span class="chip ex">مثال</span>`:""}</div>
+    <div class="meta"><span><b>${(s.programs||[]).filter(p=>p.title).length}</b> برامج</span><span><b>${(s.news||[]).filter(n=>n.title).length}</b> أخبار</span><span><b>${(s.docs||[]).filter(d=>d.title).length}</b> تقارير</span>${state.canEdit?`<span><b>${apps}</b> طلبات</span>`:""}</div></div>
+    <div class="foot"><button class="btn sm primary" data-open="${esc(s.slug)}">فتح الموقع</button>
+    ${canEditSite(s)?`<button class="btn sm" data-edit="${esc(s.slug)}">تعديل</button>`:""}
+    ${canDel?(del?`<button class="btn sm danger" data-del2="${esc(s.slug)}">تأكيد الحذف</button><button class="btn sm ghost" data-cancel>إلغاء</button>`:`<button class="btn sm ghost danger" data-del="${esc(s.slug)}">حذف</button>`):""}</div></article>`;
+}
+function viewSite(){
+  const s=state.sites.find(x=>x.slug===state.slug);
+  if(!s) return `<div class="empty"><h3>${state.mode==="loading"?"جارٍ التحميل…":"لم نجد هذا الموقع"}</h3><button class="btn" data-go="home">العودة إلى المواقع</button></div>`;
+  return `<div class="head-row"><button class="btn ghost" data-go="home">→ كل المواقع</button>${canEditSite(s)?`<button class="btn" data-edit="${esc(s.slug)}">تعديل الموقع</button>`:""}</div>${renderSite(s,state.siteTab)}`;
+}
+function reqRows(rows, withSite, newSince){
+  const nameOf=id=>(state.sites.find(s=>s.slug===id)||{}).name||id;
+  return `<div class="tbl-wrap"><table><thead><tr><th>التاريخ</th>${withSite?"<th>الجمعية</th>":""}<th>النوع</th><th>الفرصة / العضوية / الموضوع</th><th>الاسم</th><th>الجوال</th><th>البريد</th><th>الرسالة</th>${withSite?"":"<th></th>"}</tr></thead><tbody>
+    ${rows.map(a=> a.failed ? `<tr><td class="num">${esc((a.at||"").slice(0,10))}</td><td><span class="chip">${KIND_LABEL[a.kind]||"طلب"}</span></td><td colspan="6" class="muted">تعذّر فتح هذا الطلب على هذا الجهاز.</td></tr>` :
+      `<tr class="${newSince!==undefined&&(a.at||"")>newSince?"new":""}"><td class="num">${esc((a.at||"").slice(0,10))}</td>${withSite?`<td>${esc(nameOf(a.siteId))}</td>`:""}<td><span class="chip">${KIND_LABEL[a.kind]||"عضوية"}</span></td><td>${esc(a.choice)}</td><td>${esc(a.name)}</td><td class="num">${esc(a.phone)}</td><td style="direction:ltr;text-align:right">${esc(a.email||"—")}</td><td class="msg">${esc(a.message||"—")}</td>
+      ${withSite?"":`<td><div class="chips">${a.email?`<a class="btn sm" href="mailto:${encodeURIComponent(a.email)}?subject=${encodeURIComponent("بخصوص طلبك: "+(a.choice||""))}">رد بالبريد</a>`:""}${a.phone?`<a class="btn sm ghost" href="tel:${esc(a.phone)}">اتصال</a>`:""}</div></td>`}</tr>`).join("")}</tbody></table></div>`;
+}
+function viewApps(){
+  if(!state.canEdit) return `<div class="empty"><h3>الطلبات متاحة لمحرري المنصة فقط</h3></div>`;
+  const rows=state.inbox.filter(a=>(!state.appSite||a.siteId===state.appSite)&&(!state.appKind||(a.kind||"member")===state.appKind)).sort((a,b)=>(b.at||"").localeCompare(a.at||""));
+  return `<div class="head-row"><div><span class="eyebrow">صندوق الطلبات</span><h1 style="font-size:30px">طلبات التطوع والعضوية</h1>
+    <p class="lead">الطلبات التي يرسلها الزوار من مواقع الجمعيات، ومعها رسائل نموذج التواصل. يراها محررو المنصة فقط، وتصل نسخة مشفّرة منها إلى لوحة الجمعية صاحبة الموقع.</p></div>
+    <div class="filters" style="margin:0"><select class="input" id="f-app" style="width:auto"><option value="">كل الجمعيات</option>${state.sites.map(s=>`<option value="${esc(s.slug)}" ${s.slug===state.appSite?"selected":""}>${esc(s.name)}</option>`).join("")}</select>
+    <select class="input" id="f-kind" style="width:auto"><option value="">كل الأنواع</option>${Object.entries(KIND_LABEL).map(([k,l])=>`<option value="${k}" ${k===state.appKind?"selected":""}>${l}</option>`).join("")}</select></div></div>
+    ${rows.length?reqRows(rows,true)
+    :`<div class="empty"><h3>لا توجد طلبات بعد</h3><p>عندما يملأ زائر نموذج التطوع أو العضوية أو التواصل في أي موقع جمعية، يظهر طلبه هنا.</p></div>`}`;
+}
+function viewDash(){
+  const s=mySite();
+  if(!s) return `<div class="empty"><h3>لم تسجّل جمعية بعد</h3><p>سجّل جمعيتك لتحصل على لوحة تتابع منها موقعها وطلباتها.</p>${state.canWrite?`<button class="btn primary" data-go="new">+ سجّل جمعيتك</button>`:""}</div>`;
+  const rv=reviewOf(s), nt=s.notify||{};
+  const rows=state.mail.filter(m=>!state.dashKind||m.kind===state.dashKind);
+  const fresh=state.mail.filter(m=>(m.at||"")>state.dashSeen).length;
+  const dom = s.customDomain ? (rv.domainStatus==="connected"?`<span class="chip ok">✓ ${esc(s.customDomain)} مربوط</span>`:`<span class="chip warn">${esc(s.customDomain)}: بانتظار ضبط DNS</span>`) : `<span class="muted" style="font-size:13px">لم يُضف نطاق خاص</span>`;
+  return `<div class="head-row"><div><span class="eyebrow">لوحة جمعيتي</span><h1 style="font-size:28px">${esc(s.name)}</h1></div>
+    <div class="chips"><button class="btn" data-open="${esc(s.slug)}">فتح الموقع</button><button class="btn primary" data-edit="${esc(s.slug)}">تعديل الموقع</button></div></div>
+    <div class="stcards">
+      <div class="stc"><span class="k">التحقق من الجمعية</span><span class="v">${rv.verified?`<span class="chip ok">✓ موثّقة</span>`:rv.rejected?`<span class="chip bad">تحتاج استكمال</span>`:`<span class="chip warn">قيد المراجعة</span>`}</span>${rv.note?`<span class="muted" style="font-size:13px">ملاحظة المنصة: ${esc(rv.note)}</span>`:""}${!s.licenseFileId?`<span class="muted" style="font-size:13px">ارفع شهادة الترخيص من خطوة «التسجيل والتحقق» لتسريع التوثيق.</span>`:""}</div>
+      <div class="stc"><span class="k">النطاق</span><span class="v domain" style="text-align:right">${esc(s.slug)}.${DOMAIN}</span>${dom}</div>
+      <div class="stc"><span class="k">الاشتراك</span><span class="v">${PLANS[planKey(s)].name}</span>${planKey(s)==="free"?`<button class="btn sm" data-plan-start="basic">ترقية للأساسية</button>`:planActive(s)?`<span class="chip ok">مفعّلة</span>`:`<span class="chip warn">بانتظار التفعيل</span><span class="muted" style="font-size:13px">سيتواصل معك فريق المنصة لإتمام الدفع.</span>`}</div>
+      <div class="stc"><span class="k">القالب والهوية</span><span class="v">${esc((TEMPLATES.find(t=>t[0]===(s.template||"classic"))||TEMPLATES[0])[1])}</span><span class="swatch" style="width:22px;height:22px;background:${esc(s.color)}"></span></div>
+      <div class="stc"><span class="k">الإشعارات</span><span class="v">${fresh?`<span class="badge">${fresh}</span> جديد منذ آخر زيارة`:"لا جديد"}</span><span class="muted" style="font-size:13px">${nt.email?`بريد الإشعارات: <span dir="ltr">${esc(nt.email)}</span>`:"لم يُحدد بريد للإشعارات"}</span></div>
+    </div>
+    <p class="notice" style="margin-bottom:16px"><b>إشعارات البريد:</b> كل طلب جديد يظهر هنا فوراً ويُعلَّم كجديد. ${nt.email?`في النسخة الإنتاجية يُرسل الإشعار نفسه إلى <span dir="ltr">${esc(nt.email)}</span> عن: ${["volunteer","member","contact"].filter(k=>nt[k]!==false).map(k=>KIND_LABEL[k]).join("، ")}.`:"حدّد بريد الإشعارات من خطوة «التواصل والنطاق»."} الطلبات مشفّرة ولا يفتحها إلا حساب الجمعية.</p>
+    <div class="head-row" style="margin-bottom:12px"><h2 style="font-size:20px">الطلبات والرسائل الواردة</h2>
+      <select class="input" id="f-dkind" style="width:auto"><option value="">كل الأنواع</option>${Object.entries(KIND_LABEL).map(([k,l])=>`<option value="${k}" ${k===state.dashKind?"selected":""}>${l}</option>`).join("")}</select></div>
+    ${rows.length?reqRows(rows,false,state.dashSeen):`<div class="empty"><h3>لا توجد طلبات بعد</h3><p>تصلك هنا طلبات التطوع والعضوية ورسائل نموذج التواصل من موقع جمعيتك.</p></div>`}`;
+}
+function viewVerify(){
+  if(!state.canEdit) return `<div class="empty"><h3>هذه الصفحة لمحرري المنصة فقط</h3></div>`;
+  const rows=[...state.sites].sort((a,b)=>(isNew(b)-isNew(a))||(String(b.createdAt||"").localeCompare(String(a.createdAt||""))));
+  const nl=state.leads.filter(l=>l.status!=="done").length;
+  const head=`<div class="head-row"><div><span class="eyebrow">إدارة المنصة</span><h1 style="font-size:30px">الاشتراكات والتحقق</h1>
+    <p class="lead">كل جمعية تسجّل من صفحة العملاء تظهر هنا مباشرة. راجع بياناتها وشهادة ترخيصها ووثّقها، وفعّل اشتراكها المدفوع بعد إتمام الدفع، وأكّد ربط نطاقها الخاص.</p></div></div>
+    <div class="steps" style="border:1px solid var(--line);border-radius:10px;margin-bottom:14px;background:var(--surface)"><button data-vtab="subs" aria-current="${state.vtab==="subs"}">الجمعيات المشتركة (${state.sites.length})</button><button data-vtab="leads" aria-current="${state.vtab==="leads"}">طلبات المؤسسات ${nl?`<span class="badge">${nl}</span>`:""}</button></div>`;
+  if(state.vtab==="leads") return head+(state.leads.length?`<div class="tbl-wrap"><table><thead><tr><th>التاريخ</th><th>الجهة</th><th>الاسم</th><th>الجوال</th><th>البريد</th><th>الفروع</th><th>الاحتياج</th><th>الحالة</th></tr></thead><tbody>
+    ${state.leads.map(l=>`<tr class="${l.status!=="done"?"new":""}"><td class="num">${esc((l.at||"").slice(0,10))}</td><td>${esc(l.org)}</td><td>${esc(l.name)}</td><td class="num">${esc(l.phone)}</td><td dir="ltr" style="text-align:right">${esc(l.email||"—")}</td><td class="num">${esc(l.branches||"—")}</td><td class="msg">${esc(l.message||"—")}</td>
+    <td>${l.status==="done"?`<span class="chip ok">تم التواصل</span> <button class="btn sm ghost" data-lead="${esc(l._id)}" data-v="new">إعادة فتح</button>`:`<button class="btn sm primary" data-lead="${esc(l._id)}" data-v="done">تم التواصل</button>`}</td></tr>`).join("")}</tbody></table></div>`:`<div class="empty"><h3>لا توجد طلبات مؤسسات بعد</h3><p>تصل هنا طلبات «خطة المؤسسات» من صفحة العملاء.</p></div>`);
+  return head+`${rows.length?`<div class="tbl-wrap"><table><thead><tr><th>الجمعية</th><th>الخطة</th><th>الترخيص</th><th>المسؤول</th><th>النطاق الخاص</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody>
+    ${rows.map(s=>{ const rv=reviewOf(s), id=s._id, lic=assetUrl(s.licenseFileId), r=s.rep||{};
+      return `<tr class="${isNew(s)?"new":""}"><td><b>${esc(s.name)}</b><div class="domain">${esc(s.slug)}.${DOMAIN}</div><div class="chips">${isNew(s)?`<span class="chip warn">جديد</span>`:""}${s.ownerId?`<span class="chip">مسجلة ذاتياً</span>`:`<span class="chip">تديرها المنصة</span>`}</div><span class="muted" style="font-size:12px">${esc(String(s.createdAt||"").slice(0,10))}</span></td>
+      <td>${PLANS[planKey(s)].name}<br>${planKey(s)==="free"?`<span class="muted" style="font-size:12px">مجانية</span>`:planActive(s)?`<span class="chip ok">مفعّلة</span> <button class="btn sm ghost" data-pact="${esc(id)}" data-v="0">إيقاف</button>`:`<button class="btn sm primary" data-pact="${esc(id)}" data-v="1">تفعيل الاشتراك</button>`}</td>
+      <td class="num">${esc(s.license||"—")}${lic?`<br><a class="btn sm" href="${esc(lic)}" target="_blank" rel="noopener">الشهادة</a>`:`<br><span class="muted" style="font-size:12px">لا شهادة</span>`}</td>
+      <td>${esc(r.name||"—")}${r.role?`<br><span class="muted" style="font-size:12.5px">${esc(r.role)}</span>`:""}${r.phone?`<br><span class="num">${esc(r.phone)}</span>`:""}${r.email?`<br><span dir="ltr" style="font-size:12.5px">${esc(r.email)}</span>`:""}</td>
+      <td>${s.customDomain?`<span dir="ltr">${esc(s.customDomain)}</span><br>${rv.domainStatus==="connected"?`<span class="chip ok">مربوط</span> <button class="btn sm ghost" data-dom="${esc(id)}" data-v="">فك الربط</button>`:`<button class="btn sm" data-dom="${esc(id)}" data-v="connected">تأكيد الربط</button>`}`:"—"}</td>
+      <td>${vChip(s)}${rv.note?`<br><span class="muted" style="font-size:12.5px">${esc(rv.note)}</span>`:""}</td>
+      <td>${state.rejectFor===id?`<div class="field"><input class="input" id="rej-note" placeholder="ما الذي ينقص؟"><div class="chips"><button class="btn sm danger" data-rej2="${esc(id)}">إرسال الملاحظة</button><button class="btn sm ghost" data-rejx>إلغاء</button></div></div>`:
+        `<div class="chips">${rv.verified?`<button class="btn sm ghost" data-ver="${esc(id)}" data-v="0">إلغاء التوثيق</button>`:`<button class="btn sm primary" data-ver="${esc(id)}" data-v="1">توثيق</button><button class="btn sm ghost danger" data-rej="${esc(id)}">طلب استكمال</button>`}</div>`}</td></tr>`; }).join("")}
+    </tbody></table></div>`:`<div class="empty"><h3>لا توجد جمعيات مسجلة بعد</h3></div>`}`;
+}
+async function setReview(id, patch){
+  const cur=clone(state.reviews[id]||{}); const next=Object.assign(cur,patch,{by:state.uid||"",updatedAt:new Date().toISOString()});
+  try{ if(state.mode==="db") await db.doc("review/"+id).set(next); state.reviews[id]=next; toast("حُفظ"); }
+  catch(e){ toast("تعذّر الحفظ"); }
+  state.rejectFor=null; render();
+}
+async function setLead(id, patch){
+  const cur=state.leads.find(l=>l._id===id); if(!cur) return;
+  const next=Object.assign({},cur,patch); delete next._id;
+  try{ if(state.mode==="db") await db.doc("leads/"+id).set(next); Object.assign(cur,patch); toast("حُفظ"); }catch(e){ toast("تعذّر الحفظ"); }
+  render();
+}
+function canStart(){ return state.canEdit || (state.canWrite && !!state.uid); }
+function startPlan(plan){
+  if(PLANS[plan]?.contactOnly && !state.canEdit){ const el=document.getElementById("lead"); if(el) el.scrollIntoView({behavior:"smooth",block:"start"}); else go("welcome"); return; }
+  if(!canStart()){ toast(state.uid?"صلاحيتك على هذه الصفحة للاطلاع فقط":"سجّل الدخول إلى حسابك لتبدأ"); return; }
+  const m=mySite();
+  if(m && !state.canEdit){ startEdit(m); state.draft.plan=plan; if(!PLANS[plan].templates.includes(state.draft.template)) state.draft.template="classic"; render(); return; }
+  state.pickPlan=plan; go("new");
+}
+function viewWelcome(){
+  const mine=mySite(), n=state.sites.length, v=state.sites.filter(s=>reviewOf(s).verified).length;
+  const loading=state.mode==="loading";
+  const cta = mine ? `<button class="btn primary lg" data-go="dash">ادخل لوحة جمعيتك</button>` :
+    loading ? "" : canStart() ? `<button class="btn primary lg" data-plan-start="free">ابدأ مجاناً</button>` :
+    `<p class="notice">${state.uid?"حسابك على هذه الصفحة للاطلاع فقط. اطلب من مسؤول المنصة صلاحية المشاركة لتسجّل جمعيتك.":"سجّل الدخول إلى حسابك لتبدأ إنشاء موقع جمعيتك."}</p>`;
+  const mock = renderSite(SAMPLES[0],"home",{preview:true});
+  const feats=[["منشئ المواقع","قوالب جاهزة، وتخصيص الهوية البصرية، وإدارة الصفحات.","M4 5h16v14H4zM4 9h16"],["إدارة المحتوى","أخبار ومقالات بالصور، وصفحات إضافية بلا حدود.","M6 4h9l3 3v13H6zM9 10h6M9 14h6"],["إدارة المشاريع","عرض البرامج والمبادرات وأعداد المستفيدين وفئاتهم.","M4 20V10M10 20V4M16 20v-7M22 20H2"],
+    ["مركز التقارير","رفع التقارير السنوية والمالية ومحاضر الجمعية تعزيزاً للشفافية.","M7 3h7l4 4v14H7zM10 13h5M10 17h5"],["بوابة التبرعات","صفحة تبرع وحملات بنسب إنجاز، وربط ببوابة دفع مرخصة.","M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"],["التواصل والتطوع","طلبات تطوع وعضوية وشراكات تصل مشفّرة إلى لوحة جمعيتك.","M4 6h16v10H8l-4 4z"]];
+  const steps=[["التسجيل","أنشئ الحساب وأدخل بيانات الجمعية الرسمية."],["الهوية","اختر القالب وارفع الشعار وحدد الألوان."],["المحتوى","أدخل المشاريع والأخبار والتقارير بنماذج سهلة."],["المراجعة","عاين الموقع على الجوال وسطح المكتب."],["النشر","أطلق موقعك على نطاق جمعيتك."]];
+  return `<section class="lp-hero"><div class="lp-copy"><span class="eyebrow">منصة رواق لمواقع الجمعيات الأهلية</span>
+      <h1>موقع احترافي لجمعيتك خلال دقائق</h1>
+      <p class="lead">أنشئ موقع جمعيتك بقوالب جاهزة، وانشر برامجك وتقاريرك، واستقبل المتطوعين والتبرعات من مكان واحد، بلا خبرة تقنية وبتكلفة أقل.</p>
+      <div class="chips" style="gap:8px">${cta}<button class="btn lg" data-go="home">تصفّح مواقع الجمعيات</button></div>
+      <div class="meta" style="margin-top:6px"><span><b>${n}</b> جمعية على المنصة</span><span><b>${v}</b> موثّقة</span><span><b>5</b> خطوات للإطلاق</span></div></div>
+    <div class="lp-mock" aria-hidden="true"><div class="lp-mock-in">${mock}</div></div></section>
+    <section class="lp-sec"><span class="eyebrow">لماذا رواق</span><h2>الحضور الرقمي لم يعد رفاهية</h2>
+      <div class="lp-why">${[["تكلفة أقل","بدل بناء موقع مخصص وصيانته، اشتراك واحد يشمل الاستضافة والتحديثات."],["بلا تعقيد تقني","موظف الجمعية يبني الموقع ويحدّثه بنماذج سهلة ومعاينة مباشرة."],["حوكمة وشفافية","مجلس الإدارة والتقارير والإفصاحات في مكان واحد وبشكل موحد."],["توثيق من المنصة","تتحقق المنصة من ترخيص الجمعية ويظهر شعار «موثّقة» في موقعها."]].map(([t,d])=>`<div><b>${t}</b><p>${d}</p></div>`).join("")}</div></section>
+    <section class="lp-sec"><span class="eyebrow">مكونات المنصة</span><h2>كل ما تحتاجه جمعيتك على الإنترنت</h2>
+      <div class="lp-feats">${feats.map(([t,d,ic])=>`<div class="lp-feat"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="${ic}" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></svg><b>${t}</b><p>${d}</p></div>`).join("")}</div></section>
+    <section class="lp-sec"><span class="eyebrow">رحلة الإنشاء</span><h2>من التسجيل إلى الإطلاق في خمس خطوات</h2>
+      <ol class="lp-steps">${steps.map(([t,d],i)=>`<li><b class="n">${i+1}</b><b>${t}</b><p>${d}</p></li>`).join("")}</ol></section>
+    <section class="lp-sec" id="plans"><span class="eyebrow">الخطط والأسعار</span><h2>ابدأ مجاناً وترقَّ متى احتجت</h2>
+      <div class="plans">${["free","basic","ent"].map(k=>{ const P=PLANS[k]; const cur=mine&&planKey(mine)===k;
+        return `<div class="plan${P.popular?" popular":""}">${P.popular?`<span class="tag">الأكثر طلباً</span>`:""}<h3>${P.name}</h3><div class="price">${P.price}${P.unit?` <small>${P.unit}</small>`:""}</div>
+        <ul>${P.feats.map(f=>`<li>${f}</li>`).join("")}</ul>
+        ${cur?`<span class="chip ok" style="justify-self:stretch;text-align:center;padding:8px">خطتك الحالية</span>`:P.contactOnly?`<button class="btn" data-scroll="lead">${P.cta}</button>`:`<button class="btn ${P.popular?"primary gold":"primary"}" data-plan-start="${k}">${mine&&k!=="free"?"ترقية":P.cta}</button>`}</div>`; }).join("")}</div>
+      <p class="hint" style="margin-top:10px">الأسعار لا تشمل الضريبة. الخطة الأساسية تُفعّل بعد تواصل فريق المنصة لإتمام الدفع، وحتى ذلك يعمل موقعك بمزايا الخطة التجريبية.</p></section>
+    <section class="lp-sec" id="lead"><span class="eyebrow">خطة المؤسسات</span><h2>عندكم فروع متعددة أو احتياج خاص؟</h2>
+      ${state.leadSent?`<p class="ok-msg">وصل طلبك، وسيتواصل معك فريق المنصة قريباً.</p>`:
+      `<form class="jform lp-form" data-lead="1"><div class="row2"><div class="field"><label for="l-n">الاسم</label><input class="input" id="l-n" name="n" required></div><div class="field"><label for="l-o">اسم الجهة</label><input class="input" id="l-o" name="o" required></div></div>
+       <div class="row2"><div class="field"><label for="l-p">الجوال</label><input class="input" id="l-p" name="p" inputmode="tel" pattern="05[0-9]{8}" placeholder="05xxxxxxxx" required></div><div class="field"><label for="l-e">البريد الإلكتروني</label><input class="input" id="l-e" name="e" type="email"></div></div>
+       <div class="row2"><div class="field"><label for="l-b">عدد الفروع</label><input class="input" id="l-b" name="b" inputmode="numeric" style="direction:ltr;text-align:right"></div><div></div></div>
+       <div class="field"><label for="l-m">احتياجكم</label><textarea class="input" id="l-m" name="m" maxlength="800"></textarea></div>
+       <button class="btn primary" type="submit" style="justify-self:start">أرسل الطلب</button>${state.mode==="offline"?`<p class="muted" style="font-size:12.5px">وضع المعاينة: لن يُحفظ الطلب.</p>`:""}</form>`}</section>
+    <footer class="lp-foot"><span>© 2026 رواق: منصة مواقع الجمعيات الأهلية</span><button class="linkbtn" data-scroll="plans">الخطط</button></footer>`;
+}
+/* ---------- editor ---------- */
+const STEPS=["التسجيل والتحقق","الأساسيات","الهوية والقالب","التعريف والبرامج","الأخبار والصفحات","التطوع والعضوية","الحوكمة والشفافية","التبرعات","التواصل والنطاق","المراجعة والنشر"];
+const PHASES=[["التسجيل",[0,1]],["الهوية",[2]],["المحتوى",[3,4,5,6,7,8]],["المراجعة",[9]],["النشر",[]]];
+const STEP_OF={programs:3,pages:4,"rep.name":0,"rep.phone":0,"rep.email":0,agree:0,name:1,slug:1,license:1,customDomain:8,"notify.email":8,"contact.email":8,"donate.iban":7,"donate.link":7};
+function fld(label,path,o={}){
+  const v=getP(state.draft,path)??"";
+  const id="d-"+path.replace(/\./g,"-");
+  const err=state.errors[path];
+  let ctl;
+  if(o.select) ctl=`<select class="input" id="${id}" data-p="${path}">${o.select.map(x=>`<option ${x===v?"selected":""}>${esc(x)}</option>`).join("")}</select>`;
+  else if(o.area) ctl=`<textarea class="input" id="${id}" data-p="${path}" placeholder="${esc(o.ph||"")}">${esc(v)}</textarea>`;
+  else ctl=`<input class="input" id="${id}" data-p="${path}" value="${esc(v)}" placeholder="${esc(o.ph||"")}" ${o.type?`type="${o.type}"`:""} ${o.ltr?'style="direction:ltr;text-align:right"':""}>`;
+  return `<div class="field"><label for="${id}">${label}</label>${ctl}${o.hint?`<span class="hint">${o.hint}</span>`:""}${err?`<span class="err">${err}</span>`:""}</div>`;
+}
+function chk(label,path){ const v=!!getP(state.draft,path); const id="d-"+path.replace(/\./g,"-");
+  return `<label class="check" for="${id}"><input type="checkbox" id="${id}" data-p="${path}" ${v?"checked":""}><span>${label}</span></label>${state.errors[path]?`<span class="err">${state.errors[path]}</span>`:""}`; }
+function upl(label,path,kind,hint){
+  const v=getP(state.draft,path), url=assetUrl(v), busy=state.uploading[path];
+  const can = state.mode!=="db" || !!assets;
+  const id="u-"+path.replace(/\./g,"-");
+  return `<div class="field"><label for="${id}">${label}</label><div class="upl">
+    ${url?(kind==="image"?`<img class="upl-thumb" src="${esc(url)}" alt="">`:`<a class="chip ok" href="${esc(url)}" target="_blank" rel="noopener">✓ ملف مرفوع</a>`):""}
+    ${can?`<label class="btn sm" for="${id}">${busy?"جارٍ الرفع…":(url?"استبدال":"رفع ملف")}</label><input type="file" id="${id}" hidden data-up="${path}" data-kind="${kind}" accept="${kind==="image"?"image/png,image/jpeg,image/webp,image/svg+xml":"application/pdf"}">`:""}
+    ${url?`<button type="button" class="btn sm ghost danger" data-clear="${path}">إزالة</button>`:""}</div>
+    <span class="hint">${can?(hint||""):"رفع الملفات غير متاح لصلاحيتك على هذه الصفحة."}</span></div>`;
+}
+function rep(key,title,itemLabel,fields){
+  const arr=state.draft[key];
+  const lim=LIMIT_OF[key]?PLANS[planKey(state.draft)][LIMIT_OF[key]]:Infinity, full=arr.length>=lim;
+  return `<div class="field"><div class="sec-title"><h4>${title}${lim!==Infinity?` <small class="muted" style="font-weight:400">(${arr.length}/${lim})</small>`:""}</h4><button type="button" class="btn sm" data-add="${key}" ${full?"disabled":""}>+ إضافة</button></div>
+   ${full?`<span class="hint">وصلت للحد في الخطة التجريبية. الخطة الأساسية بلا حدود.</span>`:""}${state.errors[key]?`<span class="err">${state.errors[key]}</span>`:""}
+   ${arr.map((it,i)=>`<div class="rep"><div class="rep-head"><span>${itemLabel} ${i+1}</span><button type="button" class="btn sm ghost danger" data-rm="${key}.${i}">إزالة</button></div>
+   ${fields.map(f=> f[2]&&f[2].upload ? upl(f[0],`${key}.${i}.${f[1]}`,f[2].upload,f[2].hint) : fld(f[0],`${key}.${i}.${f[1]}`,f[2]||{})).join("")}</div>`).join("")}</div>`;
+}
+function checklist(d){
+  const has=(k,f)=>(d[k]||[]).some(x=>x[f]);
+  const items=[[d.name&&d.slug,"الاسم والنطاق الفرعي"],[d.license,"رقم الترخيص"],[d.licenseFileId,"شهادة الترخيص مرفوعة للتحقق"],[d.logoId,"الشعار"],[d.about,"نبذة عن الجمعية"],
+    [has("programs","title"),"برنامج أو مشروع واحد على الأقل"],[has("news","title"),"خبر واحد على الأقل"],[has("docs","title"),"تقرير أو إفصاح واحد على الأقل"],
+    [hasDonate(d),"صفحة التبرع"],[d.contact?.phone||d.contact?.email,"بيانات التواصل"],[d.notify?.email,"بريد الإشعارات"]];
+  return `<ul class="clist">${items.map(([ok,l])=>`<li class="${ok?"ok":"no"}">${l}</li>`).join("")}</ul>`;
+}
+function planPicker(d){
+  const keys = state.canEdit ? ["free","basic","ent"] : ["free","basic"];
+  const rv = reviewOf({_id:state.editingId});
+  return `<div class="field"><div class="sec-title"><h4>خطة الاشتراك</h4>${state.editingId&&planKey(d)!=="free"?`<span class="chip ${rv.planActive?"ok":"warn"}">${rv.planActive?"مفعّلة":"بانتظار التفعيل"}</span>`:""}</div>
+    <div class="pplans">${keys.map(k=>{ const P=PLANS[k]; return `<button type="button" class="pplan" data-plan="${k}" aria-pressed="${planKey(d)===k}"><b>${P.name}</b><span class="pp">${P.price}${P.unit?` <small>${P.unit}</small>`:""}</span><small>${P.feats.slice(0,2).join(" · ")}</small></button>`; }).join("")}</div>
+    ${!state.canEdit?`<span class="hint">للمؤسسات متعددة الفروع: <button type="button" class="linkbtn" data-go="welcome">تواصل معنا</button>. الخطط المدفوعة تُفعّل بعد تواصل فريق المنصة لإتمام الدفع، وحتى ذلك يعمل الموقع بمزايا الخطة التجريبية.</span>`:`<span class="hint">الخطط المدفوعة تُفعّل من صفحة «الاشتراكات والتحقق».</span>`}</div>`;
+}
+function stepBody(){
+  const d=state.draft, ed=!!state.editingSlug;
+  switch(state.step){
+    case 0: return `${planPicker(d)}<p class="notice">${state.canEdit&&!d.mine?"<b>إنشاء بواسطة المنصة:</b> سيُنشأ الموقع كموقع تديره المنصة. بيانات المسؤول اختيارية.":"<b>تسجيل الجمعية:</b> هذه البيانات تراها المنصة فقط للتحقق من الجمعية، ولا تظهر في الموقع."}</p>
+      ${state.canEdit&&!state.editingId&&!mySite()&&state.uid?chk("أسجّل هذه الجمعية باسمي (أنا مسؤولها وأدير موقعها وطلباتها)","mine"):""}
+      <div class="row2">${fld("اسم المسؤول","rep.name",{ph:"الاسم الكامل"})}${fld("الصفة","rep.role",{ph:"المدير التنفيذي"})}</div>
+      <div class="row2">${fld("جوال المسؤول","rep.phone",{ph:"05xxxxxxxx",ltr:true})}${fld("بريد المسؤول","rep.email",{ltr:true,type:"email"})}</div>
+      ${upl("شهادة ترخيص الجمعية (PDF)","licenseFileId","pdf","تُستخدم للتحقق من الجمعية فقط ولا تُنشر في الموقع.")}
+      ${chk("أقر بصحة البيانات وأن الجمعية مرخصة نظامياً، وأوافق على شروط استخدام المنصة.","agree")}`;
+    case 1: return `${fld("اسم الجمعية","name",{ph:"جمعية البر الخيرية بالمدينة"})}
+      <div class="field"><label for="d-slug">النطاق الفرعي</label><div class="slug"><span>.${DOMAIN}</span><input id="d-slug" data-p="slug" value="${esc(d.slug)}" placeholder="birr-madinah" ${ed?"disabled":""}></div>
+      <span class="hint">${ed?"لا يمكن تغيير النطاق بعد النشر.":"حروف إنجليزية صغيرة وأرقام وشرطة، من 3 إلى 30 حرفاً."}</span>${state.errors.slug?`<span class="err">${state.errors.slug}</span>`:""}</div>
+      <div class="row2">${fld("المجال","category",{select:CATEGORIES})}${fld("رقم الترخيص","license",{ph:"1093",ltr:true})}</div>
+      <div class="row2">${fld("المنطقة","region",{select:REGIONS})}${fld("المدينة","city",{ph:"المدينة المنورة"})}</div>
+      <div class="row2">${fld("سنة التأسيس (هـ)","founded",{ph:"1415",ltr:true})}${fld("الجهة المشرفة فنياً","supervisor")}</div>`;
+    case 2: return `${upl("شعار الجمعية","logoId","image","PNG أو JPG أو SVG، يفضّل مربعاً بخلفية شفافة.")}
+      <div class="field"><label>القالب</label><div class="tpls" style="--site:${esc(d.color)}">${TEMPLATES.map(([k,l,h])=>{ const ok=PLANS[planKey(d)].templates.includes(k); return `<button type="button" class="tpl" data-tpl="${k}" aria-pressed="${(d.template||"classic")===k}" ${ok?"":"disabled"}><span class="mini ${k}"><i></i><i></i><i></i></span><b>${l}${ok?"":" 🔒"}</b><small>${ok?h:"متاح في الخطة الأساسية"}</small></button>`; }).join("")}</div></div>
+      <div class="field"><label>لون الهوية</label><div class="swatches">${COLORS.map(c=>`<button type="button" class="swatch" style="background:${c}" data-color="${c}" aria-pressed="${c===d.color}" aria-label="لون ${c}"></button>`).join("")}
+      <label class="swatch custom" title="لون مخصص" style="background:${COLORS.includes(d.color)?"conic-gradient(red,yellow,lime,cyan,blue,magenta,red)":esc(d.color)}" aria-pressed="${!COLORS.includes(d.color)}"><input type="color" data-p="color" value="${esc(/^#[0-9a-f]{6}$/i.test(d.color)?d.color:"#0E5A4E")}" aria-label="لون مخصص"></label></div><span class="hint">اختر من الألوان الجاهزة أو حدّد لون هويتك الخاص.</span></div>`;
+    case 3: return `${fld("الشعار النصي","tagline",{ph:"جملة واحدة تلخص أثر الجمعية"})}${fld("نبذة","about",{area:1})}
+      <div class="row2">${fld("الرؤية","vision",{area:1})}${fld("الرسالة","mission",{area:1})}</div>
+      <div class="field"><label for="d-values">القيم</label><input class="input" id="d-values" data-p="values" data-list value="${esc((d.values||[]).join("، "))}" placeholder="الشفافية، الإتقان، الشراكة"><span class="hint">افصل بين القيم بفاصلة.</span></div>
+      <div class="row2">${fld("عدد المستفيدين","stats.beneficiaries",{ltr:true,ph:"8400"})}${fld("عدد المتطوعين","stats.volunteers",{ltr:true,ph:"320"})}</div>
+      ${rep("programs","البرامج والمشاريع","برنامج",[["اسم البرنامج","title"],["الوصف","desc",{area:1}],["عدد المستفيدين","beneficiaries",{ltr:true}]])}
+      ${rep("beneficiaryGroups","فئات المستفيدين","فئة",[["الفئة","label",{ph:"أسر محتاجة"}],["العدد","count",{ltr:true}]])}`;
+    case 4: return `${rep("news","الأخبار","خبر",[["العنوان","title"],["التاريخ","date",{type:"date",ltr:true}],["النص","body",{area:1}],["صورة الخبر","imageId",{upload:"image",hint:"اختيارية."}]])}
+      ${rep("pages","صفحات إضافية","صفحة",[["عنوان الصفحة","title",{ph:"شركاؤنا"}],["المحتوى","body",{area:1,hint:"اكتب كل فقرة في سطر. ابدأ السطر بـ ## ليصبح عنواناً فرعياً."}]])}
+      <p class="hint">كل صفحة إضافية تظهر تبويباً في قائمة الموقع.</p>`;
+    case 5: return `${rep("volunteerRoles","فرص التطوع","فرصة",[["المسمى","title"],["الساعات","hours",{ph:"4 ساعات أسبوعياً"}],["الوصف","desc",{area:1}]])}
+      ${rep("membership","أنواع العضوية","عضوية",[["النوع","type"],["الاشتراك السنوي (ر.س)","fee",{ltr:true,hint:"اتركه فارغاً إن كانت مجانية."}],["المزايا","desc"]])}`;
+    case 6: return `${rep("board","مجلس الإدارة","عضو",[["الاسم","name"],["المنصب","role"]])}
+      ${rep("docs","التقارير والإفصاحات","مستند",[["العنوان","title",{ph:"التقرير السنوي 2025"}],["النوع","kind",{select:DOC_KINDS}],["السنة","year",{ltr:true}],["ملف التقرير (PDF)","fileId",{upload:"pdf"}],["أو رابط الملف","url",{ltr:true,ph:"https://",hint:"اختياري. بدون ملف أو رابط يظهر المستند «يُتاح عند الطلب»."}]])}`;
+    case 7: return `<p class="notice">صفحة تبرع تعريفية، مع رابط لبوابة دفع مرخصة تملكها الجمعية إن وُجدت. المنصة لا تستقبل الأموال.</p>
+      ${fld("نص تعريفي","donate.intro",{area:1,ph:"كيف تُصرف التبرعات وأين يصل أثرها"})}
+      ${fld("رابط بوابة الدفع المرخصة","donate.link",{ltr:true,ph:"https://",hint:"مثل صفحة الجمعية في منصة تبرع رسمية أو بوابة الدفع الخاصة بها."})}
+      <div class="row2">${fld("البنك","donate.bank",{ph:"مصرف الراجحي"})}${fld("اسم الحساب","donate.holder")}</div>
+      ${fld("رقم الآيبان","donate.iban",{ltr:true,ph:"SA00 0000 0000 0000 0000 0000"})}
+      ${rep("campaigns","الحملات","حملة",[["اسم الحملة","title"],["الوصف","desc"],["المستهدف (ر.س)","goal",{ltr:true}],["المُحصَّل (ر.س)","raised",{ltr:true}]])}`;
+    case 8: { const rv=reviewOf({_id:state.editingId}); const host=(d.customDomain||"").toLowerCase();
+      return `${fld("الهاتف","contact.phone",{ltr:true})}${fld("البريد الإلكتروني","contact.email",{ltr:true,type:"email"})}${fld("العنوان","contact.address")}
+      <div class="field"><div class="sec-title"><h4>النطاق</h4></div><span class="hint">النطاق الفرعي: <span dir="ltr">${esc(d.slug||"…")}.${DOMAIN}</span> (يعمل تلقائياً)</span></div>
+      ${PLANS[planKey(d)].domain?fld("النطاق الخاص (اختياري)","customDomain",{ltr:true,ph:"example.org.sa"}):`<p class="notice">ربط نطاق خاص متاح في الخطة الأساسية. <button type="button" class="linkbtn" data-step="0">غيّر الخطة</button></p>`}
+      ${host&&PLANS[planKey(d)].domain?`<div class="rep"><span class="rep-head"><span>أضف هذه السجلات لدى مزود النطاق ثم تؤكد المنصة الربط</span><span class="chip ${rv.domainStatus==="connected"?"ok":"warn"}">${rv.domainStatus==="connected"?"مربوط":"بانتظار الربط"}</span></span>
+        <div class="tbl-wrap"><table class="dns"><thead><tr><th>النوع</th><th>الاسم</th><th>القيمة</th></tr></thead><tbody>
+        <tr><td>CNAME</td><td>www</td><td>sites.${DOMAIN}</td></tr><tr><td>A</td><td>@</td><td>203.0.113.10</td></tr><tr><td>TXT</td><td>_rawaq</td><td>rawaq-verify=${esc(d.slug||"slug")}</td></tr></tbody></table></div></div>`:""}
+      <div class="field"><div class="sec-title"><h4>إشعارات البريد</h4></div></div>
+      ${fld("بريد استقبال الإشعارات","notify.email",{ltr:true,type:"email",hint:"يُنبَّه عليه عند وصول طلب جديد."})}
+      ${chk("طلبات التطوع","notify.volunteer")}${chk("طلبات العضوية","notify.member")}${chk("رسائل نموذج التواصل","notify.contact")}`; }
+    case 9: { const er=validate(); const ek=Object.keys(er);
+      return `<p class="notice">راجع الموقع في المعاينة، وبدّل بين <b>سطح المكتب</b> و<b>الجوال</b> أعلاها للتأكد من ظهوره على كل الشاشات. ثم اضغط «${state.editingSlug?"حفظ التعديلات":"نشر الموقع"}».</p>
+      <div class="field"><div class="sec-title"><h4>جاهزية الموقع</h4></div>${checklist(d)}</div>
+      ${ek.length?`<div class="field"><div class="sec-title"><h4>يلزم تصحيحه قبل النشر</h4></div><ul class="clist">${ek.map(k=>`<li class="no"><button type="button" class="btn sm ghost" data-step="${STEP_OF[k]??1}">${esc(er[k])} ← ${STEPS[STEP_OF[k]??1]}</button></li>`).join("")}</ul></div>`:`<p class="ok-msg">كل الحقول المطلوبة مكتملة.</p>`}
+      ${!state.canEdit||d.mine?`<p class="hint">بعد النشر يظهر الموقع مباشرة بعلامة «قيد التحقق» حتى توثّقه المنصة.</p>`:""}`; }
+  }
+}
+function viewEditor(){
+  const ph=PHASES.findIndex(p=>p[1].includes(state.step));
+  return `<div class="head-row"><div><span class="eyebrow">${state.editingSlug?"تعديل موقع":"موقع جديد"}</span><h1 style="font-size:28px">${esc(state.draft.name||"موقع جمعية جديد")}</h1></div><button class="btn ghost" data-go="${!state.canEdit&&mySite()?"dash":"home"}">إلغاء</button></div>
+   <div class="builder"><div class="panel"><ol class="phases">${PHASES.map((p,i)=>`<li class="${i===ph?"on":i<ph?"done":""}"><b>${i+1}</b>${p[0]}</li>`).join("")}</ol>
+   <div class="steps" role="tablist">${STEPS.map((s,i)=>`<button type="button" data-step="${i}" aria-current="${i===state.step}">${s}</button>`).join("")}</div>
+   <div class="form" id="form">${stepBody()}</div>
+   <div class="savebar">${state.step>0?`<button class="btn" data-step="${state.step-1}">السابق</button>`:""}${state.step<STEPS.length-1?`<button class="btn" data-step="${state.step+1}">التالي</button>`:""}
+   <button class="btn primary" id="save" style="margin-inline-start:auto">${state.editingSlug?"حفظ التعديلات":"نشر الموقع"}</button>
+   ${Object.keys(state.errors).length?`<span class="err" style="flex-basis:100%">راجع الحقول المعلَّمة في خطوة «${STEPS[Math.min(...Object.keys(state.errors).map(k=>STEP_OF[k]??1))]}».</span>`:""}</div></div>
+   <div class="preview-wrap"><div class="devices"><p class="muted" style="font-size:13px">معاينة مباشرة</p><div class="chips"><button type="button" class="btn sm ${state.device==="desktop"?"primary":""}" data-device="desktop">سطح المكتب</button><button type="button" class="btn sm ${state.device==="mobile"?"primary":""}" data-device="mobile">جوال</button></div></div>
+   <div id="preview" class="${state.device==="mobile"?"device-mobile":""}">${renderSite(state.draft,state.previewTab,{preview:true})}</div></div></div>`;
+}
+/* ---------- render ---------- */
+function updateNav(){
+  ["welcome","home","apps","dash","verify"].forEach(k=>{const b=$("#nav-"+k); if(b) b.setAttribute("aria-current", String(state.view===k)); });
+  const mine=mySite(), nn=$("#nav-new");
+  $("#nav-apps").hidden=!state.canEdit; $("#nav-verify").hidden=!state.canEdit; $("#nav-dash").hidden=!mine;
+  if(state.canEdit){ nn.hidden=false; nn.textContent="+ إنشاء موقع جمعية"; }
+  else if(state.canWrite && state.uid && !mine && state.mode!=="loading"){ nn.hidden=false; nn.textContent="+ سجّل جمعيتك"; }
+  else nn.hidden=true;
+  const n=unread(), bd=$("#dash-badge"); bd.hidden=!n; bd.textContent=n>99?"99+":String(n);
+  const pend=state.sites.filter(isNew).length+state.sites.filter(x=>planKey(x)!=="free"&&!planActive(x)).length+state.leads.filter(l=>l.status!=="done").length, vb=$("#verify-badge");
+  vb.hidden=!pend; vb.textContent=String(pend);
+}
+function render(){
+  updateNav();
+  app.innerHTML = state.view==="site"?viewSite(): state.view==="apps"?viewApps(): state.view==="new"?viewEditor(): state.view==="dash"?viewDash(): state.view==="verify"?viewVerify(): state.view==="welcome"?viewWelcome(): viewHome();
+}
+function refresh(){ if(state.view!=="new") render(); else updateNav(); }
+function refreshPreview(){ const p=$("#preview"); if(p) p.innerHTML=renderSite(state.draft,state.previewTab,{preview:true}); }
+/* ---------- path helpers ---------- */
+function getP(o,p){ return p.split(".").reduce((a,k)=>a==null?a:a[k],o); }
+function setP(o,p,v){ const ks=p.split("."); let a=o; ks.slice(0,-1).forEach(k=>{ if(a[k]==null) a[k]={}; a=a[k]; }); a[ks.at(-1)]=v; }
+/* ---------- events ---------- */
+document.addEventListener("error",e=>{ const t=e.target; if(!(t instanceof HTMLImageElement)) return;
+  if("fb" in t.dataset){ t.parentNode&&t.parentNode.classList.remove("has-img"); t.remove(); } else if("hide" in t.dataset){ t.remove(); } },true);
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("button,a"); if(!t) return;
+  const ds=t.dataset;
+  if(ds.go){ e.preventDefault(); return go(ds.go); }
+  if(ds.open) return go("site",ds.open);
+  if(ds.edit){ const s=state.sites.find(x=>x.slug===ds.edit); if(s) startEdit(s); return; }
+  if(ds.del){ state.confirmDel=ds.del; return render(); }
+  if("cancel" in ds){ state.confirmDel=null; return render(); }
+  if(ds.del2){ await removeSite(ds.del2); state.confirmDel=null; return render(); }
+  if(ds.stab){ const scope=t.closest("[data-scope]")?.dataset.scope || t.closest(".frame")?.querySelector("[data-scope]")?.dataset.scope;
+    if(scope==="preview"){ state.previewTab=ds.stab; refreshPreview(); } else { state.siteTab=ds.stab; render(); } return; }
+  if(ds.step!==undefined){ state.step=+ds.step; render(); return window.scrollTo(0,0); }
+  if(ds.add){ const tpl={programs:{title:"",desc:"",beneficiaries:""},volunteerRoles:{title:"",hours:"",desc:""},membership:{type:"",fee:"",desc:""},board:{name:"",role:"عضو"},docs:{title:"",kind:"التقرير السنوي",year:"2025",url:"",fileId:""},
+      beneficiaryGroups:{label:"",count:""},news:{title:"",date:today(),body:"",imageId:""},pages:{title:"",body:""},campaigns:{title:"",desc:"",goal:"",raised:""}}[ds.add];
+    if(!Array.isArray(state.draft[ds.add])) state.draft[ds.add]=[];
+    state.draft[ds.add].push(clone(tpl)); render(); return; }
+  if(ds.rm){ const [k,i]=ds.rm.split("."); state.draft[k].splice(+i,1); render(); refreshPreview(); return; }
+  if(ds.color){ state.draft.color=ds.color; render(); return; }
+  if(ds.tpl){ state.draft.template=ds.tpl; render(); return; }
+  if(ds.plan && state.view==="new"){ state.draft.plan=ds.plan; const P=PLANS[ds.plan]; if(!P.templates.includes(state.draft.template)) state.draft.template="classic"; if(!P.domain) state.draft.customDomain=""; render(); return; }
+  if(ds.planStart){ return startPlan(ds.planStart); }
+  if(ds.scroll){ const el=document.getElementById(ds.scroll); el&&el.scrollIntoView({behavior:"smooth",block:"start"}); return; }
+  if(ds.pact!==undefined){ return setReview(ds.pact,{planActive:ds.v==="1",planActivatedAt:ds.v==="1"?new Date().toISOString():""}); }
+  if(ds.lead){ return setLead(ds.lead,{status:ds.v}); }
+  if(ds.vtab){ state.vtab=ds.vtab; return render(); }
+  if(ds.clear){ setP(state.draft,ds.clear,""); render(); return; }
+  if(ds.device){ state.device=ds.device; render(); return; }
+  if(ds.copy){ try{ await navigator.clipboard.writeText(ds.copy); toast("نُسخ رقم الآيبان"); }catch(_){ toast(ds.copy); } return; }
+  if(ds.ver){ return setReview(ds.ver,{verified:ds.v==="1",rejected:false,note:"",at:ds.v==="1"?new Date().toISOString():""}); }
+  if(ds.rej){ state.rejectFor=ds.rej; render(); const n=$("#rej-note"); n&&n.focus(); return; }
+  if("rejx" in ds){ state.rejectFor=null; return render(); }
+  if(ds.rej2){ const note=($("#rej-note")?.value||"").trim(); if(!note){ toast("اكتب ما ينقص"); return; } return setReview(ds.rej2,{verified:false,rejected:true,note}); }
+  if(ds.dom!==undefined){ return setReview(ds.dom,{domainStatus:ds.v}); }
+  if(t.id==="save") return save();
+});
+let pt;
+document.addEventListener("input",e=>{
+  const el=e.target;
+  if(el.id==="f-q"){ state.q=el.value.trim(); const pos=el.selectionStart; render(); const n=$("#f-q"); n.focus(); try{n.setSelectionRange(pos,pos)}catch(_){}; return; }
+  if(el.dataset.p && el.type!=="checkbox" && el.type!=="file"){
+    let v=el.value;
+    if(el.dataset.p==="slug") { v=v.toLowerCase().replace(/[^a-z0-9-]/g,""); if(v!==el.value) el.value=v; }
+    if(el.dataset.p==="customDomain") { v=v.toLowerCase().replace(/^https?:\/\//,"").replace(/[^a-z0-9.-]/g,""); if(v!==el.value) el.value=v; }
+    if("list" in el.dataset) v=v.split(/[،,]/).map(x=>x.trim()).filter(Boolean);
+    setP(state.draft,el.dataset.p,v);
+    if(el.dataset.p==="name"){ const h=$(".head-row h1"); if(h) h.textContent=el.value||"موقع جمعية جديد"; }
+    if(el.dataset.p==="color"){ document.querySelectorAll(".swatch[data-color]").forEach(b=>b.setAttribute("aria-pressed","false")); const c=el.closest(".swatch"); if(c){ c.style.background=v; c.setAttribute("aria-pressed","true"); } }
+    clearTimeout(pt); pt=setTimeout(refreshPreview,120);
+  }
+});
+document.addEventListener("change",async e=>{
+  const el=e.target;
+  if(el.id==="f-cat"){ state.cat=el.value; render(); }
+  if(el.id==="f-app"){ state.appSite=el.value; render(); }
+  if(el.id==="f-kind"){ state.appKind=el.value; render(); }
+  if(el.id==="f-dkind"){ state.dashKind=el.value; render(); }
+  if(el.dataset.p && el.tagName==="SELECT"){ setP(state.draft,el.dataset.p,el.value); refreshPreview(); }
+  if(el.dataset.p && el.type==="checkbox"){ setP(state.draft,el.dataset.p,el.checked); if(el.dataset.p==="mine"||el.dataset.p==="agree") render(); }
+  if(el.dataset.up) await uploadFile(el);
+});
+async function uploadFile(el){
+  const path=el.dataset.up, kind=el.dataset.kind, f=el.files&&el.files[0]; if(!f) return;
+  const okType = kind==="image" ? /^image\/(png|jpeg|webp|svg\+xml)$/.test(f.type) : f.type==="application/pdf";
+  if(!okType){ toast(kind==="image"?"اختر صورة PNG أو JPG أو WEBP أو SVG":"اختر ملف PDF"); return; }
+  const max = kind==="image" ? (f.type==="image/svg+xml"?2:5)*1048576 : 20*1048576;
+  if(f.size>max){ toast("حجم الملف أكبر من المسموح"); return; }
+  state.uploading[path]=true; render();
+  try{
+    if(state.mode==="db"){ if(!assets) throw {code:"not_granted"}; const r=await assets.upload(f); setP(state.draft,path,r.id); }
+    else { if(f.size>1.5*1048576){ throw {code:"too_big_offline"}; }
+      const url=await new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(f); }); setP(state.draft,path,url); }
+    toast("رُفع الملف");
+  }catch(err){ toast(err.code==="too_big_offline"?"في وضع المعاينة الحد 1.5 ميجابايت":err.code==="not_granted"?"رفع الملفات غير متاح لصلاحيتك":err.code==="quota_exceeded"?"امتلأت مساحة التخزين":"تعذّر رفع الملف"); }
+  delete state.uploading[path]; render();
+}
+document.addEventListener("submit",async e=>{
+  const lf=e.target.closest("form[data-lead]");
+  if(lf){ e.preventDefault(); const fd=new FormData(lf);
+    const rec={name:fd.get("n").trim(),org:fd.get("o").trim(),phone:fd.get("p").trim(),email:(fd.get("e")||"").trim(),branches:fd.get("b")||"",message:String(fd.get("m")||"").trim().slice(0,800),at:new Date().toISOString(),status:"new"};
+    const btn=lf.querySelector("button[type=submit]"); btn.disabled=true;
+    try{ if(state.mode==="db"){ if(!state.uid) throw {code:"no_user"}; await db.doc("leads/"+state.uid).set(rec); } else state.leads.unshift(Object.assign({_id:"demo-"+Date.now()},rec));
+      state.leadSent=true; render(); const el=document.getElementById("lead"); el&&el.scrollIntoView({block:"start"}); toast("وصل طلبك"); }
+    catch(err){ btn.disabled=false; toast(err.code==="no_user"?"سجّل الدخول لإرسال الطلب":err.code==="invalid_argument"?"صلاحيتك على هذه الصفحة لا تسمح بالإرسال":"تعذّر الإرسال، حاول مرة أخرى"); }
+    return; }
+  const f=e.target.closest("form[data-join]"); if(!f) return;
+  e.preventDefault();
+  const fd=new FormData(f), kind=f.dataset.join;
+  const site=state.sites.find(s=>s.slug===state.slug)||{};
+  const rec={siteId:state.slug,kind,name:fd.get("n").trim(),phone:fd.get("p").trim(),email:(fd.get("e")||"").trim(),choice:fd.get("r"),message:String(fd.get("m")||"").trim().slice(0,800),at:new Date().toISOString()};
+  if(!rec.message) delete rec.message;
+  const btn=f.querySelector("button[type=submit]"); btn.disabled=true;
+  try{
+    if(state.mode==="db"){
+      if(!state.uid) throw {code:"no_user"};
+      const ref=db.doc("inbox/"+state.uid); const cur=await ref.get();
+      const apps=cur.exists?[...(cur.data().apps||[])]:[]; apps.push(rec);
+      await ref.set({apps:apps.slice(-150)});
+      if(site.pubKey && site._id && window.crypto?.subtle){
+        try{ const enc=await encryptFor(clone(site.pubKey),rec); const mref=db.doc("mail/"+state.uid); const mc=await mref.get();
+          const items=mc.exists?[...(mc.data().items||[])]:[]; items.push({siteDoc:site._id,kind,at:rec.at,enc}); await mref.set({items:items.slice(-100)}); }catch(_){}
+      }
+    } else { state.inbox.push(rec); if(isMine(site)) state.mail.unshift(clone(rec)); }
+    state.sent[state.slug]=kind; render(); toast("أُرسل الطلب");
+  }catch(err){ btn.disabled=false; toast(err.code==="no_user"?"سجّل الدخول لإرسال الطلب":err.code==="invalid_argument"?"صلاحيتك على هذه الصفحة لا تسمح بإرسال الطلبات":"تعذّر الإرسال، حاول مرة أخرى"); }
+});
+/* ---------- persistence ---------- */
+function validate(){
+  const d=state.draft, er={};
+  const registering = !state.canEdit || d.mine;
+  if(registering){
+    if(!String(d.rep?.name||"").trim()) er["rep.name"]="اكتب اسم المسؤول.";
+    if(!/^05\d{8}$/.test(String(d.rep?.phone||"").trim())) er["rep.phone"]="جوال المسؤول بصيغة 05xxxxxxxx.";
+    if(!d.agree) er.agree="يلزم الإقرار بصحة البيانات.";
+  }
+  if(d.rep?.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.rep.email)) er["rep.email"]="البريد غير صحيح.";
+  { const P=PLANS[planKey(d)]; if((d.programs||[]).filter(x=>x.title).length>P.maxPrograms) er.programs=`الخطة التجريبية تسمح بـ ${P.maxPrograms} برامج.`;
+    if((d.pages||[]).filter(x=>x.title).length>P.maxPages) er.pages=`الخطة التجريبية تسمح بصفحة إضافية واحدة.`; }
+  if(!d.name.trim()) er.name="اكتب اسم الجمعية.";
+  if(!/^[a-z0-9](?:[a-z0-9-]{1,28})[a-z0-9]$/.test(d.slug)) er.slug="النطاق من 3 إلى 30 حرفاً إنجليزياً صغيراً أو رقماً، ولا يبدأ أو ينتهي بشرطة.";
+  else if(!state.editingSlug && state.sites.some(s=>s.slug===d.slug)) er.slug="هذا النطاق مستخدم لجمعية أخرى.";
+  if(!/^\d{1,6}$/.test(d.license)) er.license="رقم الترخيص أرقام فقط.";
+  if(d.customDomain && !/^(?!-)[a-z0-9-]{1,63}(\.[a-z0-9-]{1,63})+$/.test(d.customDomain)) er.customDomain="اكتب النطاق بصيغة example.org.sa";
+  else if(d.customDomain && state.sites.some(s=>s.customDomain===d.customDomain && s._id!==state.editingId)) er.customDomain="هذا النطاق مربوط بجمعية أخرى.";
+  if(d.notify?.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.notify.email)) er["notify.email"]="البريد غير صحيح.";
+  if(d.contact?.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.contact.email)) er["contact.email"]="البريد غير صحيح.";
+  if(d.donate?.iban && !/^SA\d{22}$/.test(String(d.donate.iban).replace(/\s+/g,"").toUpperCase())) er["donate.iban"]="الآيبان السعودي يبدأ بـ SA ويليه 22 رقماً.";
+  if(d.donate?.link && !safeUrl(d.donate.link)) er["donate.link"]="الرابط يبدأ بـ https://";
+  return er;
+}
+async function save(){
+  state.errors=validate();
+  if(Object.keys(state.errors).length){ state.step=Math.min(...Object.keys(state.errors).map(k=>STEP_OF[k]??1)); render(); return window.scrollTo(0,0); }
+  const d=clone(state.draft); delete d.example;
+  ["programs","volunteerRoles","membership","board","docs"].forEach(k=>d[k]=d[k].filter(x=>Object.values(x).some(v=>String(v).trim())));
+  d.news=(d.news||[]).filter(x=>x.title); d.pages=(d.pages||[]).filter(x=>x.title); d.beneficiaryGroups=(d.beneficiaryGroups||[]).filter(x=>x.label); d.campaigns=(d.campaigns||[]).filter(x=>x.title);
+  if(d.donate) d.donate.iban=String(d.donate.iban||"").replace(/\s+/g,"").toUpperCase();
+  const own = !state.canEdit || !!d.mine;
+  const id = state.editingId || (own && state.uid ? state.uid : "p-"+d.slug);
+  if(own && state.uid && id===state.uid) d.ownerId=state.uid;
+  d.updatedAt=new Date().toISOString();
+  delete d._id; delete d.mine;
+  const btn=$("#save"); btn.disabled=true;
+  try{
+    if(state.mode==="db"){
+      if(d.ownerId && d.ownerId===state.uid){ try{ const pub=await ensureKeys(); if(pub) d.pubKey=pub; }catch(_){} }
+      await db.doc("sites/"+id).set(d);
+      startOwner();
+    } else { d._id=id; const i=state.sites.findIndex(s=>s._id===id); i>=0?state.sites[i]=d:state.sites.unshift(d); }
+    toast(state.editingSlug?"حُفظت التعديلات":(planKey(d)!=="free"&&!state.canEdit?"نُشر الموقع، وسيتواصل معك فريق المنصة لتفعيل الاشتراك":"نُشر الموقع "+d.slug+"."+DOMAIN));
+    go("site",d.slug);
+  }catch(err){ btn.disabled=false; toast(err.code==="quota_exceeded"?"امتلأت سعة المنصة، احذف مواقع غير مستخدمة":err.code==="invalid_argument"?"لا تملك صلاحية النشر على هذه الصفحة":"تعذّر الحفظ، حاول مرة أخرى"); }
+}
+async function removeSite(slug){
+  const s=state.sites.find(x=>x.slug===slug); if(!s) return;
+  try{ if(state.mode==="db") await db.doc("sites/"+s._id).delete(); else state.sites=state.sites.filter(x=>x!==s); toast("حُذف الموقع"); }
+  catch(e){ toast("تعذّر الحذف"); }
+}
+/* ---------- owner's encrypted mailbox ---------- */
+const mailCache=new Map();
+async function onMail(snap){
+  await loadPriv();
+  const out=[];
+  for(const doc of snap.docs){ const items=(doc.data()||{}).items||[];
+    for(const it of items){ if(!it||it.siteDoc!==state.uid||!it.enc) continue;
+      const key=doc.id+"|"+it.at+"|"+String(it.enc.k).slice(0,24);
+      if(mailCache.has(key)){ out.push(mailCache.get(key)); continue; }
+      let v=null; if(privKey){ try{ v=await decryptWith(privKey,it.enc); }catch(_){} }
+      const row = v ? Object.assign({},v,{kind:v.kind||it.kind,at:v.at||it.at}) : {failed:true,kind:it.kind,at:it.at};
+      if(privKey) mailCache.set(key,row);
+      out.push(row); } }
+  state.mail=out.sort((a,b)=>(b.at||"").localeCompare(a.at||""));
+  if(state.view==="dash") markSeenSoon();
+  refresh();
+}
+let seenT; function markSeenSoon(){ clearTimeout(seenT); seenT=setTimeout(markSeen,1500); }
+function startOwner(){
+  if(state.mode!=="db"||ownerStarted||!state.uid||!mySite()) return;
+  ownerStarted=true;
+  db.doc(`data/users/${state.uid}/prefs`).get().then(s=>{ if(s.exists){ state.lastSeen=s.data().lastSeen||""; refresh(); } }).catch(()=>{});
+  db.collection("mail").onSnapshot(onMail,()=>{});
+}
+/* ---------- boot ---------- */
+function offline(){ state.mode="offline"; state.sites=clone(SAMPLES); state.canEdit=true; state.canWrite=true; state.uid="demo-owner";
+  state.reviews={"demo-owner":{verified:true,at:"2026-09-05",domainStatus:"pending"},"p-ruwaa-health":{verified:false}};
+  state.inbox=[{siteId:"birr-madinah",kind:"volunteer",choice:"توزيع السلال الغذائية",name:"مثال: محمد أحمد",phone:"0500000000",email:"",at:"2026-10-20T09:00:00Z"},
+    {siteId:"birr-madinah",kind:"contact",choice:"طلب شراكة",name:"مثال: شركة نماء",phone:"0511111111",email:"csr@example.com",message:"نرغب في رعاية حملة سلة الخير الشتوية لهذا العام.",at:"2026-10-22T11:30:00Z"}];
+  state.mail=clone(state.inbox).reverse();
+  state.leads=[{_id:"demo-lead",name:"مثال: م. عبدالله",org:"مؤسسة الخير الأهلية",phone:"0533333333",email:"it@example.org",branches:"6",message:"نحتاج مواقع لستة فروع مع لوحة موحدة.",at:"2026-10-23T08:00:00Z",status:"new"}];
+  if(!INITIAL_HASH && state.view==="welcome"){ state.view="home"; try{history.replaceState(null,"","#home")}catch(_){} }
+  if(state.view!=="new") render(); else updateNav(); }
+async function boot(){
+  fromHash();
+  if(!window.claude||!window.claude.use){ return offline(); }
+  try{
+    const [d,u,a]=await Promise.all([window.claude.use("db"),window.claude.use("user"),window.claude.use("assets")]);
+    if(!d) return offline();
+    db=d; user=u; assets=a; state.mode="db";
+    if(u){ try{ state.uid=await u.id(); }catch(_){}
+      try{ const ce=await u.canEdit(); state.canEdit=ce!==false; }catch(_){ state.canEdit=false; }
+      try{ const w=await u.can("data.write"); state.canWrite=w!==false; }catch(_){ state.canWrite=true; } }
+    else { state.canEdit=false; state.canWrite=false; }
+    db.collection("sites").onSnapshot(snap=>{ state.sites=snap.docs.map(x=>Object.assign({},x.data(),{_id:x.id})).sort((a,b)=>(b.createdAt||"").localeCompare(a.createdAt||"")); startOwner(); refresh(); },
+      ()=>{ toast("انقطع الاتصال بقاعدة البيانات"); });
+    db.collection("review").onSnapshot(snap=>{ const m={}; snap.docs.forEach(x=>m[x.id]=x.data()); state.reviews=m; refresh(); },()=>{});
+    if(state.canEdit) db.collection("leads").onSnapshot(snap=>{ state.leads=snap.docs.map(x=>Object.assign({},x.data(),{_id:x.id})).sort((a,b)=>(b.at||"").localeCompare(a.at||"")); refresh(); },()=>{});
+    if(state.canEdit && !INITIAL_HASH && state.view==="welcome") go("home");
+    if(state.canEdit) db.collection("inbox").onSnapshot(snap=>{ state.inbox=snap.docs.flatMap(x=>x.data().apps||[]); refresh(); },()=>{});
+    refresh();
+  }catch(e){ offline(); }
+}
+const INITIAL_HASH=(location.hash||"").slice(1);
+render(); boot();
+})();
+
+</script>
+
+</body></html>
