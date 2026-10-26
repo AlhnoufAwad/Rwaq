@@ -2,11 +2,8 @@
 <title>رواق الجمعيات</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;600;700&family=Amiri:wght@400;700&display=swap">
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&family=Reem+Kufi:wght@500;600;700&display=swap">
 <style>
-/* Layout: a platform shell (sticky bar + views) that hosts each association's subsite inside a browser-like frame; builder = form beside live preview. */
 /* Layout: a platform shell (sticky bar + views) that hosts each association's subsite inside a browser-like frame; builder = form beside live preview. */
 :root{
   --bg:#F8EFEA; --surface:#FFFAF7; --soft:#F1E6E0; --ink:#231815; --muted:#5E4A42; --line:#E6D7CF;
@@ -401,12 +398,45 @@ h3{color:var(--h3)}
 .notice b{color:var(--h2)}
 .lp-foot{background-color:var(--soil);background-image:var(--pattern-dark),linear-gradient(160deg,#5A3A31,#33201B);border-top:1px solid var(--cerulean)}
 .lp-foot .lp-logo{height:38px;width:auto;display:block}
-</style
+
+/* ---- internal back-office ---- */
+.dtabs{display:flex;gap:2px;padding:4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);margin-bottom:16px;overflow-x:auto;box-shadow:var(--shadow-1)}
+.dtabs button{border:0;background:transparent;padding:8px 14px;border-radius:7px;cursor:pointer;white-space:nowrap;font-size:14px;color:var(--muted)}
+.dtabs button[aria-current="true"]{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:2px;text-align:right;box-shadow:var(--shadow-1);font:inherit;color:inherit}
+button.kpi{cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}button.kpi:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
+.kpi b{font-family:"Amiri",serif;font-size:23px;color:var(--hd);font-variant-numeric:tabular-nums;line-height:1.3}
+.kpi span{font-size:12.5px;color:var(--muted)}
+.kpi.neg b{color:var(--danger)}
+.erp-sec{display:grid;gap:12px;margin-bottom:24px}
+.erp-form{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--r);padding:16px;display:grid;gap:10px;box-shadow:var(--shadow-1)}
+.erp-form h3{font-size:16px}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.row3{grid-template-columns:minmax(0,1fr)}}
+.boxed{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;box-shadow:var(--shadow-1)}
+.boxed h3{font-size:15px}
+.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.mchart{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;align-items:end;height:170px;padding:10px 4px 0;border-bottom:1px solid var(--line)}
+.mchart .m{display:flex;gap:2px;align-items:flex-end;justify-content:center;height:100%}
+.mchart i{display:block;width:42%;max-width:14px;border-radius:3px 3px 0 0;min-height:1px}
+.mchart i.in{background:var(--accent)}.mchart i.out{background:var(--cerulean)}
+.mlabels{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px;font-size:11px;color:var(--muted);text-align:center;padding:0 4px}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--muted)}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:6px;vertical-align:middle}
+.cbar{display:grid;grid-template-columns:minmax(100px,170px) minmax(0,1fr) auto;gap:10px;align-items:center;font-size:13.5px}
+.cbar .t{height:8px;border-radius:99px;background:var(--soft);overflow:hidden}.cbar .t i{display:block;height:100%}
+.amt-in{color:var(--ok)}.amt-out{color:var(--danger)}
+.pj{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;box-shadow:var(--shadow-1)}
+.pj .bar i,.boxed .bar i{background:var(--accent)}
+.inline-hours{display:flex;gap:4px;align-items:center}.inline-hours .input{width:80px}
+.pcard .bar{margin-top:4px}
+
+.setup{border-top:3px solid var(--accent);padding:24px;gap:16px}
+.setup .lead{max-width:none}
+</style>
+
 <div class="topbar"><div class="wrap">
-  <a class="brand" href="#welcome" data-go="welcome">
-    <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8" fill="var(--accent)"/><path d="M8 22V12l7-5 7 5v10" fill="none" stroke="var(--accent-ink)" stroke-width="2.2"/><path d="M12.5 22v-5.5h5V22" fill="none" stroke="var(--accent-ink)" stroke-width="2.2"/></svg>
-    رواق <small>منصة مواقع الجمعيات الأهلية</small>
-  </a>
+  <a class="brand" href="#welcome" data-go="welcome" aria-label="رواق، الصفحة الرئيسية"><img class="brand-logo" src="data:image/png;base64,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" alt="رواق" width="216" height="97"></a>
   <nav class="nav" aria-label="أقسام المنصة">
     <button class="btn ghost" data-go="welcome" id="nav-welcome">الرئيسية</button>
     <button class="btn ghost" data-go="home" id="nav-home">المواقع</button>
@@ -418,18 +448,20 @@ h3{color:var(--h3)}
 </div></div>
 <main class="wrap" id="app"></main>
 <div class="toast" id="toast" hidden></div>
+
 <script>
 (function(){
 "use strict";
 const DOMAIN = "rawaq.sa";
 const CATEGORIES = ["اجتماعية","صحية","تعليمية","بيئية","ثقافية","تنموية","إسكان","دعوية","مهنية","رعاية الأيتام","ذوي الإعاقة"];
 const REGIONS = ["الرياض","مكة المكرمة","المدينة المنورة","القصيم","المنطقة الشرقية","عسير","تبوك","حائل","الحدود الشمالية","جازان","نجران","الباحة","الجوف"];
-const DOC_KINDS = ["التقرير السنوي","القوائم المالية المدققة","اللائحة الأساسية","السياسات والإجراءات","محاضر الجمعية العمومية","الخطة الاستراتيجية"];
+const DOC_KINDS = ["التقرير السنوي","القوائم المالية المدققة","اللائحة الأساسية","السياسات والإجراءات","محاضر الجمعية العمومية","محاضر مجلس الإدارة","الخطة الاستراتيجية"];
 const COLORS = ["#0E5A4E","#1F4E8C","#6E3863","#8A5A12","#2E6A3A","#9B3A2E","#3E4A5C"];
 const SITE_TABS = [["home","الرئيسية"],["about","عن الجمعية"],["programs","البرامج"],["news","الأخبار"],["join","التطوع والعضوية"],["gov","الحوكمة والشفافية"],["donate","تبرّع"],["contact","تواصل معنا"]];
 const TEMPLATES = [["classic","كلاسيكي","واجهة بلون الهوية ونقش زخرفي"],["modern","عصري","واجهة فاتحة وبطاقات مستديرة"],["formal","رسمي","ترويسة مركزية وخط نسخي"]];
 const SUBJECTS = ["استفسار عام","طلب شراكة","طلب مساعدة لمستفيد","اقتراح أو ملاحظة"];
 const KIND_LABEL = {volunteer:"تطوع",member:"عضوية",contact:"تواصل"};
+const LOGO_CREAM = document.querySelector(".brand-logo").src;
 const ALL_TPL = ["classic","modern","formal"];
 const PLANS = {
   free:{name:"الخطة التجريبية",price:"مجاناً",unit:"",feats:["نطاق فرعي (Subdomain)","قالب أساسي واحد","حتى 3 برامج وصفحة إضافية واحدة","شعار المنصة في التذييل"],templates:["classic"],domain:false,brand:true,maxPrograms:3,maxPages:1,cta:"ابدأ الآن"},
@@ -485,6 +517,7 @@ Object.assign(SAMPLES[0], {_id:"demo-owner", ownerId:"demo-owner", agree:true, p
   donate:{intro:"تبرعك يصل إلى الأسر المستحقة وفق دراسة حالة معتمدة، وتُنشر أوجه الصرف في التقارير المالية السنوية.",link:"https://example.org/donate",bank:"مصرف الراجحي",holder:"جمعية البر الخيرية بالمدينة",iban:"SA4420000001234567891234"},
   campaigns:[{title:"سلة الخير الشتوية",desc:"سلال غذائية وملابس شتوية لـ 1,200 أسرة.",goal:"300000",raised:"184500"},{title:"ترميم المساكن",desc:"تأهيل 40 مسكناً لأسر مستفيدة.",goal:"800000",raised:"215000"}],
   customDomain:"birr-madinah.org.sa", notify:{email:"ed@example.org",volunteer:true,member:true,contact:true}});
+SAMPLES[0].programs.forEach((p,i)=>Object.assign(p,[{progress:"72",status:"قيد التنفيذ",location:"أحياء المدينة المنورة"},{progress:"45",status:"قيد التنفيذ",location:"مركز التدريب، حي العزيزية"},{progress:"30",status:"قيد التنفيذ",location:"قباء والعوالي"}][i]||{}));
 Object.assign(SAMPLES[1], {_id:"p-ruwaa-health", template:"modern", plan:"free",
   news:[{title:"قافلة الفحص المجاني تزور حي النسيم",date:"2026-10-05",body:"استقبلت العيادة المتنقلة أكثر من 300 مراجع خلال ثلاثة أيام.",imageId:""}]});
 function blank(){ return {slug:"",name:"",category:"اجتماعية",license:"",region:"المدينة المنورة",city:"",founded:"",supervisor:"وزارة الموارد البشرية والتنمية الاجتماعية",
@@ -499,7 +532,7 @@ function blank(){ return {slug:"",name:"",category:"اجتماعية",license:""
 const clone = o => JSON.parse(JSON.stringify(o));
 /* ---------- ownership helpers ---------- */
 const isMine = s => !!(s && state.uid && s._id===state.uid);
-const mySite = () => state.sites.find(isMine);
+const mySite = () => state.demo ? state.demoSite : state.sites.find(isMine);
 const canEditSite = s => state.canEdit || isMine(s);
 const reviewOf = s => (s && state.reviews[s._id]) || {};
 const planActive = s => planKey(s)==="free" || !!reviewOf(s).planActive;
@@ -542,7 +575,9 @@ async function ensureKeys(){
   privKey=kp.privateKey; return pub;
 }
 /* ---------- routing ---------- */
+function endDemo(){ if(!state.demo) return; state.demo=false; state.demoSite=null; state.erp=erpBlank(); if(state.mailBak){ state.mail=state.mailBak; state.mailBak=null; } if(state.mode==="db"&&mySite()) loadErp(); }
 function go(view, slug){
+  if(view!=="dash") endDemo();
   if(view==="new" && !state.canEdit){ const m=mySite(); if(m) return startEdit(m); }
   state.view=view; state.slug=slug||null; state.errors={}; state.confirmDel=null; state.rejectFor=null;
   if(view==="new"){ state.draft=blank(); state.draft.plan=state.pickPlan||"free"; state.draft.mine=!state.canEdit; state.editingSlug=null; state.editingId=null; state.step=0; state.previewTab="home"; }
@@ -677,7 +712,10 @@ function renderSite(s, tab, opts={}){
     <div data-scope="${opts.preview?"preview":"site"}">${body}</div>
     <footer class="s-foot"><span>© 2026 ${esc(name)}</span><span>مسجلة برقم ${esc(s.license||"—")}${pl.brand?" · صُمّم عبر رواق":""}</span></footer></div>`;
 }
-function pCard(p){ return `<div class="pcard"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>${p.beneficiaries?`<span class="chip" style="justify-self:start">${num(p.beneficiaries)} مستفيد</span>`:""}</div>`; }
+function pCard(p){ const has=p.progress!==undefined&&p.progress!=="", pr=Math.max(0,Math.min(100,Number(p.progress)||0));
+  return `<div class="pcard"><h3>${esc(p.title)}</h3><p>${esc(p.desc)}</p>
+  ${has?`<div class="bar" role="progressbar" aria-valuenow="${pr}" aria-valuemin="0" aria-valuemax="100" aria-label="نسبة الإنجاز"><i style="width:${pr}%"></i></div><span class="muted" style="font-size:12.5px">الإنجاز ${pr}%${p.status?" · "+esc(p.status):""}</span>`:(p.status?`<span class="muted" style="font-size:12.5px">${esc(p.status)}</span>`:"")}
+  <div class="chips">${p.beneficiaries?`<span class="chip">${num(p.beneficiaries)} مستفيد</span>`:""}${p.location?`<span class="chip">الموقع: ${esc(p.location)}</span>`:""}</div></div>`; }
 /* ---------- views ---------- */
 function vChip(s){ const rv=reviewOf(s); return rv.verified?`<span class="chip ok">✓ موثّقة</span>`:rv.rejected?`<span class="chip bad">تحتاج استكمال</span>`:`<span class="chip warn">قيد التحقق</span>`; }
 function viewHome(){
@@ -718,7 +756,7 @@ function reqRows(rows, withSite, newSince){
   return `<div class="tbl-wrap"><table><thead><tr><th>التاريخ</th>${withSite?"<th>الجمعية</th>":""}<th>النوع</th><th>الفرصة / العضوية / الموضوع</th><th>الاسم</th><th>الجوال</th><th>البريد</th><th>الرسالة</th>${withSite?"":"<th></th>"}</tr></thead><tbody>
     ${rows.map(a=> a.failed ? `<tr><td class="num">${esc((a.at||"").slice(0,10))}</td><td><span class="chip">${KIND_LABEL[a.kind]||"طلب"}</span></td><td colspan="6" class="muted">تعذّر فتح هذا الطلب على هذا الجهاز.</td></tr>` :
       `<tr class="${newSince!==undefined&&(a.at||"")>newSince?"new":""}"><td class="num">${esc((a.at||"").slice(0,10))}</td>${withSite?`<td>${esc(nameOf(a.siteId))}</td>`:""}<td><span class="chip">${KIND_LABEL[a.kind]||"عضوية"}</span></td><td>${esc(a.choice)}</td><td>${esc(a.name)}</td><td class="num">${esc(a.phone)}</td><td style="direction:ltr;text-align:right">${esc(a.email||"—")}</td><td class="msg">${esc(a.message||"—")}</td>
-      ${withSite?"":`<td><div class="chips">${a.email?`<a class="btn sm" href="mailto:${encodeURIComponent(a.email)}?subject=${encodeURIComponent("بخصوص طلبك: "+(a.choice||""))}">رد بالبريد</a>`:""}${a.phone?`<a class="btn sm ghost" href="tel:${esc(a.phone)}">اتصال</a>`:""}</div></td>`}</tr>`).join("")}</tbody></table></div>`;
+      ${withSite?"":`<td><div class="chips">${a.email?`<a class="btn sm" href="mailto:${encodeURIComponent(a.email)}?subject=${encodeURIComponent("بخصوص طلبك: "+(a.choice||""))}">رد بالبريد</a>`:""}${a.phone?`<a class="btn sm ghost" href="tel:${esc(a.phone)}">اتصال</a>`:""}${a.kind!=="contact"&&state.view==="dash"?`<button class="btn sm" data-addppl="${esc(a.at)}|${esc(a.phone)}">إضافة للسجل</button>`:""}</div></td>`}</tr>`).join("")}</tbody></table></div>`;
 }
 function viewApps(){
   if(!state.canEdit) return `<div class="empty"><h3>الطلبات متاحة لمحرري المنصة فقط</h3></div>`;
@@ -732,14 +770,23 @@ function viewApps(){
 }
 function viewDash(){
   const s=mySite();
-  if(!s) return `<div class="empty"><h3>لم تسجّل جمعية بعد</h3><p>سجّل جمعيتك لتحصل على لوحة تتابع منها موقعها وطلباتها.</p>${state.canWrite?`<button class="btn primary" data-go="new">+ سجّل جمعيتك</button>`:""}</div>`;
+  if(!s) return dashOverview();
+  const tabs=[["over","نظرة عامة"],["fin","المالية"],["proj","المشاريع"],["people","الأعضاء والمتطوعون"],["meet","الاجتماعات والمحاضر"]];
+  const head=`<div class="head-row"><div><span class="eyebrow">لوحة جمعيتي</span><h1 style="font-size:28px">${esc(s.name)}</h1></div>
+    <div class="chips">${state.demo?`<span class="chip warn" style="padding:6px 12px">عرض تجريبي: لا يُحفظ شيء</span><button class="btn" data-demoexit>إنهاء العرض</button>`:`<button class="btn" data-open="${esc(s.slug)}">فتح الموقع</button><button class="btn primary" data-edit="${esc(s.slug)}">تعديل الموقع</button>`}</div></div>
+    <div class="dtabs" role="tablist" aria-label="أقسام لوحة الجمعية">${tabs.map(([k,l])=>`<button type="button" role="tab" data-dtab="${k}" aria-current="${state.dtab===k}">${l}</button>`).join("")}</div>`;
+  if((!state.demo && state.erpLoaded && !state.erp.cfg.setupDone) || state.forceSetup) return head.replace(/<div class="dtabs"[\s\S]*$/,"")+viewSetup(s);
+  const body = state.dtab==="fin"?viewFin(s): state.dtab==="proj"?viewProj(s): state.dtab==="people"?viewPeople(s): state.dtab==="meet"?viewMeet(s): erpKpis(s)+dashOverview();
+  return head+body+(state.dtab!=="over"?`<p class="hint" style="margin-top:6px">بيانات النظام الداخلي خاصة بحساب جمعيتك، ولا يراها زوار الموقع ولا إدارة المنصة.</p>`:"");
+}
+function dashOverview(){
+  const s=mySite();
+  if(!s) return `<div class="empty"><h3>لم تسجّل جمعية باسمك بعد</h3><p>لوحة الجمعية فيها النظام الداخلي: المالية، والمشاريع، والأعضاء والمتطوعون، والاجتماعات والمحاضر. تظهر لمسؤول الجمعية بعد تسجيلها.</p><div class="chips" style="justify-content:center">${state.canWrite?`<button class="btn primary" data-go="new">+ سجّل جمعيتك</button>`:""}<button class="btn" data-demo>جرّب النظام ببيانات تجريبية</button></div></div>`;
   const rv=reviewOf(s), nt=s.notify||{};
   const rows=state.mail.filter(m=>!state.dashKind||m.kind===state.dashKind);
   const fresh=state.mail.filter(m=>(m.at||"")>state.dashSeen).length;
   const dom = s.customDomain ? (rv.domainStatus==="connected"?`<span class="chip ok">✓ ${esc(s.customDomain)} مربوط</span>`:`<span class="chip warn">${esc(s.customDomain)}: بانتظار ضبط DNS</span>`) : `<span class="muted" style="font-size:13px">لم يُضف نطاق خاص</span>`;
-  return `<div class="head-row"><div><span class="eyebrow">لوحة جمعيتي</span><h1 style="font-size:28px">${esc(s.name)}</h1></div>
-    <div class="chips"><button class="btn" data-open="${esc(s.slug)}">فتح الموقع</button><button class="btn primary" data-edit="${esc(s.slug)}">تعديل الموقع</button></div></div>
-    <div class="stcards">
+  return `<div class="stcards">
       <div class="stc"><span class="k">التحقق من الجمعية</span><span class="v">${rv.verified?`<span class="chip ok">✓ موثّقة</span>`:rv.rejected?`<span class="chip bad">تحتاج استكمال</span>`:`<span class="chip warn">قيد المراجعة</span>`}</span>${rv.note?`<span class="muted" style="font-size:13px">ملاحظة المنصة: ${esc(rv.note)}</span>`:""}${!s.licenseFileId?`<span class="muted" style="font-size:13px">ارفع شهادة الترخيص من خطوة «التسجيل والتحقق» لتسريع التوثيق.</span>`:""}</div>
       <div class="stc"><span class="k">النطاق</span><span class="v domain" style="text-align:right">${esc(s.slug)}.${DOMAIN}</span>${dom}</div>
       <div class="stc"><span class="k">الاشتراك</span><span class="v">${PLANS[planKey(s)].name}</span>${planKey(s)==="free"?`<button class="btn sm" data-plan-start="basic">ترقية للأساسية</button>`:planActive(s)?`<span class="chip ok">مفعّلة</span>`:`<span class="chip warn">بانتظار التفعيل</span><span class="muted" style="font-size:13px">سيتواصل معك فريق المنصة لإتمام الدفع.</span>`}</div>
@@ -799,10 +846,10 @@ function viewWelcome(){
   const cta = mine ? `<button class="btn primary lg" data-go="dash">ادخل لوحة جمعيتك</button>` :
     loading ? "" : canStart() ? `<button class="btn primary lg" data-plan-start="free">ابدأ مجاناً</button>` :
     `<p class="notice">${state.uid?"حسابك على هذه الصفحة للاطلاع فقط. اطلب من مسؤول المنصة صلاحية المشاركة لتسجّل جمعيتك.":"سجّل الدخول إلى حسابك لتبدأ إنشاء موقع جمعيتك."}</p>`;
-  const mock = renderSite(SAMPLES[0],"home",{preview:true});
+  const mock = renderSite(Object.assign({},SAMPLES[0],{color:"#4A2E27"}),"home",{preview:true});
   const feats=[["منشئ المواقع","قوالب جاهزة، وتخصيص الهوية البصرية، وإدارة الصفحات.","M4 5h16v14H4zM4 9h16"],["إدارة المحتوى","أخبار ومقالات بالصور، وصفحات إضافية بلا حدود.","M6 4h9l3 3v13H6zM9 10h6M9 14h6"],["إدارة المشاريع","عرض البرامج والمبادرات وأعداد المستفيدين وفئاتهم.","M4 20V10M10 20V4M16 20v-7M22 20H2"],
     ["مركز التقارير","رفع التقارير السنوية والمالية ومحاضر الجمعية تعزيزاً للشفافية.","M7 3h7l4 4v14H7zM10 13h5M10 17h5"],["بوابة التبرعات","صفحة تبرع وحملات بنسب إنجاز، وربط ببوابة دفع مرخصة.","M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"],["التواصل والتطوع","طلبات تطوع وعضوية وشراكات تصل مشفّرة إلى لوحة جمعيتك.","M4 6h16v10H8l-4 4z"]];
-  const steps=[["التسجيل","أنشئ الحساب وأدخل بيانات الجمعية الرسمية."],["الهوية","اختر القالب وارفع الشعار وحدد الألوان."],["المحتوى","أدخل المشاريع والأخبار والتقارير بنماذج سهلة."],["المراجعة","عاين الموقع على الجوال وسطح المكتب."],["النشر","أطلق موقعك على نطاق جمعيتك."]];
+  const steps=[["التسجيل","أنشئ الحساب وأدخل بيانات الجمعية الرسمية."],["الهوية","اختر القالب وارفع الشعار وحدد الألوان."],["المحتوى","أدخل المشاريع والأخبار والتقارير بنماذج سهلة."],["المراجعة","عاين الموقع على الجوال وسطح المكتب."],["النشر","أطلق موقعك، ثم جهّز نظامك الإداري والمالي."]];
   return `<section class="lp-hero"><div class="lp-copy"><span class="eyebrow">منصة رواق لمواقع الجمعيات الأهلية</span>
       <h1>موقع احترافي لجمعيتك خلال دقائق</h1>
       <p class="lead">أنشئ موقع جمعيتك بقوالب جاهزة، وانشر برامجك وتقاريرك، واستقبل المتطوعين والتبرعات من مكان واحد، بلا خبرة تقنية وبتكلفة أقل.</p>
@@ -828,11 +875,335 @@ function viewWelcome(){
        <div class="row2"><div class="field"><label for="l-b">عدد الفروع</label><input class="input" id="l-b" name="b" inputmode="numeric" style="direction:ltr;text-align:right"></div><div></div></div>
        <div class="field"><label for="l-m">احتياجكم</label><textarea class="input" id="l-m" name="m" maxlength="800"></textarea></div>
        <button class="btn primary" type="submit" style="justify-self:start">أرسل الطلب</button>${state.mode==="offline"?`<p class="muted" style="font-size:12.5px">وضع المعاينة: لن يُحفظ الطلب.</p>`:""}</form>`}</section>
-    <footer class="lp-foot"><span>© 2026 رواق: منصة مواقع الجمعيات الأهلية</span><button class="linkbtn" data-scroll="plans">الخطط</button></footer>`;
+    <footer class="lp-foot"><img class="lp-logo" src="${LOGO_CREAM}" alt="رواق"><span>© 2026 رواق: منصة مواقع الجمعيات الأهلية</span><button class="linkbtn" data-scroll="plans">الخطط والأسعار</button></footer>`;
+}
+/* ---------- internal back-office: administration & finance (private to the association) ---------- */
+const INC_CATS=["تبرعات","اشتراكات الأعضاء","منح ودعم حكومي","شراكات ورعايات","إيرادات أخرى"];
+const EXP_CATS=["البرامج والمشاريع","رواتب ومكافآت","إيجار وتشغيل","تسويق وجمع تبرعات","مصروفات إدارية","مصروفات أخرى"];
+const PAY_METHODS=["تحويل بنكي","بطاقة","نقدي","شيك"];
+const PJ_STATUS=["مخطط","قيد التنفيذ","مكتمل","متوقف"];
+const MEET_TYPES=["مجلس الإدارة","الجمعية العمومية"];
+const MONTHS=["ينا","فبر","مار","أبر","ماي","يون","يول","أغس","سبت","أكت","نوف","ديس"];
+const erpBlank=()=>({fin:{tx:[],opening:{amount:0,date:"",bank:""}},people:{members:[],vols:[]},proj:{items:{}},meet:{list:[]},cfg:{setupDone:false}});
+state.erp=erpBlank(); state.dtab="over"; state.erpForm=null; state.confirmErp=null; state.fy=""; state.fcat="";
+const rid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const sar=n=>`${(Number(n)||0).toLocaleString("en-US",{maximumFractionDigits:2})} ر.س`;
+const thisYear=()=>String(new Date().getFullYear());
+const sumTx=(arr,type)=>arr.filter(t=>t.type===type).reduce((a,t)=>a+(Number(t.amount)||0),0);
+async function loadErp(){
+  if(state.mode!=="db"||!state.uid) return;
+  if(!state.demo) state.erp=erpBlank();
+  for(const k of ["fin","people","proj","meet","cfg"]){
+    try{ const sn=await db.doc(`data/users/${state.uid}/${k}`).get(); if(sn.exists) state.erp[k]=Object.assign(erpBlank()[k],clone(sn.data())); }catch(_){}
+  }
+  state.erpLoaded=true; refresh();
+}
+async function saveErp(k){
+  if(state.mode!=="db"||state.demo) return true;
+  try{ await db.doc(`data/users/${state.uid}/${k}`).set(state.erp[k]); return true; }
+  catch(e){ toast(e.code==="quota_exceeded"?"امتلأت سعة التخزين":"تعذّر الحفظ، حاول مرة أخرى"); return false; }
+}
+async function saveSite(s, mutate){
+  const d=clone(s); delete d._id; mutate(d); d.updatedAt=new Date().toISOString();
+  try{ if(state.demo){ state.demoSite=Object.assign(d,{_id:"__demo"}); }
+    else if(state.mode==="db") await db.doc("sites/"+s._id).set(d);
+    else { const i=state.sites.findIndex(x=>x._id===s._id); if(i>=0) state.sites[i]=Object.assign(d,{_id:s._id}); }
+    return true; }catch(e){ toast("تعذّر تحديث الموقع"); return false; }
+}
+const delBtn=path=>`<button type="button" class="btn sm ghost danger" data-erpdel="${esc(path)}">${state.confirmErp===path?"تأكيد الحذف":"حذف"}</button>`;
+function erpKpis(s){
+  const F=state.erp.fin.tx, y=thisYear(), yr=F.filter(t=>(t.date||"").startsWith(y));
+  const bal=(Number((state.erp.fin.opening||{}).amount)||0)+sumTx(F,"in")-sumTx(F,"out");
+  const act=state.erp.people.members.filter(m=>String(m.paidYear||"")>=y).length;
+  const hrs=state.erp.people.vols.reduce((a,v)=>a+(Number(v.hours)||0),0);
+  const run=(s.programs||[]).filter(p=>p.title&&p.status==="قيد التنفيذ").length;
+  const tile=(tab,v,l,cls="")=>`<button type="button" class="kpi ${cls}" data-dtab="${tab}"><b>${v}</b><span>${l}</span></button>`;
+  return `<div class="kpis">${tile("fin",sar(bal),"الرصيد الحالي",bal<0?"neg":"")}${tile("fin",sar(sumTx(yr,"in")),`إيرادات ${y}`)}${tile("fin",sar(sumTx(yr,"out")),`مصروفات ${y}`)}
+    ${tile("people",act,"عضو اشتراكه ساري")}${tile("people",num(hrs),"ساعة تطوع")}${tile("proj",run,"مشروع قيد التنفيذ")}</div>
+    <div class="cta-row" style="margin:-4px 0 16px"><span class="muted" style="font-size:13.5px">ملف واحد فيه التقرير المالي والعمليات والمشاريع والأعضاء والمتطوعون والاجتماعات.</span><div class="chips"><button class="btn" data-swopen>⚙ إعداد النظام الداخلي</button><button class="btn" data-xlsx="all">تصدير كل البيانات (Excel)</button></div></div>`;
+}
+function viewFin(s){
+  const F=state.erp.fin.tx;
+  const years=[...new Set(F.map(t=>(t.date||"").slice(0,4)).filter(Boolean).concat([thisYear()]))].sort().reverse();
+  const y=years.includes(state.fy)?state.fy:years[0];
+  const yr=F.filter(t=>(t.date||"").startsWith(y));
+  const rows=yr.filter(t=>!state.fcat||(t.type+"|"+t.cat)===state.fcat).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  const op=Number((state.erp.fin.opening||{}).amount)||0, inc=sumTx(yr,"in"), exp=sumTx(yr,"out"), bal=op+sumTx(F,"in")-sumTx(F,"out");
+  const byM=MONTHS.map((_,i)=>{ const mm=String(i+1).padStart(2,"0"); const t=yr.filter(x=>(x.date||"").slice(5,7)===mm); return [sumTx(t,"in"),sumTx(t,"out")]; });
+  const mx=Math.max(1,...byM.flat());
+  const cats=(type,list)=>{ const v=list.map(c=>[c,yr.filter(t=>t.type===type&&t.cat===c).reduce((a,t)=>a+(+t.amount||0),0)]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]); const m=Math.max(1,...v.map(x=>x[1]));
+    return v.length?v.map(([c,a])=>`<div class="cbar"><span>${esc(c)}</span><span class="t"><i style="width:${Math.round(a/m*100)}%;background:${type==="in"?"var(--accent)":"var(--cerulean)"}"></i></span><b class="num">${sar(a)}</b></div>`).join(""):`<p class="muted" style="font-size:13.5px">لا توجد عمليات.</p>`; };
+  const progs=(s.programs||[]).filter(p=>p.title).map(p=>p.title), camps=(s.campaigns||[]).filter(c=>c.title).map(c=>c.title);
+  const catOpts=`<optgroup label="إيرادات">${INC_CATS.map(c=>`<option value="in|${c}">${c}</option>`).join("")}</optgroup><optgroup label="مصروفات">${EXP_CATS.map(c=>`<option value="out|${c}">${c}</option>`).join("")}</optgroup>`;
+  const form = state.erpForm==="tx" ? `<form class="erp-form" data-erp="tx"><h3>تسجيل عملية مالية</h3>
+    <div class="row3"><div class="field"><label for="tx-date">التاريخ</label><input class="input" id="tx-date" name="date" type="date" value="${today()}" required></div>
+      <div class="field"><label for="tx-cat">البند</label><select class="input" id="tx-cat" name="cat">${catOpts}</select></div>
+      <div class="field"><label for="tx-amt">المبلغ (ر.س)</label><input class="input" id="tx-amt" name="amount" type="number" min="0.01" step="0.01" required style="direction:ltr;text-align:right"></div></div>
+    <div class="row3"><div class="field"><label for="tx-pj">المشروع</label><select class="input" id="tx-pj" name="project"><option value="">عام (غير مرتبط بمشروع)</option>${progs.map(p=>`<option>${esc(p)}</option>`).join("")}</select></div>
+      <div class="field"><label for="tx-cp">الحملة (للتبرعات)</label><select class="input" id="tx-cp" name="campaign"><option value="">بدون حملة</option>${camps.map(c=>`<option>${esc(c)}</option>`).join("")}</select></div>
+      <div class="field"><label for="tx-m">طريقة الدفع</label><select class="input" id="tx-m" name="method">${PAY_METHODS.map(m=>`<option>${m}</option>`).join("")}</select></div></div>
+    <div class="row2"><div class="field"><label for="tx-ref">رقم السند أو الإيصال</label><input class="input" id="tx-ref" name="ref"></div><div class="field"><label for="tx-note">البيان</label><input class="input" id="tx-note" name="note"></div></div>
+    <div class="chips"><button class="btn primary" type="submit">حفظ العملية</button><button type="button" class="btn ghost" data-erpform="">إلغاء</button></div></form>` : "";
+  const pj=progs.map(p=>{ const b=Number((state.erp.proj.items[p]||{}).budget)||0, sp=F.filter(t=>t.type==="out"&&t.project===p).reduce((a,t)=>a+(+t.amount||0),0);
+    return `<tr><td>${esc(p)}</td><td class="num">${b?sar(b):"—"}</td><td class="num">${sar(sp)}</td><td class="num">${b?sar(b-sp):"—"}</td><td>${b?`<div class="bar" style="min-width:90px"><i style="width:${Math.min(100,Math.round(sp/b*100))}%;background:${sp>b?"var(--danger)":"var(--accent)"}"></i></div>`:""}</td></tr>`; }).join("");
+  return `<div class="erp-sec"><div class="head-row" style="margin:0"><h2 style="font-size:22px">المالية</h2>
+      <div class="chips"><select class="input" id="f-fy" style="width:auto">${years.map(x=>`<option ${x===y?"selected":""}>${x}</option>`).join("")}</select>
+      <button class="btn" data-xlsx="fin">تصدير Excel</button><button class="btn primary" data-erpform="tx">+ تسجيل عملية</button></div></div>
+    ${form}
+    <div class="kpis"><div class="kpi"><b>${sar(inc)}</b><span>إيرادات ${y}</span></div><div class="kpi"><b>${sar(exp)}</b><span>مصروفات ${y}</span></div>
+      <div class="kpi ${inc-exp<0?"neg":""}"><b>${sar(inc-exp)}</b><span>صافي ${y}</span></div><div class="kpi ${bal<0?"neg":""}"><b>${sar(bal)}</b><span>الرصيد التراكمي${op?` (يشمل افتتاحي ${sar(op)})`:""}</span></div></div>
+    <div class="boxed"><div class="sec-title"><h3>الإيرادات والمصروفات الشهرية ${y}</h3><span class="legend"><span><i style="background:var(--accent)"></i>إيرادات</span><span><i style="background:var(--cerulean)"></i>مصروفات</span></span></div>
+      <div class="mchart">${byM.map(([a,b],i)=>`<div class="m" title="${MONTHS[i]}: إيرادات ${sar(a)}، مصروفات ${sar(b)}"><i class="in" style="height:${a/mx*100}%"></i><i class="out" style="height:${b/mx*100}%"></i></div>`).join("")}</div>
+      <div class="mlabels">${MONTHS.map(m=>`<span>${m}</span>`).join("")}</div></div>
+    <div class="two-col"><div class="boxed"><h3>الإيرادات حسب البند</h3>${cats("in",INC_CATS)}</div><div class="boxed"><h3>المصروفات حسب البند</h3>${cats("out",EXP_CATS)}</div></div>
+    ${progs.length?`<div class="boxed"><div class="sec-title"><h3>ميزانيات المشاريع</h3><button class="btn sm" data-dtab="proj">تعديل الميزانيات</button></div><div class="tbl-wrap"><table><thead><tr><th>المشروع</th><th>الميزانية</th><th>المصروف</th><th>المتبقي</th><th>الاستهلاك</th></tr></thead><tbody>${pj}</tbody></table></div></div>`:""}
+    ${camps.length?`<div class="notice cta-row"><span><b>الحملات:</b> التبرعات المرتبطة بحملة تُجمع تلقائياً، وتقدر تحدّث شريط التقدم في صفحة التبرع بموقعك.</span><button class="btn sm primary" data-synccamp>تحديث المحصّل في الموقع</button></div>`:""}
+    <div class="boxed"><div class="sec-title"><h3>سجل العمليات ${y} (${rows.length})</h3>
+      <div class="chips"><select class="input" id="f-fcat" style="width:auto"><option value="">كل البنود</option>${catOpts.replace(`value="${state.fcat}"`,`value="${state.fcat}" selected`)}</select><button class="btn sm" data-xlsx="fin">تصدير Excel</button></div></div>
+      ${rows.length?`<div class="tbl-wrap"><table><thead><tr><th>التاريخ</th><th>البند</th><th>المبلغ</th><th>المشروع / الحملة</th><th>طريقة الدفع</th><th>السند</th><th>البيان</th><th></th></tr></thead><tbody>
+      ${rows.map(t=>`<tr><td class="num">${esc(t.date)}</td><td><span class="chip ${t.type==="in"?"ok":"bad"}">${t.type==="in"?"إيراد":"مصروف"}</span> ${esc(t.cat)}</td><td class="${t.type==="in"?"amt-in":"amt-out"}" style="white-space:nowrap"><bdi>${t.type==="in"?"+":"−"}${(Number(t.amount)||0).toLocaleString("en-US",{maximumFractionDigits:2})}</bdi> ر.س</td>
+        <td>${esc(t.project||"")}${t.campaign?`<br><span class="muted" style="font-size:12.5px">حملة: ${esc(t.campaign)}</span>`:""}${!t.project&&!t.campaign?"—":""}</td><td>${esc(t.method||"—")}</td><td class="num">${esc(t.ref||"—")}</td><td class="msg">${esc(t.note||"—")}</td><td>${delBtn("fin:tx:"+t.id)}</td></tr>`).join("")}</tbody></table></div>`
+      :`<div class="empty"><h3>لا توجد عمليات</h3><p>سجّل الإيرادات والمصروفات لتظهر الملخصات والرسوم والتقارير هنا.</p></div>`}</div>
+    <div class="boxed"><div class="sec-title"><h3>التقرير المالي السنوي ${y}</h3><button class="btn sm" data-xlsx="fin">تصدير Excel</button></div>
+      <div class="tbl-wrap"><table><thead><tr><th>البند</th><th>النوع</th><th>المبلغ</th><th>النسبة</th></tr></thead><tbody>
+      ${INC_CATS.map(c=>["in",c]).concat(EXP_CATS.map(c=>["out",c])).map(([ty,c])=>{ const a=yr.filter(t=>t.type===ty&&t.cat===c).reduce((x,t)=>x+(+t.amount||0),0); if(!a) return ""; const base=ty==="in"?inc:exp;
+        return `<tr><td>${esc(c)}</td><td>${ty==="in"?"إيراد":"مصروف"}</td><td class="num">${sar(a)}</td><td class="num">${base?Math.round(a/base*100):0}%</td></tr>`; }).join("")}
+      <tr><td><b>إجمالي الإيرادات</b></td><td></td><td class="num"><b>${sar(inc)}</b></td><td></td></tr><tr><td><b>إجمالي المصروفات</b></td><td></td><td class="num"><b>${sar(exp)}</b></td><td></td></tr>
+      <tr><td><b>الفائض / العجز</b></td><td></td><td class="num ${inc-exp<0?"amt-out":"amt-in"}"><b>${sar(inc-exp)}</b></td><td></td></tr></tbody></table></div>
+      <p class="hint">للاستخدام الداخلي. القوائم المالية المدققة الرسمية تُرفع من خطوة «الحوكمة والشفافية» في تعديل الموقع.</p></div></div>`;
+}
+function viewProj(s){
+  const list=(s.programs||[]).map((p,i)=>[p,i]).filter(([p])=>p.title);
+  if(!list.length) return `<div class="empty"><h3>لا توجد مشاريع بعد</h3><p>أضف برامجك ومشاريعك من «تعديل الموقع» ثم تابعها هنا.</p><button class="btn primary" data-edit="${esc(s.slug)}">تعديل الموقع</button></div>`;
+  const F=state.erp.fin.tx;
+  return `<div class="erp-sec"><div class="head-row" style="margin:0"><h2 style="font-size:22px">المشاريع</h2><span class="muted" style="font-size:13.5px">الحالة ونسبة الإنجاز والموقع تظهر في موقعك. الميزانية والتواريخ والمسؤول داخلية.</span></div>
+    ${list.map(([p,i])=>{ const it=state.erp.proj.items[p.title]||{}, b=Number(it.budget)||0;
+      const sp=F.filter(t=>t.type==="out"&&t.project===p.title).reduce((a,t)=>a+(+t.amount||0),0), inc=F.filter(t=>t.type==="in"&&t.project===p.title).reduce((a,t)=>a+(+t.amount||0),0);
+      const pr=Math.max(0,Math.min(100,Number(p.progress)||0));
+      return `<div class="pj"><div class="sec-title"><h3 style="font-size:18px;color:var(--h2)">${esc(p.title)}</h3><span class="chip ${p.status==="مكتمل"?"ok":p.status==="متوقف"?"bad":p.status==="قيد التنفيذ"?"warn":""}">${esc(p.status||"بدون حالة")}</span></div>
+        <div class="bar" role="progressbar" aria-valuenow="${pr}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pr}%"></i></div>
+        <div class="row3"><div class="field"><label for="pj-st-${i}">الحالة (عام)</label><select class="input" id="pj-st-${i}">${["",...PJ_STATUS].map(x=>`<option value="${x}" ${x===(p.status||"")?"selected":""}>${x||"بدون حالة"}</option>`).join("")}</select></div>
+          <div class="field"><label for="pj-pr-${i}">نسبة الإنجاز % (عام)</label><input class="input" id="pj-pr-${i}" type="number" min="0" max="100" value="${esc(p.progress??"")}" style="direction:ltr;text-align:right"></div>
+          <div class="field"><label for="pj-loc-${i}">الموقع الجغرافي (عام)</label><input class="input" id="pj-loc-${i}" value="${esc(p.location||"")}" placeholder="حي قباء، المدينة المنورة"></div></div>
+        <div class="row3"><div class="field"><label for="pj-bud-${i}">الميزانية (ر.س)</label><input class="input" id="pj-bud-${i}" type="number" min="0" value="${esc(it.budget||"")}" style="direction:ltr;text-align:right"></div>
+          <div class="field"><label for="pj-sd-${i}">تاريخ البدء</label><input class="input" id="pj-sd-${i}" type="date" value="${esc(it.start||"")}"></div>
+          <div class="field"><label for="pj-ed-${i}">تاريخ الانتهاء</label><input class="input" id="pj-ed-${i}" type="date" value="${esc(it.end||"")}"></div></div>
+        <div class="row2"><div class="field"><label for="pj-mgr-${i}">مسؤول المشروع</label><input class="input" id="pj-mgr-${i}" value="${esc(it.manager||"")}"></div>
+          <div class="field"><label>المالية</label><span class="meta"><span>المصروف <b>${sar(sp)}</b></span>${inc?`<span>إيرادات مخصصة <b>${sar(inc)}</b></span>`:""}${b?`<span>المتبقي <b class="${b-sp<0?"amt-out":""}">${sar(b-sp)}</b></span>`:""}</span></div></div>
+        <div class="chips"><button class="btn primary sm" data-projsave="${i}">حفظ</button></div></div>`; }).join("")}</div>`;
+}
+function viewPeople(s){
+  const P=state.erp.people, y=thisYear(), types=(s.membership||[]).filter(m=>m.type).map(m=>m.type), roles=(s.volunteerRoles||[]).filter(r=>r.title).map(r=>r.title);
+  const mform = state.erpForm==="member" ? `<form class="erp-form" data-erp="member"><h3>إضافة عضو</h3><div class="row3">
+      <div class="field"><label for="m-n">الاسم</label><input class="input" id="m-n" name="name" required></div>
+      <div class="field"><label for="m-p">الجوال</label><input class="input" id="m-p" name="phone" inputmode="tel" style="direction:ltr;text-align:right"></div>
+      <div class="field"><label for="m-t">نوع العضوية</label><select class="input" id="m-t" name="type">${(types.length?types:["عضو عامل"]).map(t=>`<option>${esc(t)}</option>`).join("")}</select></div></div>
+      <div class="row2"><div class="field"><label for="m-j">تاريخ الانضمام</label><input class="input" id="m-j" name="joined" type="date" value="${today()}"></div><div></div></div>
+      <div class="chips"><button class="btn primary" type="submit">إضافة</button><button type="button" class="btn ghost" data-erpform="">إلغاء</button></div></form>` : "";
+  const vform = state.erpForm==="vol" ? `<form class="erp-form" data-erp="vol"><h3>إضافة متطوع</h3><div class="row3">
+      <div class="field"><label for="v-n">الاسم</label><input class="input" id="v-n" name="name" required></div>
+      <div class="field"><label for="v-p">الجوال</label><input class="input" id="v-p" name="phone" inputmode="tel" style="direction:ltr;text-align:right"></div>
+      <div class="field"><label for="v-r">الفرصة</label><select class="input" id="v-r" name="role">${(roles.length?roles:["عام"]).map(t=>`<option>${esc(t)}</option>`).join("")}</select></div></div>
+      <div class="chips"><button class="btn primary" type="submit">إضافة</button><button type="button" class="btn ghost" data-erpform="">إلغاء</button></div></form>` : "";
+  const act=P.members.filter(m=>String(m.paidYear||"")>=y).length, hrs=P.vols.reduce((a,v)=>a+(Number(v.hours)||0),0);
+  return `<div class="erp-sec"><div class="head-row" style="margin:0"><h2 style="font-size:22px">سجل الأعضاء</h2><div class="chips"><span class="meta"><span><b>${P.members.length}</b> عضو</span><span><b>${act}</b> اشتراكه ساري ${y}</span></span><button class="btn" data-xlsx="people">تصدير Excel</button><button class="btn primary" data-erpform="member">+ إضافة عضو</button></div></div>
+    ${mform}
+    ${P.members.length?`<div class="tbl-wrap"><table><thead><tr><th>الاسم</th><th>الجوال</th><th>النوع</th><th>الانضمام</th><th>الاشتراك</th><th></th></tr></thead><tbody>
+    ${P.members.map(m=>{ const ok=String(m.paidYear||"")>=y; return `<tr><td>${esc(m.name)}</td><td class="num">${esc(m.phone||"—")}</td><td>${esc(m.type)}</td><td class="num">${esc(m.joined||"—")}</td>
+      <td>${ok?`<span class="chip ok">ساري ${esc(m.paidYear)}</span>`:`<span class="chip warn">${m.paidYear?"منتهي ("+esc(m.paidYear)+")":"غير مسدد"}</span>`}</td>
+      <td><div class="chips">${ok?"":`<button class="btn sm primary" data-mpay="${esc(m.id)}">تسجيل سداد ${y}</button>`}${delBtn("people:members:"+m.id)}</div></td></tr>`; }).join("")}</tbody></table></div>`
+    :`<div class="empty"><p>لا يوجد أعضاء بعد. أضفهم يدوياً أو من طلبات العضوية في «نظرة عامة».</p></div>`}
+    <p class="hint">تسجيل السداد يضيف الاشتراك تلقائياً كإيراد في المالية حسب رسوم نوع العضوية.</p></div>
+  <div class="erp-sec"><div class="head-row" style="margin:0"><h2 style="font-size:22px">سجل المتطوعين</h2><div class="chips"><span class="meta"><span><b>${P.vols.length}</b> متطوع</span><span><b>${num(hrs)}</b> ساعة</span></span><button class="btn primary" data-erpform="vol">+ إضافة متطوع</button></div></div>
+    ${vform}
+    ${P.vols.length?`<div class="tbl-wrap"><table><thead><tr><th>الاسم</th><th>الجوال</th><th>الفرصة</th><th>الساعات</th><th>تسجيل ساعات</th><th></th></tr></thead><tbody>
+    ${P.vols.map(v=>`<tr><td>${esc(v.name)}</td><td class="num">${esc(v.phone||"—")}</td><td>${esc(v.role)}</td><td class="num"><b>${num(v.hours)}</b></td>
+      <td><div class="inline-hours"><input class="input" id="vh-${esc(v.id)}" type="number" min="0.5" step="0.5" placeholder="0" aria-label="ساعات ${esc(v.name)}" style="direction:ltr"><button class="btn sm" data-vhours="${esc(v.id)}">إضافة</button></div></td><td>${delBtn("people:vols:"+v.id)}</td></tr>`).join("")}</tbody></table></div>`
+    :`<div class="empty"><p>لا يوجد متطوعون بعد. أضفهم يدوياً أو من طلبات التطوع في «نظرة عامة».</p></div>`}</div>`;
+}
+function viewMeet(s){
+  const L=[...state.erp.meet.list].sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  const form = state.erpForm==="meet" ? `<form class="erp-form" data-erp="meet"><h3>تسجيل اجتماع</h3><div class="row3">
+      <div class="field"><label for="mt-t">نوع الاجتماع</label><select class="input" id="mt-t" name="type">${MEET_TYPES.map(t=>`<option>${t}</option>`).join("")}</select></div>
+      <div class="field"><label for="mt-d">التاريخ</label><input class="input" id="mt-d" name="date" type="date" value="${today()}" required></div>
+      <div class="field"><label for="mt-ti">العنوان</label><input class="input" id="mt-ti" name="title" placeholder="الاجتماع الدوري الثالث"></div></div>
+      <div class="row2"><div class="field"><label for="mt-a">عدد الحاضرين</label><input class="input" id="mt-a" name="attend" type="number" min="0" style="direction:ltr;text-align:right"></div>
+      <div class="field"><label for="mt-to">إجمالي الأعضاء</label><input class="input" id="mt-to" name="total" type="number" min="0" style="direction:ltr;text-align:right"></div></div>
+      <div class="field"><label for="mt-dec">القرارات</label><textarea class="input" id="mt-dec" name="decisions" placeholder="قرار في كل سطر"></textarea></div>
+      <div class="chips"><button class="btn primary" type="submit">حفظ</button><button type="button" class="btn ghost" data-erpform="">إلغاء</button></div></form>` : "";
+  return `<div class="erp-sec"><div class="head-row" style="margin:0"><h2 style="font-size:22px">الاجتماعات والمحاضر</h2><div class="chips"><button class="btn" data-xlsx="meet">تصدير Excel</button><button class="btn primary" data-erpform="meet">+ تسجيل اجتماع</button></div></div>
+    ${form}
+    ${L.length?L.map(m=>{ const q=Number(m.total)?Number(m.attend)/Number(m.total):null; const f=assetUrl(m.fileId);
+      return `<div class="pj"><div class="sec-title"><h3 style="font-size:17px;color:var(--h2)">${esc(m.title||("اجتماع "+m.type))}</h3><div class="chips"><span class="chip">${esc(m.type)}</span><span class="chip num">${esc(m.date)}</span>
+          ${q!==null?`<span class="chip ${q>=0.5?"ok":"bad"}">الحضور ${esc(m.attend)}/${esc(m.total)}: ${q>=0.5?"النصاب مكتمل":"النصاب غير مكتمل"}</span>`:""}${m.published?`<span class="chip ok">منشور في الإفصاحات</span>`:""}</div></div>
+        ${m.decisions?`<div><b style="font-size:13.5px">القرارات</b><ol style="margin:4px 0 0;padding-inline-start:20px;font-size:14px">${String(m.decisions).split(/\n+/).filter(x=>x.trim()).map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>`:""}
+        <div class="chips">${f?`<a class="btn sm" href="${esc(f)}" target="_blank" rel="noopener">عرض المحضر</a>`:""}
+          <label class="btn sm" for="mf-${esc(m.id)}">${f?"استبدال المحضر":"رفع المحضر (PDF)"}</label><input type="file" id="mf-${esc(m.id)}" hidden accept="application/pdf" data-erpup="meet:${esc(m.id)}">
+          ${f&&!m.published?`<button class="btn sm primary" data-meetpub="${esc(m.id)}">نشر في الإفصاحات</button>`:""}${delBtn("meet:list:"+m.id)}</div></div>`; }).join("")
+    :`<div class="empty"><p>سجّل اجتماعات مجلس الإدارة والجمعية العمومية وقراراتها، وارفع محاضرها، ثم انشرها في صفحة الحوكمة بموقعك بضغطة.</p></div>`}</div>`;
+}
+function tsvCopy(rows){ const t=rows.map(r=>r.map(c=>String(c??"").replace(/[\t\n]+/g," ")).join("\t")).join("\n");
+  return navigator.clipboard.writeText(t).then(()=>toast("نُسخ: الصقه في Excel مباشرة"),()=>toast("تعذّر النسخ")); }
+async function erpClick(ds, t){
+  const s=mySite(); if(!s) return false;
+  if("swopen" in ds){ const op=state.erp.fin.opening||{}, bud={}; Object.entries(state.erp.proj.items||{}).forEach(([k,v])=>{ if(v&&v.budget) bud[k]=v.budget; });
+    state.setupW={step:0,opening:op.amount?String(op.amount):"",openingDate:op.date||today(),bank:op.bank||"",budgets:bud,members:"",vols:"",board:!state.erp.people.members.length};
+    state.forceSetup=true; render(); window.scrollTo(0,0); return true; }
+  if(ds.sw){ swCollect(); const W=swState(); W.step=Math.max(0,Math.min(3,W.step+(ds.sw==="next"?1:-1))); render(); window.scrollTo(0,0); return true; }
+  if("swdone" in ds){ t.disabled=true; await finishSetup(s,false); return true; }
+  if("swskip" in ds){ await finishSetup(s,true); return true; }
+  if(ds.xlsx){ t.disabled=true; await exportXlsx(ds.xlsx); t.disabled=false; return true; }
+  if(ds.dtab){ state.dtab=ds.dtab; state.erpForm=null; state.confirmErp=null; render(); window.scrollTo(0,0); return true; }
+  if(ds.erpform!==undefined){ state.erpForm=ds.erpform||null; render(); const f=document.querySelector("form[data-erp] input,form[data-erp] select"); f&&f.focus(); return true; }
+  if(ds.erpdel){ if(state.confirmErp!==ds.erpdel){ state.confirmErp=ds.erpdel; render(); return true; }
+    const [k,arr,id]=ds.erpdel.split(":"); const box=state.erp[k]; box[arr]=box[arr].filter(x=>x.id!==id); state.confirmErp=null; await saveErp(k); toast("حُذف"); render(); return true; }
+  if(ds.copytx){ const y=ds.copytx; const rows=state.erp.fin.tx.filter(x=>(x.date||"").startsWith(y)).sort((a,b)=>(a.date||"").localeCompare(b.date||""));
+    await tsvCopy([["التاريخ","النوع","البند","المبلغ","المشروع","الحملة","طريقة الدفع","السند","البيان"],...rows.map(x=>[x.date,x.type==="in"?"إيراد":"مصروف",x.cat,(x.type==="in"?1:-1)*(+x.amount||0),x.project,x.campaign,x.method,x.ref,x.note])]); return true; }
+  if(ds.copyrep){ const y=ds.copyrep, yr=state.erp.fin.tx.filter(x=>(x.date||"").startsWith(y)); const r=[["التقرير المالي "+y,"",""],["البند","النوع","المبلغ"]];
+    INC_CATS.forEach(c=>{ const a=yr.filter(x=>x.type==="in"&&x.cat===c).reduce((m,x)=>m+(+x.amount||0),0); if(a) r.push([c,"إيراد",a]); });
+    EXP_CATS.forEach(c=>{ const a=yr.filter(x=>x.type==="out"&&x.cat===c).reduce((m,x)=>m+(+x.amount||0),0); if(a) r.push([c,"مصروف",a]); });
+    r.push(["إجمالي الإيرادات","",sumTx(yr,"in")],["إجمالي المصروفات","",sumTx(yr,"out")],["الفائض / العجز","",sumTx(yr,"in")-sumTx(yr,"out")]); await tsvCopy(r); return true; }
+  if("synccamp" in ds){ const F=state.erp.fin.tx; const ok=await saveSite(s,d=>{ (d.campaigns||[]).forEach(c=>{ if(c.title) c.raised=String(F.filter(x=>x.type==="in"&&x.campaign===c.title).reduce((a,x)=>a+(+x.amount||0),0)); }); });
+    if(ok){ toast("حُدّث المحصّل في صفحة التبرع"); render(); } return true; }
+  if(ds.projsave!==undefined){ const i=+ds.projsave, p=(s.programs||[])[i]; if(!p) return true; const v=id=>($("#"+id)?.value||"").trim();
+    let pr=v("pj-pr-"+i); if(pr!=="") pr=String(Math.max(0,Math.min(100,Math.round(Number(pr)||0))));
+    const pub={status:v("pj-st-"+i),progress:pr,location:v("pj-loc-"+i)};
+    state.erp.proj.items[p.title]={budget:v("pj-bud-"+i),start:v("pj-sd-"+i),end:v("pj-ed-"+i),manager:v("pj-mgr-"+i)};
+    const a=await saveErp("proj"); const b=await saveSite(mySite()||s,d=>{ if(d.programs&&d.programs[i]) Object.assign(d.programs[i],pub); });
+    if(a&&b){ toast("حُفظ المشروع"); render(); } return true; }
+  if(ds.mpay){ const m=state.erp.people.members.find(x=>x.id===ds.mpay); if(!m) return true; const y=thisYear();
+    const fee=Number(((s.membership||[]).find(x=>x.type===m.type)||{}).fee)||0; m.paidYear=y;
+    if(fee) state.erp.fin.tx.push({id:rid(),date:today(),type:"in",cat:"اشتراكات الأعضاء",amount:fee,project:"",campaign:"",method:"تحويل بنكي",ref:"",note:`اشتراك ${m.name} لعام ${y}`});
+    await saveErp("people"); if(fee) await saveErp("fin"); toast(fee?`سُجّل السداد وأُضيف ${sar(fee)} للإيرادات`:"سُجّل السداد"); render(); return true; }
+  if(ds.vhours){ const v=state.erp.people.vols.find(x=>x.id===ds.vhours); const h=Number($("#vh-"+ds.vhours)?.value); if(!v||!(h>0)){ toast("اكتب عدد الساعات"); return true; }
+    v.hours=(Number(v.hours)||0)+h; await saveErp("people"); toast(`أُضيفت ${h} ساعة`); render(); return true; }
+  if(ds.meetpub){ const m=state.erp.meet.list.find(x=>x.id===ds.meetpub); if(!m||!m.fileId) return true;
+    const ok=await saveSite(mySite()||s,d=>{ d.docs=d.docs||[]; d.docs.push({title:m.title||(`محضر ${m.type} ${m.date}`),kind:m.type==="الجمعية العمومية"?"محاضر الجمعية العمومية":"محاضر مجلس الإدارة",year:(m.date||"").slice(0,4),url:"",fileId:m.fileId}); });
+    if(ok){ m.published=true; await saveErp("meet"); toast("نُشر المحضر في صفحة الحوكمة"); render(); } return true; }
+  if(ds.addppl){ const a=state.mail.find(x=>`${x.at}|${x.phone}`===ds.addppl); if(!a) return true; const P=state.erp.people;
+    if(a.kind==="volunteer"){ if(P.vols.some(v=>v.phone&&v.phone===a.phone)){ toast("موجود في سجل المتطوعين"); return true; } P.vols.push({id:rid(),name:a.name,phone:a.phone,role:a.choice||"عام",hours:0}); }
+    else { if(P.members.some(v=>v.phone&&v.phone===a.phone)){ toast("موجود في سجل الأعضاء"); return true; } P.members.push({id:rid(),name:a.name,phone:a.phone,type:a.choice||"عضو عامل",joined:today(),paidYear:""}); }
+    await saveErp("people"); toast(a.kind==="volunteer"?"أُضيف لسجل المتطوعين":"أُضيف لسجل الأعضاء"); render(); return true; }
+  return false;
+}
+async function erpSubmit(f){
+  const fd=new FormData(f), k=f.dataset.erp, g=n=>String(fd.get(n)||"").trim();
+  if(k==="tx"){ const [type,cat]=g("cat").split("|"); const amount=Number(g("amount")); if(!(amount>0)){ toast("اكتب مبلغاً صحيحاً"); return; }
+    state.erp.fin.tx.push({id:rid(),date:g("date")||today(),type,cat,amount,project:g("project"),campaign:type==="in"?g("campaign"):"",method:g("method"),ref:g("ref"),note:g("note")});
+    if(await saveErp("fin")){ state.erpForm=null; toast("سُجّلت العملية"); } }
+  if(k==="member"){ state.erp.people.members.push({id:rid(),name:g("name"),phone:g("phone"),type:g("type"),joined:g("joined"),paidYear:""}); if(await saveErp("people")){ state.erpForm=null; toast("أُضيف العضو"); } }
+  if(k==="vol"){ state.erp.people.vols.push({id:rid(),name:g("name"),phone:g("phone"),role:g("role"),hours:0}); if(await saveErp("people")){ state.erpForm=null; toast("أُضيف المتطوع"); } }
+  if(k==="meet"){ state.erp.meet.list.push({id:rid(),type:g("type"),date:g("date"),title:g("title"),attend:g("attend"),total:g("total"),decisions:g("decisions"),fileId:"",published:false}); if(await saveErp("meet")){ state.erpForm=null; toast("سُجّل الاجتماع"); } }
+  render();
+}
+async function uploadErp(el){
+  const [k,id]=el.dataset.erpup.split(":"), f=el.files&&el.files[0]; if(!f) return;
+  if(f.type!=="application/pdf"){ toast("اختر ملف PDF"); return; } if(f.size>20*1048576){ toast("حجم الملف أكبر من المسموح"); return; }
+  try{ let v; if(state.mode==="db"&&!state.demo){ if(!assets) throw {code:"not_granted"}; v=(await assets.upload(f)).id; } else { if(f.size>1.5*1048576) throw {code:"too_big_offline"}; v=await readAsDataURL(f); }
+    const m=state.erp.meet.list.find(x=>x.id===id); if(m){ m.fileId=v; await saveErp("meet"); toast("رُفع المحضر"); render(); } }
+  catch(err){ toast(err.code==="too_big_offline"?"في وضع المعاينة الحد 1.5 ميجابايت":err.code==="not_granted"?"رفع الملفات غير متاح لصلاحيتك":"تعذّر رفع الملف"); }
+}
+function erpSample(){
+  const y=thisYear(), d=(m,dd)=>`${y}-${String(m).padStart(2,"0")}-${String(dd).padStart(2,"0")}`;
+  const tx=[[1,8,"in","منح ودعم حكومي",250000,"","","منحة تشغيلية"],[2,3,"in","تبرعات",42000,"","سلة الخير الشتوية","تبرعات أفراد"],[2,20,"out","رواتب ومكافآت",38000,"","","رواتب فبراير"],
+    [3,5,"out","البرامج والمشاريع",61000,"سلة الخير الشهرية","","سلال غذائية"],[4,11,"in","تبرعات",88500,"","سلة الخير الشتوية","حملة رمضان"],[4,28,"out","إيجار وتشغيل",15000,"","","إيجار المقر"],
+    [5,14,"in","شراكات ورعايات",120000,"ترميم المساكن","","رعاية شركة"],[6,2,"out","البرامج والمشاريع",74000,"ترميم المساكن","","ترميم 6 منازل"],[7,9,"out","رواتب ومكافآت",38000,"","","رواتب يوليو"],
+    [8,17,"in","تبرعات",54000,"","سلة الخير الشتوية","متجر إلكتروني"],[9,6,"out","البرامج والمشاريع",22000,"تمكين","","دورات تدريبية"],[9,25,"out","تسويق وجمع تبرعات",9000,"","","حملة إعلانية"],
+    [10,12,"in","اشتراكات الأعضاء",3600,"","","اشتراكات"],[10,18,"out","مصروفات إدارية",4200,"","","قرطاسية وبرمجيات"]]
+    .map(([m,dd,type,cat,amount,project,campaign,note])=>({id:rid(),date:d(m,dd),type,cat,amount,project,campaign,method:"تحويل بنكي",ref:"",note}));
+  return {fin:{tx},people:{members:[{id:rid(),name:"عبدالله المطيري",phone:"0551112233",type:"عضو عامل",joined:"2024-03-01",paidYear:y},{id:rid(),name:"منى الأحمدي",phone:"0553334455",type:"عضو عامل",joined:"2025-01-15",paidYear:String(+y-1)},{id:rid(),name:"ياسر الحربي",phone:"0556667788",type:"عضو منتسب",joined:d(6,1),paidYear:""}],
+      vols:[{id:rid(),name:"ريم العنزي",phone:"0501231234",role:"توزيع السلال الغذائية",hours:46},{id:rid(),name:"خالد الصاعدي",phone:"0507897897",role:"باحث اجتماعي متطوع",hours:31.5}]},
+    proj:{items:{"سلة الخير الشهرية":{budget:"180000",start:d(1,1),end:d(12,31),manager:"أ. فهد الجهني"},"ترميم المساكن":{budget:"300000",start:d(3,1),end:`${+y+1}-02-28`,manager:"م. سامي الرحيلي"},"تمكين":{budget:"60000",start:d(5,1),end:d(11,30),manager:"أ. سارة العوفي"}}},
+    cfg:{setupDone:true},
+    meet:{list:[{id:rid(),type:"مجلس الإدارة",date:d(9,14),title:"الاجتماع الدوري الثالث",attend:"4",total:"5",decisions:"اعتماد ميزانية حملة الشتاء\nتكليف لجنة لدراسة طلبات الترميم",fileId:"",published:false},
+      {id:rid(),type:"الجمعية العمومية",date:d(4,20),title:"الجمعية العمومية العادية",attend:"38",total:"60",decisions:"اعتماد القوائم المالية المدققة\nانتخاب مراجع الحسابات",fileId:"",published:false}]}};
+}
+/* ---------- onboarding: set up the internal system right after the site is published ---------- */
+const SW_STEPS=["الرصيد الافتتاحي","ميزانيات المشاريع","الأعضاء والمتطوعون","جاهز"];
+function swState(){ return state.setupW||(state.setupW={step:0,opening:"",openingDate:today(),bank:"",budgets:{},members:"",vols:"",board:true}); }
+function swCollect(){ const W=swState(), v=id=>{ const e=$("#"+id); return e?(e.type==="checkbox"?e.checked:e.value):undefined; };
+  if(v("sw-op")!==undefined){ W.opening=v("sw-op"); W.openingDate=v("sw-od")||today(); W.bank=v("sw-bank"); }
+  document.querySelectorAll("[data-swbud]").forEach(e=>{ W.budgets[e.dataset.swbud]=e.value; });
+  if(v("sw-mem")!==undefined){ W.members=v("sw-mem"); W.vols=v("sw-vol"); W.board=v("sw-board"); } }
+const parseLines=t=>String(t||"").split(/\n+/).map(l=>l.trim()).filter(Boolean).map(l=>{ const [n,p]=l.split(/[،,]/).map(x=>(x||"").trim()); return {name:n,phone:p||""}; }).filter(x=>x.name);
+function viewSetup(s){
+  const W=swState(), progs=(s.programs||[]).filter(p=>p.title), board=(s.board||[]).filter(b=>b.name);
+  let body="";
+  if(W.step===0) body=`<p class="lead">أدخل رصيد الجمعية الحالي ليبدأ منه حساب الرصيد، ثم سجّل كل إيراد ومصروف بعده من تبويب «المالية».</p>
+    <div class="row3"><div class="field"><label for="sw-op">الرصيد الافتتاحي (ر.س)</label><input class="input" id="sw-op" type="number" min="0" step="0.01" value="${esc(W.opening)}" placeholder="0" style="direction:ltr;text-align:right"></div>
+    <div class="field"><label for="sw-od">بتاريخ</label><input class="input" id="sw-od" type="date" value="${esc(W.openingDate)}"></div>
+    <div class="field"><label for="sw-bank">الحساب البنكي</label><input class="input" id="sw-bank" value="${esc(W.bank||(s.donate&&s.donate.bank)||"")}" placeholder="مصرف الراجحي"></div></div>`;
+  if(W.step===1) body=progs.length?`<p class="lead">حدّد ميزانية كل مشروع، وتتابع المصروف منها والمتبقي تلقائياً.</p>
+    <div class="tbl-wrap"><table><thead><tr><th>المشروع</th><th>الميزانية (ر.س)</th></tr></thead><tbody>${progs.map(p=>`<tr><td>${esc(p.title)}</td><td><input class="input" data-swbud="${esc(p.title)}" type="number" min="0" value="${esc(W.budgets[p.title]||"")}" aria-label="ميزانية ${esc(p.title)}" style="direction:ltr;text-align:right;max-width:200px"></td></tr>`).join("")}</tbody></table></div>`
+    :`<p class="lead">لم تُضف مشاريع في موقعك بعد. تقدر تضيفها لاحقاً من «تعديل الموقع» وتحدد ميزانياتها من تبويب «المشاريع».</p>`;
+  if(W.step===2) body=`<p class="lead">أضف أعضاء الجمعية ومتطوعيها الحاليين: اسم وجوال في كل سطر، مفصولين بفاصلة. وتقدر تضيف غيرهم لاحقاً.</p>
+    ${board.length?`<label class="check" for="sw-board"><input type="checkbox" id="sw-board" ${W.board?"checked":""}><span>أضف أعضاء مجلس الإدارة (${board.length}) لسجل الأعضاء</span></label>`:""}
+    <div class="row2"><div class="field"><label for="sw-mem">الأعضاء</label><textarea class="input" id="sw-mem" placeholder="عبدالله المطيري، 0551112233">${esc(W.members)}</textarea></div>
+    <div class="field"><label for="sw-vol">المتطوعون</label><textarea class="input" id="sw-vol" placeholder="ريم العنزي، 0501231234">${esc(W.vols)}</textarea></div></div>`;
+  if(W.step===3){ const m=parseLines(W.members).length+(W.board?board.length:0), v=parseLines(W.vols).length, b=Object.values(W.budgets).filter(x=>Number(x)>0).length;
+    body=`<p class="lead">كل شيء جاهز. هذا ملخص ما سيُنشأ في نظامك الداخلي:</p>
+    <ul class="clist"><li class="ok">رصيد افتتاحي ${sar(W.opening)}${W.bank?" في "+esc(W.bank):""}</li><li class="${b?"ok":"no"}">ميزانيات ${b} مشروع</li><li class="${m?"ok":"no"}">${m} عضو في السجل</li><li class="${v?"ok":"no"}">${v} متطوع في السجل</li>
+    <li class="ok">المالية والمشاريع والأعضاء والاجتماعات والمحاضر، مع تصدير Excel</li></ul>`; }
+  return `<div class="boxed setup"><div class="sec-title"><div><span class="eyebrow">الخطوة الأخيرة</span><h2 style="font-size:24px">إعداد النظام الداخلي لجمعيتك</h2></div><span class="chip ok">✓ موقعك منشور</span></div>
+    <ol class="phases" style="padding:0">${SW_STEPS.map((t,i)=>`<li class="${i===W.step?"on":i<W.step?"done":""}"><b>${i+1}</b>${t}</li>`).join("")}</ol>
+    ${body}
+    <div class="savebar" style="padding:12px 0 0">${W.step>0?`<button class="btn" data-sw="prev">السابق</button>`:""}
+      ${W.step<3?`<button class="btn primary" data-sw="next">التالي</button>`:`<button class="btn primary" data-swdone>ابدأ استخدام النظام</button>`}
+      <button class="btn ghost" data-swskip style="margin-inline-start:auto">${state.forceSetup&&state.erp.cfg.setupDone?"إلغاء":"تخطي الإعداد"}</button></div></div>`;
+}
+async function finishSetup(s, skip){
+  if(!skip){ swCollect(); const W=swState(), P=state.erp.people, y=thisYear();
+    state.erp.fin.opening={amount:Number(W.opening)||0,date:W.openingDate||today(),bank:W.bank||""};
+    Object.entries(W.budgets).forEach(([t,b])=>{ if(Number(b)>0) state.erp.proj.items[t]=Object.assign({},state.erp.proj.items[t]||{},{budget:String(b)}); });
+    const mtype=((s.membership||[]).find(m=>m.type)||{}).type||"عضو عامل";
+    const addM=(name,phone)=>{ if(!P.members.some(x=>x.name===name)) P.members.push({id:rid(),name,phone,type:mtype,joined:today(),paidYear:""}); };
+    if(W.board) (s.board||[]).filter(b=>b.name).forEach(b=>addM(b.name,""));
+    parseLines(W.members).forEach(x=>addM(x.name,x.phone));
+    parseLines(W.vols).forEach(x=>{ if(!P.vols.some(v=>v.name===x.name)) P.vols.push({id:rid(),name:x.name,phone:x.phone,role:((s.volunteerRoles||[]).find(r=>r.title)||{}).title||"عام",hours:0}); });
+  }
+  state.erp.cfg.setupDone=true; state.erp.cfg.at=new Date().toISOString();
+  let ok=true; for(const k of (skip?["cfg"]:["fin","proj","people","cfg"])) ok=(await saveErp(k))&&ok;
+  if(ok){ state.setupW=null; state.forceSetup=false; state.dtab="over"; toast(skip?"تقدر تكمل الإعداد من التبويبات في أي وقت":"نظامك الداخلي جاهز"); render(); window.scrollTo(0,0); }
+}
+/* ---------- Excel export (.xlsx) ---------- */
+let xlsxLib=null;
+function loadXlsx(){ if(window.XLSX) return Promise.resolve(window.XLSX); if(xlsxLib) return xlsxLib;
+  xlsxLib=new Promise((res,rej)=>{ const sc=document.createElement("script"); sc.src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"; sc.onload=()=>res(window.XLSX); sc.onerror=()=>{ xlsxLib=null; rej(new Error("load")); }; document.head.appendChild(sc); });
+  return xlsxLib; }
+function sheetsFor(kind,s){
+  const F=state.erp.fin.tx, y=state.fy||thisYear(), yr=F.filter(t=>(t.date||"").startsWith(y)), P=state.erp.people, out=[];
+  const tx=()=>["العمليات "+y,[["التاريخ","النوع","البند","المبلغ (ر.س)","المشروع","الحملة","طريقة الدفع","رقم السند","البيان"],...[...yr].sort((a,b)=>(a.date||"").localeCompare(b.date||"")).map(t=>[t.date,t.type==="in"?"إيراد":"مصروف",t.cat,(t.type==="in"?1:-1)*(+t.amount||0),t.project||"",t.campaign||"",t.method||"",t.ref||"",t.note||""])],[12,9,20,14,22,20,13,13,30]];
+  const rep=()=>{ const inc=sumTx(yr,"in"), exp=sumTx(yr,"out"), op=Number((state.erp.fin.opening||{}).amount)||0, r=[["التقرير المالي لعام "+y,"","",""],[s.name,"","",""],[],["البند","النوع","المبلغ (ر.س)","النسبة"]];
+    INC_CATS.forEach(c=>{ const a=yr.filter(t=>t.type==="in"&&t.cat===c).reduce((m,t)=>m+(+t.amount||0),0); if(a) r.push([c,"إيراد",a,inc?a/inc:0]); });
+    EXP_CATS.forEach(c=>{ const a=yr.filter(t=>t.type==="out"&&t.cat===c).reduce((m,t)=>m+(+t.amount||0),0); if(a) r.push([c,"مصروف",a,exp?a/exp:0]); });
+    r.push([],["إجمالي الإيرادات","",inc,""],["إجمالي المصروفات","",exp,""],["الفائض / العجز","",inc-exp,""],["الرصيد الافتتاحي","",op,""],["الرصيد التراكمي","",op+sumTx(F,"in")-sumTx(F,"out"),""]);
+    return ["التقرير المالي "+y,r,[26,10,16,10],{pct:3}]; };
+  const pj=()=>["المشاريع",[["المشروع","الحالة","نسبة الإنجاز %","الموقع","الميزانية","المصروف","المتبقي","البدء","الانتهاء","المسؤول"],...(s.programs||[]).filter(p=>p.title).map(p=>{ const it=state.erp.proj.items[p.title]||{}, b=Number(it.budget)||0, sp=F.filter(t=>t.type==="out"&&t.project===p.title).reduce((a,t)=>a+(+t.amount||0),0);
+    return [p.title,p.status||"",p.progress===undefined||p.progress===""?"":Number(p.progress),p.location||"",b||"",sp,b?b-sp:"",it.start||"",it.end||"",it.manager||""]; })],[24,12,12,22,12,12,12,12,12,18]];
+  const mem=()=>["الأعضاء",[["الاسم","الجوال","نوع العضوية","تاريخ الانضمام","آخر سنة مسددة","الحالة"],...P.members.map(m=>[m.name,m.phone||"",m.type,m.joined||"",m.paidYear||"",String(m.paidYear||"")>=thisYear()?"ساري":"غير ساري"])],[22,14,14,14,12,10]];
+  const vol=()=>["المتطوعون",[["الاسم","الجوال","الفرصة","الساعات"],...P.vols.map(v=>[v.name,v.phone||"",v.role||"",Number(v.hours)||0])],[22,14,24,10]];
+  const meet=()=>["الاجتماعات",[["التاريخ","النوع","العنوان","الحضور","إجمالي الأعضاء","النصاب","القرارات","منشور"],...[...state.erp.meet.list].sort((a,b)=>(a.date||"").localeCompare(b.date||"")).map(m=>{ const q=Number(m.total)?Number(m.attend)/Number(m.total):null; return [m.date,m.type,m.title||"",Number(m.attend)||"",Number(m.total)||"",q===null?"":q>=0.5?"مكتمل":"غير مكتمل",String(m.decisions||"").split(/\n+/).filter(Boolean).join(" | "),m.published?"نعم":"لا"]; })],[12,16,26,9,12,11,50,8]];
+  if(kind==="fin") out.push(tx(),rep(),pj()); else if(kind==="people") out.push(mem(),vol()); else if(kind==="meet") out.push(meet()); else out.push(rep(),tx(),pj(),mem(),vol(),meet());
+  return out;
+}
+async function exportXlsx(kind){
+  const s=mySite(); if(!s) return;
+  let X; try{ X=await loadXlsx(); }catch(_){ toast("تعذّر تحميل أداة Excel، تحقق من الاتصال"); return; }
+  const wb=X.utils.book_new(); wb.Workbook={Views:[{RTL:true}]};
+  sheetsFor(kind,s).forEach(([name,rows,widths,fmt])=>{ const ws=X.utils.aoa_to_sheet(rows); ws["!cols"]=(widths||[]).map(w=>({wch:w}));
+    const rg=X.utils.decode_range(ws["!ref"]||"A1"); for(let R=rg.s.r;R<=rg.e.r;R++) for(let C=rg.s.c;C<=rg.e.c;C++){ const c=ws[X.utils.encode_cell({r:R,c:C})]; if(c&&c.t==="n") c.z=(fmt&&fmt.pct===C)?"0%":"#,##0.00"; }
+    X.utils.book_append_sheet(wb,ws,name.slice(0,31)); });
+  const buf=X.write(wb,{bookType:"xlsx",type:"array"});
+  const label={fin:"finance",people:"members",meet:"meetings",all:"internal"}[kind]||"export";
+  const filename=`${s.slug||"rawaq"}-${label}-${kind==="fin"?(state.fy||thisYear()):today()}.xlsx`;
+  const blob=new Blob([buf],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+  let dl=null; try{ dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null; }catch(_){}
+  if(dl){ try{ const r=await dl.save({filename,data:blob}); if(r!=="declined") toast("جُهّز ملف Excel"); }catch(e){ toast(e&&e.code==="declined"?"أُلغي التنزيل":e&&e.code==="rate_limited"?"انتظر لحظة ثم أعد المحاولة":"تعذّر التنزيل في هذا العرض"); } return; }
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=filename; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1000); toast("نُزّل ملف Excel");
 }
 /* ---------- editor ---------- */
 const STEPS=["التسجيل والتحقق","الأساسيات","الهوية والقالب","التعريف والبرامج","الأخبار والصفحات","التطوع والعضوية","الحوكمة والشفافية","التبرعات","التواصل والنطاق","المراجعة والنشر"];
-const PHASES=[["التسجيل",[0,1]],["الهوية",[2]],["المحتوى",[3,4,5,6,7,8]],["المراجعة",[9]],["النشر",[]]];
+const PHASES=[["التسجيل",[0,1]],["الهوية",[2]],["المحتوى",[3,4,5,6,7,8]],["المراجعة",[9]],["النشر",[]],["النظام الداخلي",[]]];
 const STEP_OF={programs:3,pages:4,"rep.name":0,"rep.phone":0,"rep.email":0,agree:0,name:1,slug:1,license:1,customDomain:8,"notify.email":8,"contact.email":8,"donate.iban":7,"donate.link":7};
 function fld(label,path,o={}){
   const v=getP(state.draft,path)??"";
@@ -902,7 +1273,7 @@ function stepBody(){
       <div class="row2">${fld("الرؤية","vision",{area:1})}${fld("الرسالة","mission",{area:1})}</div>
       <div class="field"><label for="d-values">القيم</label><input class="input" id="d-values" data-p="values" data-list value="${esc((d.values||[]).join("، "))}" placeholder="الشفافية، الإتقان، الشراكة"><span class="hint">افصل بين القيم بفاصلة.</span></div>
       <div class="row2">${fld("عدد المستفيدين","stats.beneficiaries",{ltr:true,ph:"8400"})}${fld("عدد المتطوعين","stats.volunteers",{ltr:true,ph:"320"})}</div>
-      ${rep("programs","البرامج والمشاريع","برنامج",[["اسم البرنامج","title"],["الوصف","desc",{area:1}],["عدد المستفيدين","beneficiaries",{ltr:true}]])}
+      ${rep("programs","البرامج والمشاريع","برنامج",[["اسم البرنامج","title"],["الوصف","desc",{area:1}],["عدد المستفيدين","beneficiaries",{ltr:true}],["نسبة الإنجاز %","progress",{ltr:true,ph:"0 - 100"}],["الموقع الجغرافي","location",{ph:"الحي أو المدينة"}]])}
       ${rep("beneficiaryGroups","فئات المستفيدين","فئة",[["الفئة","label",{ph:"أسر محتاجة"}],["العدد","count",{ltr:true}]])}`;
     case 4: return `${rep("news","الأخبار","خبر",[["العنوان","title"],["التاريخ","date",{type:"date",ltr:true}],["النص","body",{area:1}],["صورة الخبر","imageId",{upload:"image",hint:"اختيارية."}]])}
       ${rep("pages","صفحات إضافية","صفحة",[["عنوان الصفحة","title",{ph:"شركاؤنا"}],["المحتوى","body",{area:1,hint:"اكتب كل فقرة في سطر. ابدأ السطر بـ ## ليصبح عنواناً فرعياً."}]])}
@@ -931,7 +1302,7 @@ function stepBody(){
       return `<p class="notice">راجع الموقع في المعاينة، وبدّل بين <b>سطح المكتب</b> و<b>الجوال</b> أعلاها للتأكد من ظهوره على كل الشاشات. ثم اضغط «${state.editingSlug?"حفظ التعديلات":"نشر الموقع"}».</p>
       <div class="field"><div class="sec-title"><h4>جاهزية الموقع</h4></div>${checklist(d)}</div>
       ${ek.length?`<div class="field"><div class="sec-title"><h4>يلزم تصحيحه قبل النشر</h4></div><ul class="clist">${ek.map(k=>`<li class="no"><button type="button" class="btn sm ghost" data-step="${STEP_OF[k]??1}">${esc(er[k])} ← ${STEPS[STEP_OF[k]??1]}</button></li>`).join("")}</ul></div>`:`<p class="ok-msg">كل الحقول المطلوبة مكتملة.</p>`}
-      ${!state.canEdit||d.mine?`<p class="hint">بعد النشر يظهر الموقع مباشرة بعلامة «قيد التحقق» حتى توثّقه المنصة.</p>`:""}`; }
+      ${!state.canEdit||d.mine?`<p class="hint">بعد النشر يظهر الموقع مباشرة بعلامة «قيد التحقق» حتى توثّقه المنصة.${!state.editingSlug?" وتنتقل مباشرة لإعداد نظامك الداخلي: الرصيد الافتتاحي، وميزانيات المشاريع، والأعضاء والمتطوعين.":""}</p>`:""}`; }
   }
 }
 function viewEditor(){
@@ -950,7 +1321,7 @@ function viewEditor(){
 function updateNav(){
   ["welcome","home","apps","dash","verify"].forEach(k=>{const b=$("#nav-"+k); if(b) b.setAttribute("aria-current", String(state.view===k)); });
   const mine=mySite(), nn=$("#nav-new");
-  $("#nav-apps").hidden=!state.canEdit; $("#nav-verify").hidden=!state.canEdit; $("#nav-dash").hidden=!mine;
+  $("#nav-apps").hidden=!state.canEdit; $("#nav-verify").hidden=!state.canEdit; $("#nav-dash").hidden=!(mine||state.uid);
   if(state.canEdit){ nn.hidden=false; nn.textContent="+ إنشاء موقع جمعية"; }
   else if(state.canWrite && state.uid && !mine && state.mode!=="loading"){ nn.hidden=false; nn.textContent="+ سجّل جمعيتك"; }
   else nn.hidden=true;
@@ -973,7 +1344,13 @@ document.addEventListener("error",e=>{ const t=e.target; if(!(t instanceof HTMLI
 document.addEventListener("click",async e=>{
   const t=e.target.closest("button,a"); if(!t) return;
   const ds=t.dataset;
+  if("demo" in ds){ state.demo=true; state.demoSite=Object.assign(clone(SAMPLES[0]),{_id:"__demo"}); state.erp=erpSample(); state.mailBak=state.mail;
+    state.mail=[{kind:"volunteer",choice:"توزيع السلال الغذائية",name:"مثال: محمد أحمد",phone:"0500000000",email:"",at:"2026-10-20T09:00:00Z"},{kind:"member",choice:"عضو عامل",name:"مثال: نورة سالم",phone:"0522222222",email:"",at:"2026-10-21T10:00:00Z"}];
+    state.dtab="over"; state.dashSeen=""; render(); window.scrollTo(0,0); return; }
+  if("demoexit" in ds){ endDemo(); return go("dash"); }
+  if(state.demo && (ds.open||ds.edit)){ toast("غير متاح في العرض التجريبي"); return; }
   if(ds.go){ e.preventDefault(); return go(ds.go); }
+  if(state.view==="dash" && await erpClick(ds,t)) return;
   if(ds.open) return go("site",ds.open);
   if(ds.edit){ const s=state.sites.find(x=>x.slug===ds.edit); if(s) startEdit(s); return; }
   if(ds.del){ state.confirmDel=ds.del; return render(); }
@@ -987,7 +1364,7 @@ document.addEventListener("click",async e=>{
     if(!Array.isArray(state.draft[ds.add])) state.draft[ds.add]=[];
     state.draft[ds.add].push(clone(tpl)); render(); return; }
   if(ds.rm){ const [k,i]=ds.rm.split("."); state.draft[k].splice(+i,1); render(); refreshPreview(); return; }
-    if("logocolors" in ds){ const ok=await applyLogoColors(assetUrl(state.draft.logoId)); toast(ok?"حُدّدت ألوان الهوية من الشعار":"تعذّر استخراج الألوان من الشعار"); render(); return; }
+  if("logocolors" in ds){ const ok=await applyLogoColors(assetUrl(state.draft.logoId)); toast(ok?"حُدّدت ألوان الهوية من الشعار":"تعذّر استخراج الألوان من الشعار"); render(); return; }
   if(ds.color){ state.draft.color=ds.color; render(); return; }
   if(ds.tpl){ state.draft.template=ds.tpl; render(); return; }
   if(ds.plan && state.view==="new"){ state.draft.plan=ds.plan; const P=PLANS[ds.plan]; if(!P.templates.includes(state.draft.template)) state.draft.template="classic"; if(!P.domain) state.draft.customDomain=""; render(); return; }
@@ -1027,6 +1404,9 @@ document.addEventListener("change",async e=>{
   if(el.id==="f-app"){ state.appSite=el.value; render(); }
   if(el.id==="f-kind"){ state.appKind=el.value; render(); }
   if(el.id==="f-dkind"){ state.dashKind=el.value; render(); }
+  if(el.id==="f-fy"){ state.fy=el.value; render(); }
+  if(el.id==="f-fcat"){ state.fcat=el.value; render(); }
+  if(el.dataset.erpup) await uploadErp(el);
   if(el.dataset.p && el.tagName==="SELECT"){ setP(state.draft,el.dataset.p,el.value); refreshPreview(); }
   if(el.dataset.p && el.type==="checkbox"){ setP(state.draft,el.dataset.p,el.checked); if(el.dataset.p==="mine"||el.dataset.p==="agree") render(); }
   if(el.dataset.up) await uploadFile(el);
@@ -1064,13 +1444,15 @@ async function uploadFile(el){
   try{
     if(state.mode==="db"){ if(!assets) throw {code:"not_granted"}; const r=await assets.upload(f); setP(state.draft,path,r.id); }
     else { if(f.size>1.5*1048576){ throw {code:"too_big_offline"}; }
-           const url=await readAsDataURL(f); setP(state.draft,path,url); }
+      const url=await readAsDataURL(f); setP(state.draft,path,url); }
     if(path==="logoId"){ let ok=false; try{ ok=await applyLogoColors(await readAsDataURL(f)); }catch(_){} toast(ok?"رُفع الشعار وحُدّدت ألوان الهوية منه":"رُفع الشعار"); }
     else toast("رُفع الملف");
   }catch(err){ toast(err.code==="too_big_offline"?"في وضع المعاينة الحد 1.5 ميجابايت":err.code==="not_granted"?"رفع الملفات غير متاح لصلاحيتك":err.code==="quota_exceeded"?"امتلأت مساحة التخزين":"تعذّر رفع الملف"); }
   delete state.uploading[path]; render();
 }
 document.addEventListener("submit",async e=>{
+  const ef=e.target.closest("form[data-erp]");
+  if(ef){ e.preventDefault(); const b=ef.querySelector("button[type=submit]"); if(b) b.disabled=true; await erpSubmit(ef); return; }
   const lf=e.target.closest("form[data-lead]");
   if(lf){ e.preventDefault(); const fd=new FormData(lf);
     const rec={name:fd.get("n").trim(),org:fd.get("o").trim(),phone:fd.get("p").trim(),email:(fd.get("e")||"").trim(),branches:fd.get("b")||"",message:String(fd.get("m")||"").trim().slice(0,800),at:new Date().toISOString(),status:"new"};
@@ -1133,6 +1515,7 @@ async function save(){
   if(d.donate) d.donate.iban=String(d.donate.iban||"").replace(/\s+/g,"").toUpperCase();
   const own = !state.canEdit || !!d.mine;
   const id = state.editingId || (own && state.uid ? state.uid : "p-"+d.slug);
+  const isNewOwn = !state.editingSlug && own && !!state.uid && id===state.uid;
   if(own && state.uid && id===state.uid) d.ownerId=state.uid;
   d.updatedAt=new Date().toISOString();
   delete d._id; delete d.mine;
@@ -1141,8 +1524,10 @@ async function save(){
     if(state.mode==="db"){
       if(d.ownerId && d.ownerId===state.uid){ try{ const pub=await ensureKeys(); if(pub) d.pubKey=pub; }catch(_){} }
       await db.doc("sites/"+id).set(d);
+      if(!state.sites.some(x=>x._id===id)) state.sites=[Object.assign(clone(d),{_id:id}),...state.sites];
       startOwner();
     } else { d._id=id; const i=state.sites.findIndex(s=>s._id===id); i>=0?state.sites[i]=d:state.sites.unshift(d); }
+    if(isNewOwn){ state.dtab="over"; state.setupW=null; toast("نُشر موقعك. الخطوة الأخيرة: إعداد نظامك الداخلي"); go("dash"); return; }
     toast(state.editingSlug?"حُفظت التعديلات":(planKey(d)!=="free"&&!state.canEdit?"نُشر الموقع، وسيتواصل معك فريق المنصة لتفعيل الاشتراك":"نُشر الموقع "+d.slug+"."+DOMAIN));
     go("site",d.slug);
   }catch(err){ btn.disabled=false; toast(err.code==="quota_exceeded"?"امتلأت سعة المنصة، احذف مواقع غير مستخدمة":err.code==="invalid_argument"?"لا تملك صلاحية النشر على هذه الصفحة":"تعذّر الحفظ، حاول مرة أخرى"); }
@@ -1175,6 +1560,7 @@ function startOwner(){
   ownerStarted=true;
   db.doc(`data/users/${state.uid}/prefs`).get().then(s=>{ if(s.exists){ state.lastSeen=s.data().lastSeen||""; refresh(); } }).catch(()=>{});
   db.collection("mail").onSnapshot(onMail,()=>{});
+  loadErp();
 }
 /* ---------- boot ---------- */
 function offline(){ state.mode="offline"; state.sites=clone(SAMPLES); state.canEdit=true; state.canWrite=true; state.uid="demo-owner";
@@ -1182,6 +1568,7 @@ function offline(){ state.mode="offline"; state.sites=clone(SAMPLES); state.canE
   state.inbox=[{siteId:"birr-madinah",kind:"volunteer",choice:"توزيع السلال الغذائية",name:"مثال: محمد أحمد",phone:"0500000000",email:"",at:"2026-10-20T09:00:00Z"},
     {siteId:"birr-madinah",kind:"contact",choice:"طلب شراكة",name:"مثال: شركة نماء",phone:"0511111111",email:"csr@example.com",message:"نرغب في رعاية حملة سلة الخير الشتوية لهذا العام.",at:"2026-10-22T11:30:00Z"}];
   state.mail=clone(state.inbox).reverse();
+  state.erp=erpSample(); state.erpLoaded=true;
   state.leads=[{_id:"demo-lead",name:"مثال: م. عبدالله",org:"مؤسسة الخير الأهلية",phone:"0533333333",email:"it@example.org",branches:"6",message:"نحتاج مواقع لستة فروع مع لوحة موحدة.",at:"2026-10-23T08:00:00Z",status:"new"}];
   if(!INITIAL_HASH && state.view==="welcome"){ state.view="home"; try{history.replaceState(null,"","#home")}catch(_){} }
   if(state.view!=="new") render(); else updateNav(); }
